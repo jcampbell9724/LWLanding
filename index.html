@@ -1,0 +1,608 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta
+    name="description"
+    content="Ledgewave is an enterprise collections automation and cash forecasting platform for finance teams that need one system for receivables intake, dunning workflow, customer tracking, and forecast visibility."
+  >
+  <title>Ledgewave | Collections Automation & Cash Forecasting</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;700&display=swap"
+    rel="stylesheet"
+  >
+  <link rel="icon" href="assets/ledgewave-mark.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body data-page="index">
+  <div class="site-shell">
+    <div class="topline">
+      Collections automation, customer tracking, and cash forecasting for finance teams operating at enterprise scale.
+    </div>
+
+    <header class="site-header" id="top">
+      <a class="brand" href="index.html" aria-label="Ledgewave home">
+        <img src="assets/ledgewave-mark.svg" alt="" width="44" height="44">
+        <span class="brand-copy">
+          <strong>Ledgewave</strong>
+          <span>Receivables OS</span>
+        </span>
+      </a>
+
+      <button
+        class="nav-toggle"
+        type="button"
+        aria-expanded="false"
+        aria-controls="site-nav"
+        aria-label="Toggle navigation"
+      >
+        <span></span>
+        <span></span>
+      </button>
+
+      <nav class="site-nav" id="site-nav" aria-label="Primary">
+        <a href="platform.html" data-nav="platform">Platform</a>
+        <a href="solutions.html" data-nav="solutions">Solutions</a>
+        <a href="operations.html" data-nav="operations">Operations</a>
+        <a href="resources.html" data-nav="resources">Resources</a>
+        <a href="blog/index.html" data-nav="blog">Blog</a>
+        <a href="why-ledgewave.html" data-nav="why">Why Ledgewave</a>
+      </nav>
+
+      <a class="btn btn-primary nav-cta" href="demo.html">Request a Demo</a>
+    </header>
+
+    <main>
+      <section class="hero hero-premium reveal is-visible">
+        <div class="hero-copy hero-copy-premium">
+          <span class="section-pill">Collections Automation + Forecasting</span>
+          <h1>Enterprise collections automation with live forecast visibility.</h1>
+          <p class="hero-intro">
+            Ledgewave gives finance teams one operating layer for receivables intake, account prioritization, dunning workflow, and cash forecasting.
+          </p>
+
+          <div class="hero-actions">
+            <a class="btn btn-primary" href="demo.html">Request a Demo</a>
+            <a class="btn btn-secondary" href="platform.html">Explore the Platform</a>
+          </div>
+
+          <p class="hero-support-line">
+            Built for export-driven ERP workflows today, with room for CRM sync, reporting feeds, and API integrations as the operating model matures.
+          </p>
+
+          <div class="hero-chip-row" aria-label="Platform highlights">
+            <span>ERP exports + API-ready intake</span>
+            <span>Collector work queues and dunning stages</span>
+          </div>
+
+          <div class="proof-grid">
+            <article class="proof-card proof-card-stat">
+              <span class="proof-stat">1</span>
+              <strong>shared receivables command layer</strong>
+              <p>Current receivables, planned billing, collector activity, and forecast assumptions stay attached to the same operating record.</p>
+            </article>
+            <article class="proof-card proof-card-stat">
+              <span class="proof-stat">4</span>
+              <strong>connected workspaces</strong>
+              <p>Portfolio command, account detail, dunning workflow, and cash forecast review move as one operating loop.</p>
+            </article>
+            <article class="proof-card proof-card-stat">
+              <span class="proof-stat">CRM</span>
+              <strong>ready for real customer context</strong>
+              <p>Bring owner, promise-to-pay, dispute, and escalation context closer to collections without rebuilding the story every week.</p>
+            </article>
+          </div>
+        </div>
+
+        <aside class="hero-panel hero-panel-premium" aria-label="Ledgewave workflow preview">
+          <div class="hero-window">
+            <div class="hero-window-bar">
+              <div class="hero-window-dots" aria-hidden="true">
+                <span></span>
+                <span></span>
+                <span></span>
+              </div>
+              <span class="hero-window-label">Ledgewave Command Center</span>
+              <span class="hero-window-state">Live portfolio</span>
+            </div>
+
+            <div class="hero-workspace">
+              <div class="workspace-sidebar">
+                <span class="workspace-nav-label">Work queues</span>
+                <article class="queue-item is-active">
+                  <strong>Priority accounts</strong>
+                  <span>24 customers flagged today</span>
+                </article>
+                <article class="queue-item">
+                  <strong>Promise-to-pay watch</strong>
+                  <span>9 follow-ups due this week</span>
+                </article>
+                <article class="queue-item">
+                  <strong>Forecast exceptions</strong>
+                  <span>11 accounts outside expected timing</span>
+                </article>
+              </div>
+
+              <div class="workspace-main">
+                <div class="workspace-metrics">
+                  <article class="workspace-metric">
+                    <span class="metric-label">At-risk A/R</span>
+                    <strong>$4.8M</strong>
+                    <p>62 priority accounts</p>
+                  </article>
+                  <article class="workspace-metric">
+                    <span class="metric-label">Collector coverage</span>
+                    <strong>94%</strong>
+                    <p>Next action assigned</p>
+                  </article>
+                  <article class="workspace-metric">
+                    <span class="metric-label">30-day forecast</span>
+                    <strong>$8.2M</strong>
+                    <p>Open + planned billing</p>
+                  </article>
+                </div>
+
+                <div class="workspace-grid">
+                  <article class="workspace-card workspace-card-wide">
+                    <div class="workspace-card-head">
+                      <span>Collection queue</span>
+                      <strong>Today's highest-leverage accounts</strong>
+                    </div>
+                    <div class="workspace-table">
+                      <div class="table-row">
+                        <span>Northbridge Medical</span>
+                        <span>47 days overdue</span>
+                        <span class="status-tag status-high">Escalate</span>
+                      </div>
+                      <div class="table-row">
+                        <span>Asteron Industrial</span>
+                        <span>Promise due Friday</span>
+                        <span class="status-tag status-medium">Monitor</span>
+                      </div>
+                      <div class="table-row">
+                        <span>Cardinal Lab Systems</span>
+                        <span>Dispute aging 11 days</span>
+                        <span class="status-tag status-low">Resolve</span>
+                      </div>
+                    </div>
+                  </article>
+
+                  <article class="workspace-card">
+                    <div class="workspace-card-head">
+                      <span>Collector timeline</span>
+                      <strong>Account context stays attached</strong>
+                    </div>
+                    <div class="action-timeline">
+                      <div class="timeline-item">
+                        <span class="timeline-dot"></span>
+                        <div>
+                          <strong>Outbound dunning batch approved</strong>
+                          <p>15 accounts moved forward with notes preserved.</p>
+                        </div>
+                      </div>
+                      <div class="timeline-item">
+                        <span class="timeline-dot"></span>
+                        <div>
+                          <strong>CRM owner synced for 8 exceptions</strong>
+                          <p>Owner and dispute status updated before follow-up went out.</p>
+                        </div>
+                      </div>
+                    </div>
+                  </article>
+
+                  <article class="workspace-card">
+                    <div class="workspace-card-head">
+                      <span>Cash forecast</span>
+                      <strong>30-day expectation by confidence band</strong>
+                    </div>
+                    <div class="forecast-bars" aria-hidden="true">
+                      <div class="forecast-bar">
+                        <span>Committed</span>
+                        <strong style="width: 78%"></strong>
+                      </div>
+                      <div class="forecast-bar">
+                        <span>Expected</span>
+                        <strong style="width: 61%"></strong>
+                      </div>
+                      <div class="forecast-bar">
+                        <span>At risk</span>
+                        <strong style="width: 34%"></strong>
+                      </div>
+                    </div>
+                    <p class="workspace-note">Confidence reflects payment behavior, workflow activity, and near-term billing.</p>
+                  </article>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="hero-float-card hero-float-card-top">
+            <span>CRM-ready context</span>
+            <strong>Owner, promise-to-pay, and dispute notes stay attached to the account.</strong>
+          </div>
+
+          <div class="hero-float-card hero-float-card-bottom">
+            <span>Governance</span>
+            <strong>Import validation, role-based review, and audit history are built into the workflow.</strong>
+          </div>
+        </aside>
+      </section>
+
+      <section class="role-strip reveal" aria-label="Ideal customer roles">
+        <span>AR directors</span>
+        <span>Collections managers</span>
+        <span>Controllers</span>
+        <span>Shared services teams</span>
+        <span>Finance operations</span>
+        <span>Revenue operations partners</span>
+      </section>
+
+      <section class="content-section integration-section reveal">
+        <div class="section-heading">
+          <span class="section-pill">Enterprise Fit</span>
+          <h2>Designed to work with the systems finance already runs.</h2>
+          <p>Start with exported receivables data if needed. Expand into CRM context, payment signals, and reporting feeds when the team is ready for deeper automation.</p>
+        </div>
+
+        <div class="integration-marquee" aria-label="Common system environments">
+          <span>NetSuite</span>
+          <span>SAP</span>
+          <span>Microsoft Dynamics</span>
+          <span>Sage Intacct</span>
+          <span>Oracle</span>
+          <span>Salesforce</span>
+          <span>HubSpot</span>
+          <span>CSV / SFTP</span>
+          <span>API / Webhooks</span>
+        </div>
+
+        <div class="split-grid integration-notes">
+          <article class="split-card">
+            <h3>Meet teams where they are today</h3>
+            <p>Many finance teams still run collections from ERP exports, spreadsheet trackers, inbox threads, and manual forecast recaps. Ledgewave gives them a more disciplined operating layer without forcing a rip-and-replace on day one.</p>
+          </article>
+          <article class="split-card">
+            <h3>Grow into a more connected architecture</h3>
+            <p>Once the operating motion is defined, CRM sync, account ownership, dispute routing, payment events, and BI outputs can attach to the same receivables spine instead of creating another side process.</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="content-section reveal">
+        <div class="section-heading">
+          <span class="section-pill">Why Teams Buy</span>
+          <h2>Replace the hidden work around collections, not just the dashboard.</h2>
+          <p>Finance teams move when the product clearly improves how the book gets worked, how exceptions get managed, and how cash timing gets explained.</p>
+        </div>
+
+        <div class="detail-grid">
+          <article class="detail-card">
+            <h3>Portfolio command</h3>
+            <p>Prioritize the book from one live operating view instead of rebuilding aging analysis every cycle.</p>
+          </article>
+          <article class="detail-card">
+            <h3>Dunning orchestration</h3>
+            <p>Move from risk signal into collector work queues, account context, and next-touch workflow without losing momentum.</p>
+          </article>
+          <article class="detail-card">
+            <h3>Customer timeline</h3>
+            <p>Keep promises to pay, disputes, notes, escalations, and collector actions tied to the receivable they are meant to support.</p>
+          </article>
+        </div>
+
+        <div class="detail-grid">
+          <article class="detail-card">
+            <h3>Forecast intelligence</h3>
+            <p>Bring live A/R, payment behavior, planned billing, and workflow context into the same cash review.</p>
+          </article>
+          <article class="detail-card">
+            <h3>Manager visibility</h3>
+            <p>See queue coverage, exception aging, and collector ownership before leadership asks where the process is breaking down.</p>
+          </article>
+          <article class="detail-card">
+            <h3>Audit-ready history</h3>
+            <p>Track what changed, what was sent, what moved in forecast, and why, without rebuilding the trail later.</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="compare-section reveal">
+        <div class="section-heading">
+          <span class="section-pill">Spreadsheet Exit</span>
+          <h2>What enterprise teams are trying to leave behind.</h2>
+          <p>The buying trigger is rarely one overdue number. It is the amount of process debt the team is carrying around the receivables workflow.</p>
+        </div>
+
+        <div class="compare-grid">
+          <article class="compare-card compare-card-muted">
+            <span class="compare-label">Before Ledgewave</span>
+            <ul class="compare-list">
+              <li>Each export starts a new cleanup cycle before collectors can even begin working the portfolio.</li>
+              <li>Notes, promises to pay, escalations, and customer ownership drift across spreadsheets, inboxes, and CRM comments.</li>
+              <li>Forecast review becomes a separate recap project instead of the natural output of the workflow.</li>
+              <li>Managers can see balances, but not always queue coverage, exception ownership, or what changed this week.</li>
+            </ul>
+          </article>
+
+          <article class="compare-card compare-card-accent">
+            <span class="compare-label">With Ledgewave</span>
+            <ul class="compare-list">
+              <li>Receivables intake lands in a shared operating model with validation, staging, and account context already in frame.</li>
+              <li>Collectors move from portfolio signal to account detail to dunning action while keeping history, notes, and ownership visible.</li>
+              <li>Controllers and finance leaders can explain timing changes with the supporting workflow context attached.</li>
+              <li>Operations gains a system that can eventually connect ERP data, CRM context, reporting, and automation rather than multiplying tools.</li>
+            </ul>
+          </article>
+        </div>
+      </section>
+
+      <section class="workflow-section reveal" id="workflow">
+        <div class="section-heading">
+          <span class="section-pill">Workflow</span>
+          <h2>Organized around the real weekly operating cadence.</h2>
+          <p>Ledgewave is valuable because it keeps collections execution, customer context, and forecast review connected all the way through the cycle.</p>
+        </div>
+
+        <div class="workflow-grid">
+          <article class="workflow-card">
+            <span>01</span>
+            <h3>Load the portfolio</h3>
+            <p>Bring current receivables and planned billing into one validated operating picture.</p>
+          </article>
+          <article class="workflow-card">
+            <span>02</span>
+            <h3>Prioritize the queue</h3>
+            <p>See aging pressure, account risk, collector ownership, and exception load without extra reporting work.</p>
+          </article>
+          <article class="workflow-card">
+            <span>03</span>
+            <h3>Run the customer motion</h3>
+            <p>Advance dunning, capture notes, track promises, and route disputes with the receivable still in context.</p>
+          </article>
+          <article class="workflow-card">
+            <span>04</span>
+            <h3>Explain the cash story</h3>
+            <p>Walk into forecast and leadership review with timing assumptions grounded in real workflow activity.</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="content-section reveal">
+        <div class="section-heading">
+          <span class="section-pill">Governance + Integration</span>
+          <h2>Credible to operators, controllers, and technical evaluators.</h2>
+          <p>The site needs to tell two stories at once: this product will make the collections motion cleaner, and it will fit inside a serious enterprise environment.</p>
+        </div>
+
+        <div class="split-grid architecture-layout">
+          <article class="architecture-card">
+            <span class="resource-type">Integration Architecture</span>
+            <h3>One receivables spine connecting systems and workflow.</h3>
+            <div class="integration-stack">
+              <div class="integration-column">
+                <span class="stack-title">Inputs</span>
+                <ul class="stack-list">
+                  <li>ERP receivables exports</li>
+                  <li>Planned billing feeds</li>
+                  <li>CRM ownership and notes</li>
+                  <li>Payment and dispute events</li>
+                </ul>
+              </div>
+              <div class="platform-node">Ledgewave</div>
+              <div class="integration-column">
+                <span class="stack-title">Outputs</span>
+                <ul class="stack-list">
+                  <li>Collector work queues</li>
+                  <li>Dunning activity and audit trail</li>
+                  <li>Leadership-ready forecast views</li>
+                  <li>Reporting and downstream exports</li>
+                </ul>
+              </div>
+            </div>
+            <p class="section-note">Begin file-based if necessary. Expand toward APIs, webhooks, CRM sync, and deeper workflow automation when the process is proven.</p>
+          </article>
+
+          <div class="governance-stack">
+            <article class="detail-card">
+              <h3>Role-based review</h3>
+              <p>Separate file intake, operator action, and management oversight so the team can scale without losing control.</p>
+            </article>
+            <article class="detail-card">
+              <h3>Audit history</h3>
+              <p>Keep imports, notes, stage changes, and forecast adjustments inspectable instead of trapped in a spreadsheet version chain.</p>
+            </article>
+            <article class="detail-card">
+              <h3>CRM-aware rollout</h3>
+              <p>Design for the reality that customer ownership, escalation context, and promises to pay often need to flow across systems.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="content-section reveal">
+        <div class="section-heading">
+          <span class="section-pill">Implementation</span>
+          <h2>Built for a serious rollout without turning into a giant transformation project.</h2>
+          <p>Teams want confidence that the product can start practical and expand over time as workflow, systems, and governance mature.</p>
+        </div>
+
+        <div class="sequence-grid rollout-grid">
+          <article class="sequence-card">
+            <span class="sequence-step">1</span>
+            <h3>Map the data model</h3>
+            <p>Confirm the receivables export, planned billing feed, account keys, and workflow fields needed to run the first pilot.</p>
+          </article>
+          <article class="sequence-card">
+            <span class="sequence-step">2</span>
+            <h3>Configure queues and stages</h3>
+            <p>Define collector priorities, dunning motions, exception paths, and management views around the current operating rhythm.</p>
+          </article>
+          <article class="sequence-card">
+            <span class="sequence-step">3</span>
+            <h3>Run the pilot</h3>
+            <p>Pressure-test intake, queue coverage, customer context, and forecast visibility with the team carrying the book.</p>
+          </article>
+          <article class="sequence-card">
+            <span class="sequence-step">4</span>
+            <h3>Expand the system</h3>
+            <p>Add integration depth, management controls, and reporting outputs once the weekly collections motion is stable.</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="content-section reveal">
+        <div class="section-heading">
+          <span class="section-pill">Continue Exploring</span>
+          <h2>Open the parts of the site that answer the next team question.</h2>
+          <p>Each page below pushes deeper into product detail, operating fit, rollout thinking, and the workflows finance teams usually want to evaluate next.</p>
+        </div>
+
+        <div class="link-grid">
+          <article class="link-card">
+            <span class="resource-type">Platform</span>
+            <h3>See the product modules in more detail.</h3>
+            <p>Portfolio command, account drill-downs, dunning workflow, and forecast intelligence.</p>
+            <a class="btn btn-secondary" href="platform.html">Open Platform</a>
+          </article>
+          <article class="link-card">
+            <span class="resource-type">Solutions</span>
+            <h3>See the role and team fit.</h3>
+            <p>Role-based positioning for AR, collections leadership, controllers, and finance operations.</p>
+            <a class="btn btn-secondary" href="solutions.html">Open Solutions</a>
+          </article>
+          <article class="link-card">
+            <span class="resource-type">Operations</span>
+            <h3>See how the workflow actually runs.</h3>
+            <p>Weekly operating rhythm, rollout thinking, and how teams move from export to execution.</p>
+            <a class="btn btn-secondary" href="operations.html">Open Operations</a>
+          </article>
+          <article class="link-card">
+            <span class="resource-type">Resources</span>
+            <h3>See content that supports the buying process.</h3>
+            <p>Playbooks, guides, and materials that make the company feel more established and useful.</p>
+            <a class="btn btn-secondary" href="resources.html">Open Resources</a>
+          </article>
+          <article class="link-card">
+            <span class="resource-type">Blog</span>
+            <h3>Read operator-level ideas and point of view.</h3>
+            <p>Writing on collections workflow, payment behavior, forecast discipline, and modernization.</p>
+            <a class="btn btn-secondary" href="blog/index.html">Open Blog</a>
+          </article>
+          <article class="link-card">
+            <span class="resource-type">Why Ledgewave</span>
+            <h3>Understand the category point of view.</h3>
+            <p>Why teams outgrow passive dashboards, manual recaps, and spreadsheet-heavy collections operations.</p>
+            <a class="btn btn-secondary" href="why-ledgewave.html">Open Why Ledgewave</a>
+          </article>
+        </div>
+      </section>
+
+      <section class="demo-section reveal" id="demo">
+        <div class="demo-copy">
+          <span class="section-pill">Next Step</span>
+          <h2>Walk through the workflow your team actually runs today.</h2>
+          <p>
+            A strong first meeting should validate data readiness, queue design, customer context, and the cash forecast story,
+            not just click through screens. Use the demo flow to pressure-test whether Ledgewave fits the way your team works.
+          </p>
+          <div class="demo-benefits">
+            <article>
+              <strong>Workflow fit</strong>
+              <p>See how exports, queues, collector actions, and exceptions connect inside one operating model.</p>
+            </article>
+            <article>
+              <strong>Integration path</strong>
+              <p>Review how ERP, CRM, payment, and reporting signals can fit around the same receivables spine.</p>
+            </article>
+            <article>
+              <strong>Rollout clarity</strong>
+              <p>Leave with a better picture of pilot scope, systems fit, and the next implementation conversation.</p>
+            </article>
+          </div>
+          <div class="hero-actions">
+            <a class="btn btn-primary" href="demo.html">Request a Demo</a>
+            <a class="btn btn-secondary" href="operations.html">See Operating Detail</a>
+          </div>
+        </div>
+
+        <div class="insight-board" aria-label="Evaluation checklist">
+          <div class="board-header">
+            <strong>What a serious evaluation should cover</strong>
+            <span>Designed for finance teams that need product credibility, systems fit, and rollout realism.</span>
+          </div>
+          <div class="board-grid">
+            <article>
+              <span class="board-kicker">Data intake</span>
+              <strong>How current receivables, planned billing, and account keys enter the workflow</strong>
+              <p>Start with the files or feeds the team already owns so the conversation stays concrete.</p>
+            </article>
+            <article>
+              <span class="board-kicker">Collector workflow</span>
+              <strong>How queues, priorities, customer notes, and dunning stages operate day to day</strong>
+              <p>Validate that the workflow fits the team actually carrying the book, not a generic process map.</p>
+            </article>
+            <article>
+              <span class="board-kicker">Forecast review</span>
+              <strong>How timing assumptions, payment behavior, and planned billing shape the cash story</strong>
+              <p>Make sure finance leadership can see the reasoning behind the number, not only the number itself.</p>
+            </article>
+            <article>
+              <span class="board-kicker">Implementation</span>
+              <strong>How a pilot could start cleanly and expand into CRM or deeper automation later</strong>
+              <p>Keep the first rollout practical while leaving room for a more connected architecture over time.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <div class="footer-brand-top">
+            <img src="assets/ledgewave-mark.svg" alt="" width="40" height="40">
+            <span class="footer-brand-copy">
+              <strong>Ledgewave</strong>
+              <span>Collections automation and forecast visibility for modern finance teams.</span>
+            </span>
+          </div>
+          <p class="footer-note">
+            Built for finance organizations replacing exported receivables files, spreadsheet trackers, and disconnected follow-up work with a more disciplined operating system.
+          </p>
+        </div>
+
+        <div class="footer-links">
+          <strong>Product</strong>
+          <a href="platform.html">Platform</a>
+          <a href="solutions.html">Solutions</a>
+          <a href="operations.html">Operations</a>
+        </div>
+
+        <div class="footer-links">
+          <strong>Learn</strong>
+          <a href="resources.html">Resources</a>
+          <a href="blog/index.html">Blog</a>
+          <a href="why-ledgewave.html">Why Ledgewave</a>
+          <a href="demo.html">Request a Demo</a>
+        </div>
+
+        <div class="footer-links">
+          <strong>Browse</strong>
+          <a href="index.html">Home</a>
+          <a href="#top">Back to top</a>
+        </div>
+      </div>
+
+      <div class="footer-meta">
+        <span>&copy; <span id="year"></span> Ledgewave. Collections automation and cash forecasting software.</span>
+        <span>Designed for operators, controllers, and finance teams who need one receivables command layer.</span>
+      </div>
+    </footer>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

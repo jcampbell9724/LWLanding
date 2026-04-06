@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta
+    name="description"
+    content="Explore the Ledgewave platform: structured receivables import, aging visibility, customer drill-downs, dunning workflow, and cash forecast intelligence."
+  >
+  <title>Platform | Ledgewave</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;700&display=swap"
+    rel="stylesheet"
+  >
+  <link rel="icon" href="assets/ledgewave-mark.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body data-page="platform">
+  <div class="site-shell">
+    <div class="topline">
+      Product detail for teams replacing spreadsheet-driven collections work with a connected operating system.
+    </div>
+
+    <header class="site-header" id="top">
+      <a class="brand" href="index.html" aria-label="Ledgewave home">
+        <img src="assets/ledgewave-mark.svg" alt="" width="44" height="44">
+        <span class="brand-copy">
+          <strong>Ledgewave</strong>
+          <span>Receivables OS</span>
+        </span>
+      </a>
+
+      <button
+        class="nav-toggle"
+        type="button"
+        aria-expanded="false"
+        aria-controls="site-nav"
+        aria-label="Toggle navigation"
+      >
+        <span></span>
+        <span></span>
+      </button>
+
+      <nav class="site-nav" id="site-nav" aria-label="Primary">
+        <a href="platform.html" data-nav="platform">Platform</a>
+        <a href="solutions.html" data-nav="solutions">Solutions</a>
+        <a href="operations.html" data-nav="operations">Operations</a>
+        <a href="resources.html" data-nav="resources">Resources</a>
+        <a href="blog/index.html" data-nav="blog">Blog</a>
+        <a href="why-ledgewave.html" data-nav="why">Why Ledgewave</a>
+      </nav>
+
+      <a class="btn btn-primary nav-cta" href="demo.html">Request a Demo</a>
+    </header>
+
+    <main>
+      <section class="page-hero reveal is-visible">
+        <div class="page-hero-copy">
+          <span class="section-pill">Platform</span>
+          <h1>One operating layer for the full collections cycle.</h1>
+          <p>
+            Ledgewave connects structured import, overdue visibility, customer drill-downs, draft outreach,
+            collections forecasting, and shared workflow context so teams can move from source data to action without rebuilding the workflow every cycle.
+          </p>
+          <div class="page-hero-actions">
+            <a class="btn btn-primary" href="demo.html">Request a Demo</a>
+            <a class="btn btn-secondary" href="operations.html">See The Operating Model</a>
+          </div>
+          <div class="pill-row">
+            <span class="pill">Receivables snapshot import</span>
+            <span class="pill">Planned billing import</span>
+            <span class="pill">Dashboard + drilldowns</span>
+            <span class="pill">Draft correspondence</span>
+            <span class="pill">Forecast + follow-up history</span>
+          </div>
+        </div>
+
+        <aside class="page-hero-card">
+          <span class="section-pill">Connected Platform</span>
+          <h2>A product, not just another dashboard.</h2>
+          <p>The value comes from how the modules connect. Each screen answers the next question in the collections process instead of forcing another export or side document.</p>
+          <ul class="mini-list">
+            <li>Import current receivables and future billing into one structured model</li>
+            <li>Move from portfolio signal into customer and invoice-level context</li>
+            <li>Prepare follow-up drafts without losing the supporting detail</li>
+            <li>Carry notes, follow-up history, and forecast reasoning into cash review</li>
+          </ul>
+        </aside>
+      </section>
+
+      <section class="content-section reveal">
+        <div class="section-heading">
+          <span class="section-pill">Import Foundation</span>
+          <h2>Bring current and future receivables into one data spine.</h2>
+          <p>The platform starts by turning exported source-system files into a structured operating portfolio that downstream workflow, reporting, and forecast logic can trust.</p>
+        </div>
+
+        <div class="detail-grid">
+          <article class="detail-card">
+            <h3>Receivables snapshot import</h3>
+            <p>Load open receivables data with normalized headers, parsed dates, invoice upserts, line-item recalculation, and flagged mismatch review.</p>
+            <ul class="bullet-list">
+              <li>Maps customer and sub-account variants into a shared model</li>
+              <li>Finds existing invoices or creates new ones</li>
+              <li>Recalculates base amount, term values, and outstanding balance context</li>
+            </ul>
+          </article>
+
+          <article class="detail-card">
+            <h3>Planned billing import</h3>
+            <p>Bring in future billing pipeline so the forecast does not rely only on what is already open today.</p>
+            <ul class="bullet-list">
+              <li>Keys records by contract ID and contract line number</li>
+              <li>Updates active planned rows and retires missing rows</li>
+              <li>Shapes future-facing visibility for forecast review and workload planning</li>
+            </ul>
+          </article>
+
+          <article class="detail-card">
+            <h3>Validation before apply</h3>
+            <p>Use dry-run checks before the team commits a file so file-shape issues, duplicate keys, and flagged records appear before they affect operations.</p>
+            <ul class="bullet-list">
+              <li>Built for teams that need confidence before replacing the live snapshot</li>
+              <li>Improves trust in every downstream dashboard and workflow view</li>
+              <li>Creates a disciplined import-to-action process the whole team can trust</li>
+            </ul>
+          </article>
+        </div>
+      </section>
+
+      <section class="content-section reveal">
+        <div class="section-heading">
+          <span class="section-pill">Reporting Surfaces</span>
+          <h2>Give operators and finance leaders views built from the same portfolio record.</h2>
+          <p>Ledgewave keeps management reporting close to the data and workflow the team already uses instead of pushing everything into a separate recap process.</p>
+        </div>
+
+        <div class="detail-grid">
+          <article class="detail-card">
+            <h3>Daily snapshots and trend review</h3>
+            <p>Store dashboard metrics over time so leaders can compare live exposure against recent history without rebuilding the story by hand.</p>
+          </article>
+          <article class="detail-card">
+            <h3>Payment behavior analytics</h3>
+            <p>Review lag distribution, on-time rate, DSO, and customer timing profiles to understand how payment behavior is shaping the forecast.</p>
+          </article>
+          <article class="detail-card">
+            <h3>Data quality and board-ready views</h3>
+            <p>Use built-in reporting surfaces for data quality, A/R aging, board-deck prep, and state or location exposure review.</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="content-section reveal">
+        <div class="section-heading">
+          <span class="section-pill">Portfolio Command</span>
+          <h2>Move from high-level exposure to invoice-level investigation without context switching.</h2>
+          <p>The dashboard layer is built to expose pressure quickly and let operators drill into the exact invoices and customers behind the number.</p>
+        </div>
+
+        <div class="detail-grid">
+          <article class="detail-card">
+            <h3>Overdue visibility</h3>
+            <p>Track overdue totals, invoice counts, customer concentration, and aging distribution from a single overview.</p>
+          </article>
+          <article class="detail-card">
+            <h3>Customer drill-downs</h3>
+            <p>Move into partner and sub-account detail to understand where the balance sits, what changed, and what follow-up is appropriate.</p>
+          </article>
+          <article class="detail-card">
+            <h3>Historical snapshots</h3>
+            <p>Keep live state and snapshot history close enough to support both day-to-day action and leadership reporting.</p>
+          </article>
+        </div>
+
+        <div class="callout-grid">
+          <article class="callout-card">
+            <h3>What the dashboard is built to do</h3>
+            <p>Not passive reporting. It is the front door into operational triage: who needs attention, what changed, and where to drill next.</p>
+          </article>
+          <article class="callout-card">
+            <h3>Why it matters</h3>
+            <p>Collections teams lose time when analysis lives separately from the next action. Ledgewave keeps the path intact.</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="content-section reveal">
+        <div class="section-heading">
+          <span class="section-pill">Outreach Workspace</span>
+          <h2>Turn passive aging information into actionable communication.</h2>
+          <p>The correspondence layer groups open balances by partner, applies workflow stage logic, builds drafts from templates and invoice context, and keeps the resulting activity inspectable.</p>
+        </div>
+
+        <div class="split-grid">
+          <article class="split-card">
+            <h3>Draft batch workflow</h3>
+            <ul>
+              <li>Group invoices by partner and aging stage</li>
+              <li>Generate draft subject and body content with contextual invoice detail</li>
+              <li>Edit, export, or mark items as sent after review</li>
+              <li>Preserve invoice-to-draft links for traceability</li>
+            </ul>
+          </article>
+
+          <article class="split-card">
+            <h3>Why operators like it</h3>
+            <ul>
+              <li>The team does not have to reconstruct the customer story before writing</li>
+              <li>Workflow stage and invoice context stay attached to the message</li>
+              <li>Drafts can be reviewed with better consistency across collectors</li>
+              <li>Communication activity stays closer to the receivables record</li>
+            </ul>
+          </article>
+        </div>
+      </section>
+
+      <section class="content-section reveal" id="forecast-intelligence">
+        <div class="section-heading">
+          <span class="section-pill">Forecast Intelligence</span>
+          <h2>Connect expected cash timing to the real receivables and billing records behind it.</h2>
+          <p>The forecast layer builds multi-week views from open invoices and planned billing, then lets teams compare due-date assumptions with behavior-shaped expectations.</p>
+        </div>
+
+        <div class="detail-grid">
+          <article class="detail-card">
+            <h3>Due-date baseline</h3>
+            <p>See the simplest answer first: what happens if every record pays exactly on schedule.</p>
+          </article>
+          <article class="detail-card">
+            <h3>Behavior-adjusted view</h3>
+            <p>Support a more realistic model using historical collection behavior and remittance tendencies where available.</p>
+          </article>
+          <article class="detail-card">
+            <h3>Weekly drilldowns</h3>
+            <p>Inspect overdue, within-horizon, after-horizon, and unscheduled records without flattening everything into one summary number.</p>
+          </article>
+        </div>
+
+        <div class="sequence-grid">
+          <article class="sequence-card">
+            <span class="sequence-step">1</span>
+            <h3>Assemble forecastable records</h3>
+            <p>Open invoices and active planned billing records are pulled into one forecast base.</p>
+          </article>
+          <article class="sequence-card">
+            <span class="sequence-step">2</span>
+            <h3>Schedule each record once</h3>
+            <p>Each record is allocated once at 100% so teams can reason about exact forecast buckets.</p>
+          </article>
+          <article class="sequence-card">
+            <span class="sequence-step">3</span>
+            <h3>Compare baseline and expected</h3>
+            <p>Use both views to understand how timing shifts against due-date assumptions.</p>
+          </article>
+          <article class="sequence-card">
+            <span class="sequence-step">4</span>
+            <h3>Drill into the exceptions</h3>
+            <p>Investigate overdue, unscheduled, or after-horizon records before leadership review.</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="content-section reveal">
+        <div class="section-heading">
+          <span class="section-pill">Team Consistency</span>
+          <h2>Keep the working context, not just the output.</h2>
+          <p>Ledgewave is valuable because it preserves the working context around receivables management, not just the headline metrics.</p>
+        </div>
+
+        <div class="detail-grid">
+          <article class="detail-card">
+            <h3>Shared follow-up history</h3>
+            <p>Notes, draft activity, and customer context stay visible so collectors do not have to reconstruct the story every time they re-enter an account.</p>
+          </article>
+          <article class="detail-card">
+            <h3>Repeatable weekly motion</h3>
+            <p>The same workflow can be used every cycle: import, prioritize, draft, review expected cash, and move into the next round of follow-up.</p>
+          </article>
+          <article class="detail-card">
+            <h3>Shared data spine</h3>
+            <p>Dashboard, reports, outreach, and detail pages read from the same structured portfolio instead of separate shadow systems.</p>
+          </article>
+        </div>
+
+        <div class="detail-grid">
+          <article class="detail-card">
+            <h3>Dunning stages and templates</h3>
+            <p>Standardize how the team handles aging buckets, message timing, and draft language so outreach gets more consistent as volume grows.</p>
+          </article>
+          <article class="detail-card">
+            <h3>Planned billing in the same view</h3>
+            <p>Keep upcoming billing close to open receivables so the forecast reflects what is already on the books and what is about to enter the workflow.</p>
+          </article>
+          <article class="detail-card">
+            <h3>Behavior-shaped forecasting</h3>
+            <p>Use payment behavior to move beyond due-date-only assumptions when finance needs a sharper cash timing discussion.</p>
+          </article>
+        </div>
+
+        <div class="callout-grid">
+          <article class="callout-card">
+            <h3>For operations teams</h3>
+            <p>The product supports the day-to-day mechanics of collections work: ingestion, prioritization, customer detail, and next action.</p>
+          </article>
+          <article class="callout-card">
+            <h3>For team leads</h3>
+            <p>The value is a more repeatable dunning process that produces better follow-up and clearer cash conversations.</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="demo-section reveal">
+        <div class="demo-copy">
+          <span class="section-pill">Request A Demo</span>
+          <h2>See the modules in the same sequence your team would actually use them.</h2>
+          <p>Use the dedicated demo page to share your current workflow, systems, and priorities so the walkthrough can stay grounded in real operating detail.</p>
+          <div class="demo-benefits">
+            <article>
+              <strong>Best walkthrough path</strong>
+              <p>Import → dashboard → customer detail → outreach → forecast.</p>
+            </article>
+            <article>
+              <strong>Best audience</strong>
+              <p>Collections lead, controller, AR manager, and the operator who owns the weekly workflow.</p>
+            </article>
+            <article>
+              <strong>Best next page</strong>
+              <p>Open the demo page when you want direct conversion flow instead of more product detail.</p>
+            </article>
+          </div>
+        </div>
+
+        <div class="insight-board" aria-label="Demo checklist">
+          <div class="board-header">
+            <strong>Ask to see these screens in sequence</strong>
+            <span>The platform story is strongest when teams can see how the modules hand work off to one another.</span>
+          </div>
+          <div class="board-grid">
+            <article>
+              <span class="board-kicker">Start here</span>
+              <strong>Import validation and flagged record review</strong>
+              <p>Show how file issues are surfaced before they pollute the live operating portfolio.</p>
+            </article>
+            <article>
+              <span class="board-kicker">Operator view</span>
+              <strong>Dashboard, action queue, and partner drill-downs</strong>
+              <p>Make the move from top-line exposure into the customer record explicit.</p>
+            </article>
+            <article>
+              <span class="board-kicker">Workflow</span>
+              <strong>Draft correspondence and batch history</strong>
+              <p>Teams want to see how collections activity stays attached to invoice context.</p>
+            </article>
+            <article>
+              <span class="board-kicker">Leadership layer</span>
+              <strong>Forecast, payment behavior, and follow-up history</strong>
+              <p>Close the story with the context that makes the cash conversation easier to explain.</p>
+            </article>
+          </div>
+          <a class="btn btn-primary" href="demo.html">Open Demo Page</a>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <div class="footer-brand-top">
+            <img src="assets/ledgewave-mark.svg" alt="" width="40" height="40">
+            <span class="footer-brand-copy">
+              <strong>Ledgewave</strong>
+              <span>Receivables OS for cleaner collections operations.</span>
+            </span>
+          </div>
+          <p class="footer-note">
+            Structured import, customer visibility, correspondence workflow, and collections forecasting in one operating system.
+          </p>
+        </div>
+
+        <div class="footer-links">
+          <strong>Product</strong>
+          <a href="platform.html">Platform</a>
+          <a href="solutions.html">Solutions</a>
+          <a href="operations.html">Operations</a>
+        </div>
+
+        <div class="footer-links">
+          <strong>Learn</strong>
+          <a href="resources.html">Resources</a>
+          <a href="blog/index.html">Blog</a>
+          <a href="why-ledgewave.html">Why Ledgewave</a>
+          <a href="demo.html">Request a Demo</a>
+        </div>
+
+        <div class="footer-links">
+          <strong>Browse</strong>
+          <a href="index.html">Home</a>
+          <a href="#top">Back to top</a>
+        </div>
+      </div>
+
+      <div class="footer-meta">
+        <span>&copy; <span id="year"></span> Ledgewave. Receivables operations software.</span>
+        <span>Built around imports, dunning workflow, and cash forecast visibility.</span>
+      </div>
+    </footer>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
