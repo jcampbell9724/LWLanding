@@ -5,7 +5,7 @@ const revealNodes = document.querySelectorAll(".reveal");
 const yearNode = document.getElementById("year");
 const currentPage = document.body.dataset.page;
 const GOOGLE_SHEETS_ENDPOINT =
-  window.LEDGEWAVE_FORM_ENDPOINT || "PASTE_DEPLOYED_GOOGLE_APPS_SCRIPT_URL_HERE";
+  window.LEDGEWAVE_FORM_ENDPOINT || "https://script.google.com/macros/s/AKfycbzoNHNpZUjf8F6gyuYp10z3_Q_7h3wpaeJ5pAQPSY2OUGIJKzwR6g46rnxxRFHlFBaP/exec";
 
 const closeMenu = () => {
   if (!header || !navToggle) {
