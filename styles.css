@@ -4600,3 +4600,16 @@ main > .page-hero + .content-section {
     text-align: center;
   }
 }
+
+.form-disclosure {
+  margin: 12px 0 0;
+  color: var(--muted);
+  font-size: 0.82rem;
+  line-height: 1.55;
+}
+
+.form-disclosure a {
+  color: var(--accent-strong);
+  text-decoration: underline;
+  text-underline-offset: 0.16em;
+}

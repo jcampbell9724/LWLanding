@@ -363,8 +363,10 @@ def render_layout(*, title: str, meta_description: str, body_page: str, relative
         </div>
 
         <div class="footer-links">
-          <strong>Browse</strong>
+          <strong>Company</strong>
           <a href="{relative_prefix}index.html">Home</a>
+          <a href="{relative_prefix}about.html">About</a>
+          <a href="{relative_prefix}privacy.html">Privacy Policy</a>
           <a href="#top">Back to top</a>
         </div>
       </div>
