@@ -4,6 +4,8 @@ const navLinks = document.querySelectorAll(".site-nav a");
 const revealNodes = document.querySelectorAll(".reveal");
 const yearNode = document.getElementById("year");
 const currentPage = document.body.dataset.page;
+const GOOGLE_SHEETS_ENDPOINT =
+  window.LEDGEWAVE_FORM_ENDPOINT || "PASTE_DEPLOYED_GOOGLE_APPS_SCRIPT_URL_HERE";
 
 const closeMenu = () => {
   if (!header || !navToggle) {
@@ -99,38 +101,86 @@ document.querySelectorAll("[data-capture-form]").forEach((form) => {
   const feedback = form.querySelector("[data-form-feedback]");
   const submitButton = form.querySelector('[type="submit"]');
   const initialButtonLabel = submitButton ? submitButton.textContent : "";
-  const storageKey = form.dataset.captureKey || "ledgewaveCaptures";
+  const formType = form.dataset.formType || form.dataset.captureKey || "capture";
   const successMessage =
     form.dataset.success ||
-    "Thanks. Your request has been saved in this browser for this demo build.";
+    "Thanks. Your request has been received.";
+  const errorMessage =
+    form.dataset.error ||
+    "We could not submit the form right now. Please try again in a moment.";
+  const isConfiguredEndpoint =
+    GOOGLE_SHEETS_ENDPOINT &&
+    !GOOGLE_SHEETS_ENDPOINT.includes("PASTE_DEPLOYED_GOOGLE_APPS_SCRIPT_URL_HERE");
 
-  form.addEventListener("submit", (event) => {
+  form.addEventListener("submit", async (event) => {
     event.preventDefault();
+
+    if (!isConfiguredEndpoint) {
+      if (feedback) {
+        feedback.textContent =
+          "Form endpoint is not configured yet. Paste the deployed Google Apps Script URL into script.js.";
+        feedback.classList.remove("is-success");
+      }
+      return;
+    }
 
     const formData = new FormData(form);
     const payload = Object.fromEntries(formData.entries());
-    const existing = JSON.parse(localStorage.getItem(storageKey) || "[]");
 
-    existing.push({
-      ...payload,
-      capturedAt: new Date().toISOString(),
-      page: currentPage || "unknown",
-    });
-
-    localStorage.setItem(storageKey, JSON.stringify(existing));
-
-    if (feedback) {
-      feedback.textContent = successMessage;
-      feedback.classList.add("is-success");
+    if (String(payload.website || "").trim()) {
+      form.reset();
+      return;
     }
+
+    const submission = {
+      form_type: formType,
+      submitted_at: new Date().toISOString(),
+      ...payload,
+      page: currentPage || "unknown",
+    };
 
     if (submitButton) {
-      submitButton.textContent = "Saved";
-      window.setTimeout(() => {
-        submitButton.textContent = initialButtonLabel;
-      }, 2200);
+      submitButton.disabled = true;
+      submitButton.textContent = "Sending...";
     }
 
-    form.reset();
+    if (feedback) {
+      feedback.textContent = "";
+      feedback.classList.remove("is-success");
+    }
+
+    try {
+      await fetch(GOOGLE_SHEETS_ENDPOINT, {
+        method: "POST",
+        mode: "no-cors",
+        headers: {
+          "Content-Type": "application/x-www-form-urlencoded;charset=UTF-8",
+        },
+        body: new URLSearchParams(submission).toString(),
+      });
+
+      if (feedback) {
+        feedback.textContent = successMessage;
+        feedback.classList.add("is-success");
+      }
+
+      if (submitButton) {
+        submitButton.textContent = "Sent";
+      }
+
+      form.reset();
+    } catch (error) {
+      if (feedback) {
+        feedback.textContent = errorMessage;
+        feedback.classList.remove("is-success");
+      }
+    } finally {
+      if (submitButton) {
+        window.setTimeout(() => {
+          submitButton.disabled = false;
+          submitButton.textContent = initialButtonLabel;
+        }, 2200);
+      }
+    }
   });
 });

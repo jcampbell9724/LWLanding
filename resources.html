@@ -188,6 +188,7 @@
           class="demo-form"
           data-capture-form
           data-capture-key="ledgewaveResourceCaptures"
+          data-form-type="resource_signup"
           data-success="Thanks. Your request has been received."
         >
           <div class="field-grid">
@@ -220,6 +221,12 @@
             What are you trying to improve?
             <textarea name="goal" placeholder="We want a cleaner way to move from A/R exports into weekly collections review and customer follow-up."></textarea>
           </label>
+          <div style="position:absolute;left:-9999px;top:auto;width:1px;height:1px;overflow:hidden;" aria-hidden="true">
+            <label>
+              Website
+              <input type="text" name="website" tabindex="-1" autocomplete="off">
+            </label>
+          </div>
           <button class="btn btn-primary" type="submit">Get updates</button>
           <p class="form-feedback" data-form-feedback aria-live="polite"></p>
         </form>
