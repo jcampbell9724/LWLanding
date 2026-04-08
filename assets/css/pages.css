@@ -42,11 +42,7 @@
   line-height: 0.92;
 }
 
-.hero-copy h1 {
-  max-width: 8.9ch;
-  font-size: clamp(3rem, 5.2vw, 5rem);
-}
-
+.hero-copy h1,
 .page-hero-copy h1 {
   max-width: 11ch;
   font-size: clamp(2.3rem, 3.7vw, 3.5rem);
