@@ -1,5 +1,0 @@
- - A clean portfolio/dashboard screenshot for the homepage hero or first proof section.
-  - An account detail or collector work queue screenshot showing timeline, notes, disputes, and next actions.
-  - A cash forecast / expected collections view.
-  - Real integration logos for the systems you actually connect to.
-  - Real customer logos later, if you have permission.
