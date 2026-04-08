@@ -5,10 +5,10 @@ const GOOGLE_SHEETS_ENDPOINT =
 const PRIMARY_NAV = [
   { href: "platform.html", key: "platform", label: "Platform" },
   { href: "solutions.html", key: "solutions", label: "Solutions" },
+  { href: "integrations.html", key: "integrations", label: "Integrations" },
   { href: "operations.html", key: "operations", label: "Operations" },
+  { href: "pricing.html", key: "pricing", label: "Pricing" },
   { href: "resources.html", key: "resources", label: "Resources" },
-  { href: "blog/index.html", key: "blog", label: "Blog" },
-  { href: "why-ledgewave.html", key: "why", label: "Why Ledgewave" },
 ];
 
 const getSitePrefix = () => {
@@ -105,12 +105,15 @@ const renderSharedChrome = () => {
               <strong>Product</strong>
               <a href="${buildHref("platform.html")}">Platform</a>
               <a href="${buildHref("solutions.html")}">Solutions</a>
+              <a href="${buildHref("integrations.html")}">Integrations</a>
               <a href="${buildHref("operations.html")}">Operations</a>
+              <a href="${buildHref("pricing.html")}">Pricing</a>
             </div>
 
             <div class="footer-links">
               <strong>Learn</strong>
               <a href="${buildHref("resources.html")}">Resources</a>
+              <a href="${buildHref("customers.html")}">Customers</a>
               <a href="${buildHref("blog/index.html")}">Blog</a>
               <a href="${buildHref("why-ledgewave.html")}">Why Ledgewave</a>
               <a href="${buildHref("demo.html")}">Request a Demo</a>
@@ -120,7 +123,15 @@ const renderSharedChrome = () => {
               <strong>Company</strong>
               <a href="${buildHref("index.html")}">Home</a>
               <a href="${buildHref("about.html")}">About</a>
+              <a href="${buildHref("contact.html")}">Contact</a>
+              <a href="${buildHref("security.html")}">Security</a>
+            </div>
+
+            <div class="footer-links">
+              <strong>Legal</strong>
               <a href="${buildHref("privacy.html")}">Privacy Policy</a>
+              <a href="${buildHref("terms.html")}">Website Terms</a>
+              <a href="${buildHref("terms-of-service.html")}">Terms of Service</a>
               <a href="#top">Back to top</a>
             </div>
           </div>

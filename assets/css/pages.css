@@ -319,6 +319,86 @@
   margin-bottom: 8px;
 }
 
+body[data-page="pricing"] .page-hero-copy h1,
+body[data-page="integrations"] .page-hero-copy h1,
+body[data-page="customers"] .page-hero-copy h1,
+body[data-page="contact"] .page-hero-copy h1,
+body[data-page="terms"] .page-hero-copy h1,
+body[data-page="terms-of-service"] .page-hero-copy h1 {
+  max-width: 13ch;
+}
+
+body[data-page="security"] .page-hero {
+  background:
+    radial-gradient(circle at top right, rgba(36, 95, 255, 0.2) 0%, rgba(36, 95, 255, 0) 34%),
+    radial-gradient(circle at bottom left, rgba(18, 36, 58, 0.1) 0%, rgba(18, 36, 58, 0) 36%),
+    linear-gradient(130deg, rgba(220, 232, 255, 0.84) 0%, rgba(220, 232, 255, 0.18) 34%, rgba(244, 247, 251, 0) 64%),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.82) 0%, rgba(244, 247, 251, 0) 100%);
+}
+
+.security-summary-card {
+  gap: 18px;
+}
+
+.security-status-grid,
+.trust-matrix {
+  display: grid;
+  gap: 14px;
+}
+
+.security-status-grid {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  padding-top: 16px;
+  border-top: 1px solid var(--line);
+}
+
+.security-status {
+  display: grid;
+  gap: 8px;
+  padding: 14px 14px 0;
+  border-top: 1px solid var(--line);
+}
+
+.security-status span,
+.trust-control-kicker {
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.security-status strong {
+  font-size: 1rem;
+  line-height: 1.14;
+  color: var(--ink-strong);
+}
+
+.trust-matrix {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.trust-control-card {
+  display: grid;
+  gap: 12px;
+  min-width: 0;
+  padding-top: 18px;
+  border-top: 1px solid var(--line);
+}
+
+.trust-control-card h4 {
+  font-size: 1.12rem;
+  line-height: 1.08;
+}
+
+.legal-document {
+  max-width: 64rem;
+}
+
+.legal-document h2 {
+  margin-top: 12px;
+}
+
 body[data-page="resources"] .content-section,
 body[data-page="demo"] .content-section {
   padding-top: 44px;
@@ -333,7 +413,8 @@ body[data-page="resources"] .blog-grid {
 
 body[data-page="platform"] .detail-grid > :last-child:nth-child(odd),
 body[data-page="solutions"] .detail-grid > :last-child:nth-child(odd),
-body[data-page="resources"] .blog-grid > :last-child:nth-child(odd) {
+body[data-page="resources"] .blog-grid > :last-child:nth-child(odd),
+body[data-page="integrations"] .resource-grid > :last-child:nth-child(odd) {
   grid-column: 1 / -1;
 }
 
@@ -358,11 +439,16 @@ body[data-page="resources"] .blog-grid > :last-child:nth-child(odd) {
   }
 
   .proof-grid,
-  .hero-metrics {
+  .hero-metrics,
+  .security-status-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
   .integration-stack {
+    grid-template-columns: 1fr;
+  }
+
+  .trust-matrix {
     grid-template-columns: 1fr;
   }
 
@@ -410,7 +496,8 @@ body[data-page="resources"] .blog-grid > :last-child:nth-child(odd) {
   }
 
   .proof-grid,
-  .hero-metrics {
+  .hero-metrics,
+  .security-status-grid {
     grid-template-columns: 1fr;
   }
 

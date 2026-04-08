@@ -4,9 +4,9 @@ This file lists everything in `btlanding` that should be manually reviewed or re
 
 ## 1. Launch blockers
 
-- Wire both forms to a real backend.
-  Files: `demo.html`, `resources.html`, `assets/js/script.js`
-  Right now form submissions are stored in browser `localStorage` only. Replace this with your CRM, scheduler, email automation, webhook, or form backend.
+- Confirm the form backend and lead-routing flow.
+  Files: `demo.html`, `resources.html`, `contact.html`, `assets/js/script.js`
+  The site is currently wired to a Google Apps Script endpoint. Replace or finalize that flow with your real CRM, scheduler, email automation, webhook, or form backend as needed.
 
 - Remove all `prototype` messaging.
   Files: `index.html`, `platform.html`, `solutions.html`, `operations.html`, `resources.html`, `why-ledgewave.html`, `demo.html`, `assets/js/script.js`
@@ -17,12 +17,12 @@ This file lists everything in `btlanding` that should be manually reviewed or re
   There are several read-only panels with labels like `Recommended CTA`, `Best next page`, `Recommended journey`, and similar planning notes. These are useful for internal review, but they should not stay on a live site.
 
 - Add real contact and company details.
-  Files: site-wide footer and demo flow
-  There is no real company address, email, phone number, contact page, or founder/team/company information yet.
+  Files: site-wide footer, `contact.html`, and demo flow
+  A contact page now exists, but the public email addresses, company address, phone number, founder/team details, and legal entity details are still placeholders or missing.
 
-- Add legal pages and link them.
-  Missing files/pages: `privacy-policy`, `terms`, possibly `security`, `cookie policy`
-  A live lead-gen site should not launch without at least privacy and terms pages if you are collecting contact info.
+- Finalize legal pages and link policy details cleanly.
+  Missing files/pages: `cookie policy`
+  Privacy, website terms, and SaaS terms now exist in the site build, but they still contain placeholder legal and commercial details that should be finalized before launch.
 
 ## 2. Brand and positioning decisions
 
@@ -67,8 +67,8 @@ This file lists everything in `btlanding` that should be manually reviewed or re
 ## 4. Form and conversion updates
 
 - Replace sample form placeholder values.
-  Files: `demo.html`, `resources.html`
-  Examples like `Jordan Lee`, `Alex Rivera`, `Northstar Manufacturing`, and `NetSuite + spreadsheets` should be updated if you want different examples or more neutral placeholders.
+  Files: `demo.html`, `resources.html`, `contact.html`
+  Examples like `Jordan Lee`, `Alex Rivera`, `Northstar Logistics`, and `NetSuite + spreadsheets` should be updated if you want different examples or more neutral placeholders.
 
 - Decide what happens after submit.
   Files: `demo.html`, `resources.html`, `assets/js/script.js`
@@ -91,15 +91,10 @@ This file lists everything in `btlanding` that should be manually reviewed or re
 
 - Decide whether `demo.html` should be in the top nav.
   Files: all HTML page headers
-  Right now the top nav links to five sections and the main CTA points to the demo page, but the demo page is not listed as a standard nav item.
+  Right now the top nav links to six sections and the main CTA points to the demo page, but the demo page is not listed as a standard nav item.
 
 - Decide whether you want additional pages.
   Potential additions:
-  - Contact
-  - About
-  - Security
-  - Pricing or Packaging
-  - Case Studies
   - Thank You page after form submit
 
 - Add 404 and fallback pages if this is going to production.
@@ -107,26 +102,20 @@ This file lists everything in `btlanding` that should be manually reviewed or re
 
 ## 6. SEO and metadata
 
-- Add real canonical URLs.
+- Review canonical URLs.
   Files: all HTML pages
-  There are title tags and meta descriptions, but no canonical links yet.
+  Canonical links now point to `https://ledgewave.com`, but they should be revisited if page paths, routing, or indexing strategy change.
 
-- Add Open Graph and social share metadata.
-  Files: all HTML pages
-  Missing items include:
-  - `og:title`
-  - `og:description`
-  - `og:image`
-  - `og:url`
-  - `twitter:card`
+- Review Open Graph and social share metadata.
+  Files: all HTML pages, `assets/images/ledgewave-social-card.svg`
+  Open Graph and Twitter metadata now exist site-wide using a shared social preview image, but you may still want page-specific images or richer article metadata later.
 
 - Create a real social preview image.
   Missing asset: branded social share image
 
-- Add sitemap and robots files.
-  Missing files:
-  - `sitemap.xml`
-  - `robots.txt`
+- Review sitemap and robots coverage.
+  Files: `sitemap.xml`, `robots.txt`
+  Both files now exist, but they should be revisited once canonical URLs, indexing decisions, and any future route changes are finalized.
 
 - Decide whether to keep all copy indexed.
   Files: especially `operations.html`
@@ -234,4 +223,3 @@ Search these strings in `btlanding` before launch:
 5. Add analytics, SEO, and social metadata.
 6. Do full browser QA on desktop and mobile.
 7. Deploy to the real domain and test live submissions.
-

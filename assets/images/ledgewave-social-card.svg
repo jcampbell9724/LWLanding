@@ -1,0 +1,53 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" role="img" aria-labelledby="title desc">
+  <title id="title">Ledgewave social card</title>
+  <desc id="desc">Ledgewave collections automation and forecast visibility for modern finance teams.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#f4f7fb"/>
+      <stop offset="48%" stop-color="#dce8ff"/>
+      <stop offset="100%" stop-color="#11263f"/>
+    </linearGradient>
+    <linearGradient id="panel" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#ffffff" stop-opacity="0.95"/>
+      <stop offset="100%" stop-color="#f8fafc" stop-opacity="0.78"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="1200" height="630" fill="url(#bg)"/>
+  <circle cx="1010" cy="110" r="180" fill="#245fff" opacity="0.16"/>
+  <circle cx="1110" cy="560" r="250" fill="#091726" opacity="0.18"/>
+  <circle cx="130" cy="540" r="190" fill="#ffffff" opacity="0.25"/>
+
+  <rect x="64" y="64" width="1072" height="502" rx="28" fill="url(#panel)" stroke="#d9e1ea"/>
+
+  <g transform="translate(112 112)">
+    <rect x="0" y="0" width="72" height="72" rx="22" fill="#245fff"/>
+    <path d="M22 18h12v36h-12zM38 18h12v26c0 5 2 8 8 8h8v12h-11c-12 0-17-6-17-18z" fill="#ffffff"/>
+
+    <text x="96" y="30" fill="#091726" font-size="38" font-weight="700" font-family="Space Grotesk, Manrope, Segoe UI, sans-serif">Ledgewave</text>
+    <text x="96" y="60" fill="#546477" font-size="18" font-weight="700" letter-spacing="3" font-family="Manrope, Segoe UI, sans-serif">RECEIVABLES OS</text>
+
+    <text x="0" y="162" fill="#091726" font-size="68" font-weight="700" font-family="Space Grotesk, Manrope, Segoe UI, sans-serif">
+      <tspan x="0" dy="0">Collections automation</tspan>
+      <tspan x="0" dy="78">and forecast visibility</tspan>
+    </text>
+
+    <text x="0" y="318" fill="#33475f" font-size="28" font-family="Manrope, Segoe UI, sans-serif">
+      Built for finance teams replacing exported receivables files,
+    </text>
+    <text x="0" y="356" fill="#33475f" font-size="28" font-family="Manrope, Segoe UI, sans-serif">
+      spreadsheet trackers, and disconnected follow-up work.
+    </text>
+
+    <g transform="translate(0 420)">
+      <rect x="0" y="0" width="242" height="46" rx="23" fill="#ffffff" stroke="#d9e1ea"/>
+      <text x="24" y="30" fill="#1748ca" font-size="20" font-weight="700" font-family="Manrope, Segoe UI, sans-serif">Collections workflow</text>
+
+      <rect x="262" y="0" width="216" height="46" rx="23" fill="#ffffff" stroke="#d9e1ea"/>
+      <text x="286" y="30" fill="#1748ca" font-size="20" font-weight="700" font-family="Manrope, Segoe UI, sans-serif">Forecast visibility</text>
+
+      <rect x="498" y="0" width="170" height="46" rx="23" fill="#ffffff" stroke="#d9e1ea"/>
+      <text x="522" y="30" fill="#1748ca" font-size="20" font-weight="700" font-family="Manrope, Segoe UI, sans-serif">ERP + CRM fit</text>
+    </g>
+  </g>
+</svg>

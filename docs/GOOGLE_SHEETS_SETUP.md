@@ -44,6 +44,9 @@ Paste your deployed web app URL in place of `PASTE_DEPLOYED_GOOGLE_APPS_SCRIPT_U
 
 - [`demo.html`](../demo.html) should append a row with `form_type=demo_request`
 - [`resources.html`](../resources.html) should append a row with `form_type=resource_signup`
+- [`contact.html`](../contact.html) should append a row with `form_type=contact_request`
+
+The contact page reuses the existing capture fields already covered by the header row, so no new sheet columns are required for this first pass.
 
 ## Notes
 
