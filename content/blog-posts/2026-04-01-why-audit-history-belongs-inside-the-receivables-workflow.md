@@ -2,11 +2,13 @@
 title: Why follow-up history matters in dunning
 slug: why-follow-up-history-matters-in-dunning
 date: 2026-04-01
-summary: Teams collect better when every collector can see the last touch, the open issues, and the current plan without rebuilding the story.
+summary: Follow-up history improves dunning when every collector can see the last touch, open issues, and payment expectations without rebuilding the account story.
 category: Dunning
 author: Ledgewave Team
 read_time: 5 min read
 featured: no
+cover_asset: blog-cover-follow-up-history.png
+cover_note: Use the account timeline or follow-up history screen where notes, last touch, and payment expectation stay visible together.
 ---
 
 # Why follow-up history matters in dunning
@@ -71,3 +73,17 @@ Buyers often think they need "better reminders."
 What they usually need is a better operating layer around the reminder process itself.
 
 That means the next touch should start with context, not memory.
+
+## Frequently asked questions
+
+### What is follow-up history in dunning?
+
+Follow-up history is the shared record of the last touch, account notes, invoice context, and current payment expectation attached to the receivable workflow.
+
+### Why does follow-up history affect forecast review?
+
+It gives finance teams real evidence behind expected cash timing by showing whether the customer has engaged, what issues are open, and why the current expectation exists.
+
+### What improves when teams keep shared history?
+
+Collectors move faster, customer treatment gets more consistent, and forecast assumptions become easier to explain because the account story is preserved inside the workflow.

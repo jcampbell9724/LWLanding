@@ -4,6 +4,7 @@ from dataclasses import dataclass
 from datetime import datetime
 from html import escape
 from pathlib import Path
+import json
 import re
 from typing import Iterable
 
@@ -15,9 +16,15 @@ OUTPUT_DIR = ROOT / "blog"
 
 SITE_NAME = "Ledgewave"
 SITE_DESCRIPTION = (
-    "Insights for finance teams modernizing receivables operations, collections workflow, "
-    "forecast discipline, and customer follow-up."
+    "Insights on collections automation, dunning, payment behavior, planned billing, "
+    "and receivables forecasting for finance teams."
 )
+BLOG_TITLE = "Collections Automation Blog"
+SOCIAL_IMAGE_URL = "https://ledgewave.com/assets/images/ledgewave-social-card.svg"
+SOCIAL_IMAGE_ALT = "Ledgewave collections automation and forecast visibility for modern finance teams."
+SITE_LOGO_URL = "https://ledgewave.com/assets/images/ledgewave-mark.svg"
+ORGANIZATION_ID = "https://ledgewave.com/#organization"
+WEBSITE_ID = "https://ledgewave.com/#website"
 
 
 @dataclass
@@ -26,13 +33,17 @@ class Post:
     slug: str
     summary: str
     date_iso: str
+    modified_iso: str
     date_label: str
     category: str
     author: str
     read_time: str
     featured: bool
+    cover_asset: str
+    cover_note: str
     source_path: Path
     html_content: str
+    faq_items: list[tuple[str, str]]
 
 
 def slugify(value: str) -> str:
@@ -213,6 +224,92 @@ def parse_date(value: str, fallback: datetime) -> tuple[str, str]:
     return parsed.strftime("%Y-%m-%d"), parsed.strftime("%B %d, %Y")
 
 
+def strip_leading_h1(html_content: str) -> str:
+    stripped = re.sub(r"^<h1>.*?</h1>\n?", "", html_content, count=1, flags=re.S)
+    return stripped.lstrip()
+
+
+def extract_faq_items(markdown_body: str) -> list[tuple[str, str]]:
+    items: list[tuple[str, str]] = []
+    in_faq = False
+    question: str | None = None
+    answer_lines: list[str] = []
+
+    def flush() -> None:
+        nonlocal question, answer_lines
+        answer = " ".join(line.strip() for line in answer_lines if line.strip())
+        if question and answer:
+            items.append((question, answer))
+        question = None
+        answer_lines = []
+
+    for raw_line in markdown_body.splitlines():
+        stripped = raw_line.strip()
+        if not in_faq:
+            if stripped.lower() == "## frequently asked questions":
+                in_faq = True
+            continue
+
+        if stripped.startswith("## ") and stripped.lower() != "## frequently asked questions":
+            break
+
+        if stripped.startswith("### "):
+            flush()
+            question = stripped[4:].strip()
+            continue
+
+        if question is None:
+            continue
+
+        if stripped:
+            answer_lines.append(stripped)
+
+    flush()
+    return items
+
+
+def organization_schema() -> dict[str, object]:
+    return {
+        "@type": "Organization",
+        "@id": ORGANIZATION_ID,
+        "name": SITE_NAME,
+        "url": "https://ledgewave.com/",
+        "logo": SITE_LOGO_URL,
+        "description": "Ledgewave is collections automation and cash forecasting software for finance teams.",
+    }
+
+
+def website_schema() -> dict[str, object]:
+    return {
+        "@type": "WebSite",
+        "@id": WEBSITE_ID,
+        "url": "https://ledgewave.com/",
+        "name": SITE_NAME,
+        "publisher": {"@id": ORGANIZATION_ID},
+        "inLanguage": "en-US",
+    }
+
+
+def page_graph(page: dict[str, object], *entities: dict[str, object]) -> dict[str, object]:
+    return {
+        "@context": "https://schema.org",
+        "@graph": [organization_schema(), website_schema(), page, *entities],
+    }
+
+
+def author_schema(name: str) -> dict[str, str]:
+    author_type = "Organization" if "team" in name.lower() else "Person"
+    return {"@type": author_type, "name": name}
+
+
+def render_json_ld(payload: dict[str, object], script_id: str) -> str:
+    return (
+        f'<script id="{escape(script_id, quote=True)}" type="application/ld+json">\n'
+        f"{json.dumps(payload, indent=2)}\n"
+        "</script>"
+    )
+
+
 def load_posts() -> list[Post]:
     posts: list[Post] = []
     for path in sorted(POSTS_DIR.glob("*.md")):
@@ -223,28 +320,58 @@ def load_posts() -> list[Post]:
         title = metadata.get("title") or path.stem.replace("-", " ").title()
         slug = metadata.get("slug") or slugify(path.stem)
         summary = metadata.get("summary") or infer_summary(body)
-        date_iso, date_label = parse_date(metadata.get("date", ""), datetime.fromtimestamp(path.stat().st_mtime))
+        modified_dt = datetime.fromtimestamp(path.stat().st_mtime)
+        date_iso, date_label = parse_date(metadata.get("date", ""), modified_dt)
+        modified_iso = modified_dt.strftime("%Y-%m-%d")
         category = metadata.get("category") or "Insights"
         author = metadata.get("author") or "Ledgewave Team"
         read_time = metadata.get("read_time") or "5 min read"
         featured = metadata.get("featured", "").lower() in {"yes", "true", "1"}
-        html_content = markdown_to_html(body.strip())
+        cover_asset = metadata.get("cover_asset", "")
+        cover_note = metadata.get("cover_note", "")
+        faq_items = extract_faq_items(body)
+        html_content = strip_leading_h1(markdown_to_html(body.strip()))
         posts.append(
             Post(
                 title=title,
                 slug=slug,
                 summary=summary,
                 date_iso=date_iso,
+                modified_iso=modified_iso,
                 date_label=date_label,
                 category=category,
                 author=author,
                 read_time=read_time,
                 featured=featured,
+                cover_asset=cover_asset,
+                cover_note=cover_note,
                 source_path=path,
                 html_content=html_content,
+                faq_items=faq_items,
             )
         )
     return sorted(posts, key=lambda post: (post.date_iso, post.slug), reverse=True)
+
+
+def render_image_placeholder(*, placeholder_id: str, asset_path: str, title: str, note: str, variant: str = "card") -> str:
+    safe_variant = escape(variant, quote=True)
+    safe_id = escape(placeholder_id, quote=True)
+    safe_title = escape(title)
+    safe_note = escape(note)
+    safe_asset_path = escape(asset_path)
+    note_markup = f'<p class="image-placeholder-note">{safe_note}</p>' if note else ""
+    return (
+        f'<figure class="image-placeholder image-placeholder--{safe_variant}" data-placeholder-id="{safe_id}">\n'
+        f'  <div class="image-placeholder-frame" role="img" aria-label="{safe_title} placeholder">\n'
+        f'    <span class="image-placeholder-kicker">Image placeholder</span>\n'
+        f"    <div>\n"
+        f'      <strong class="image-placeholder-title">{safe_title}</strong>\n'
+        f"      {note_markup}\n"
+        f"    </div>\n"
+        f'    <p class="image-placeholder-target">Replace with <code>assets/images/{safe_asset_path}</code></p>\n'
+        f"  </div>\n"
+        f"</figure>"
+    )
 
 
 def render_post_cards(posts: Iterable[Post], base_href: str = "") -> str:
@@ -252,9 +379,21 @@ def render_post_cards(posts: Iterable[Post], base_href: str = "") -> str:
     for post in posts:
         href = f"{base_href}{post.slug}.html"
         featured_badge = '<span class="blog-badge">Featured</span>' if post.featured else ""
+        cover_markup = (
+            render_image_placeholder(
+                placeholder_id=f"blog-card-{post.slug}",
+                asset_path=post.cover_asset,
+                title="Cover image",
+                note="",
+                variant="card",
+            )
+            if post.cover_asset
+            else ""
+        )
         cards.append(
             f"""
             <article class="blog-card">
+              {cover_markup}
               <div class="blog-card-meta">
                 <span class="resource-type">{escape(post.category)}</span>
                 {featured_badge}
@@ -273,14 +412,25 @@ def render_post_cards(posts: Iterable[Post], base_href: str = "") -> str:
     return "\n".join(cards)
 
 
-def render_layout(*, title: str, meta_description: str, body_page: str, relative_prefix: str, current_page: str = "blog") -> str:
+def render_layout(
+    *,
+    title: str,
+    meta_description: str,
+    body_page: str,
+    relative_prefix: str,
+    canonical_url: str,
+    og_type: str = "website",
+    current_page: str = "blog",
+    head_extra: str = "",
+) -> str:
+    full_title = f"{title} | {SITE_NAME}"
     return f"""<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="{escape(meta_description, quote=True)}">
-  <title>{escape(title)} | {SITE_NAME}</title>
+  <title>{escape(full_title)}</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link
@@ -289,6 +439,21 @@ def render_layout(*, title: str, meta_description: str, body_page: str, relative
   >
   <link rel="icon" href="{relative_prefix}assets/images/ledgewave-mark.svg" type="image/svg+xml">
   <link rel="stylesheet" href="{relative_prefix}assets/css/styles.css">
+  <link rel="canonical" href="{escape(canonical_url, quote=True)}">
+  <meta property="og:type" content="{escape(og_type, quote=True)}">
+  <meta property="og:site_name" content="{SITE_NAME}">
+  <meta property="og:title" content="{escape(full_title, quote=True)}">
+  <meta property="og:description" content="{escape(meta_description, quote=True)}">
+  <meta property="og:url" content="{escape(canonical_url, quote=True)}">
+  <meta property="og:image" content="{SOCIAL_IMAGE_URL}">
+  <meta property="og:image:alt" content="{SOCIAL_IMAGE_ALT}">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="{escape(full_title, quote=True)}">
+  <meta name="twitter:description" content="{escape(meta_description, quote=True)}">
+  <meta name="twitter:image" content="{SOCIAL_IMAGE_URL}">
+  {head_extra}
 </head>
 <body data-page="{escape(current_page)}">
   <div class="site-shell">
@@ -314,10 +479,10 @@ def render_blog_index(posts: list[Post]) -> str:
       <section class="page-hero reveal is-visible">
         <div class="page-hero-copy">
           <span class="section-pill">Blog</span>
-          <h1>Ideas, playbooks, and operator guidance for modern collections teams.</h1>
+          <h1>Collections automation insights for AR and finance teams.</h1>
           <p>
-            Writing from the Ledgewave team on imports, planned billing, payment behavior,
-            collections workflow, and the decisions that shape cash visibility.
+            Writing from the Ledgewave team on collections workflow, dunning, planned billing,
+            payment behavior, and cash visibility.
           </p>
           <div class="page-hero-actions">
             <a class="btn btn-primary" href="{escape(featured_post.slug)}.html">Read the featured post</a>
@@ -329,6 +494,13 @@ def render_blog_index(posts: list[Post]) -> str:
           <span class="section-pill">Featured Post</span>
           <h2>{escape(featured_post.title)}</h2>
           <p>{escape(featured_post.summary)}</p>
+          {render_image_placeholder(
+              placeholder_id="blog-featured-cover",
+              asset_path=featured_post.cover_asset,
+              title="Featured article cover",
+              note=featured_post.cover_note,
+              variant="wide",
+          ) if featured_post.cover_asset else ""}
           <div class="blog-post-meta">
             <span>{escape(featured_post.date_label)}</span>
             <span>{escape(featured_post.read_time)}</span>
@@ -344,7 +516,7 @@ def render_blog_index(posts: list[Post]) -> str:
         <div class="section-heading">
           <span class="section-pill">Latest Posts</span>
           <h2>Recent writing from the Ledgewave team.</h2>
-          <p>Articles for operators, controllers, and AR leaders evaluating a more connected receivables workflow.</p>
+          <p>Articles for controllers, AR leaders, and finance teams evaluating modern collections workflow.</p>
         </div>
         <div class="blog-grid">
 {render_post_cards(posts, base_href="")}
@@ -356,7 +528,7 @@ def render_blog_index(posts: list[Post]) -> str:
       <section class="page-hero reveal is-visible">
         <div class="page-hero-copy">
           <span class="section-pill">Blog</span>
-          <h1>Ideas, playbooks, and operator guidance for modern collections teams.</h1>
+          <h1>Collections automation insights for AR and finance teams.</h1>
           <p>
             Drop markdown files into <code>content/blog-posts</code> and run <code>python scripts/generate_blog.py</code>
             to publish your first articles.
@@ -371,17 +543,31 @@ def render_blog_index(posts: list[Post]) -> str:
       </section>
         """
 
+    blog_page = {
+        "@type": "Blog",
+        "@id": "https://ledgewave.com/blog/#blog",
+        "url": "https://ledgewave.com/blog/",
+        "name": BLOG_TITLE,
+        "description": SITE_DESCRIPTION,
+        "isPartOf": {"@id": WEBSITE_ID},
+        "about": {"@id": ORGANIZATION_ID},
+        "inLanguage": "en-US",
+    }
+
     return render_layout(
-        title="Blog",
+        title=BLOG_TITLE,
         meta_description=SITE_DESCRIPTION,
         relative_prefix="../",
+        canonical_url="https://ledgewave.com/blog/",
         body_page=featured_markup,
+        head_extra=render_json_ld(page_graph(blog_page), "structured-data"),
     )
 
 
 def render_post_page(post: Post, posts: list[Post]) -> str:
     related_posts = [candidate for candidate in posts if candidate.slug != post.slug][:3]
     related_markup = render_post_cards(related_posts, base_href="") if related_posts else ""
+    canonical_url = f"https://ledgewave.com/blog/{post.slug}.html"
 
     body = f"""
       <section class="page-hero reveal is-visible">
@@ -404,6 +590,13 @@ def render_post_page(post: Post, posts: list[Post]) -> str:
           <span class="section-pill">Why It Matters</span>
           <h2>Collections performance is more than an aging report.</h2>
           <p>Each article ties receivables data, workflow discipline, and forecast visibility back to the day-to-day decisions finance teams actually make.</p>
+          {render_image_placeholder(
+              placeholder_id=f"blog-post-hero-{post.slug}",
+              asset_path=post.cover_asset,
+              title="Article cover",
+              note=post.cover_note,
+              variant="wide",
+          ) if post.cover_asset else ""}
           <div class="pill-row">
             <span class="pill">Operators</span>
             <span class="pill">Controllers</span>
@@ -432,11 +625,64 @@ def render_post_page(post: Post, posts: list[Post]) -> str:
       </section>
         """
 
+    page = {
+        "@type": "WebPage",
+        "@id": f"{canonical_url}#webpage",
+        "url": canonical_url,
+        "name": post.title,
+        "description": post.summary,
+        "isPartOf": {"@id": WEBSITE_ID},
+        "about": {"@id": ORGANIZATION_ID},
+        "inLanguage": "en-US",
+        "primaryImageOfPage": SOCIAL_IMAGE_URL,
+    }
+    article = {
+        "@type": "BlogPosting",
+        "@id": f"{canonical_url}#article",
+        "headline": post.title,
+        "description": post.summary,
+        "datePublished": post.date_iso,
+        "dateModified": post.modified_iso,
+        "author": author_schema(post.author),
+        "publisher": {"@id": ORGANIZATION_ID},
+        "mainEntityOfPage": {"@id": f"{canonical_url}#webpage"},
+        "image": SOCIAL_IMAGE_URL,
+        "articleSection": post.category,
+        "url": canonical_url,
+    }
+    head_parts = [
+        f'<meta name="author" content="{escape(post.author, quote=True)}">',
+        f'<meta property="article:published_time" content="{escape(post.date_iso, quote=True)}">',
+        f'<meta property="article:modified_time" content="{escape(post.modified_iso, quote=True)}">',
+        f'<meta property="article:section" content="{escape(post.category, quote=True)}">',
+        render_json_ld(page_graph(page, article), "structured-data"),
+    ]
+    if post.faq_items:
+        faq_payload = {
+            "@context": "https://schema.org",
+            "@type": "FAQPage",
+            "mainEntity": [
+                {
+                    "@type": "Question",
+                    "name": question,
+                    "acceptedAnswer": {
+                        "@type": "Answer",
+                        "text": answer,
+                    },
+                }
+                for question, answer in post.faq_items
+            ],
+        }
+        head_parts.append(render_json_ld(faq_payload, "faq-structured-data"))
+
     return render_layout(
         title=post.title,
         meta_description=post.summary,
         relative_prefix="../",
+        canonical_url=canonical_url,
+        og_type="article",
         body_page=body,
+        head_extra="\n  ".join(head_parts),
     )
 
 

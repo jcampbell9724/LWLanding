@@ -1,11 +1,13 @@
 ---
 title: Why planned billing belongs in the collections forecast
 date: 2026-03-30
-summary: Teams that forecast only from open invoices usually end up with a partial picture of near-term collections timing and risk.
+summary: Planned billing gives finance teams a more complete collections forecast by showing what is about to enter the receivables workflow, not just what is already open.
 category: Forecasting
 author: Ledgewave Team
 read_time: 5 min read
 featured: no
+cover_asset: blog-cover-planned-billing.png
+cover_note: Best option is a forecast screenshot that shows planned billing visible inside the near-term collections view.
 ---
 
 # Why planned billing belongs in the collections forecast
@@ -50,3 +52,17 @@ They should be able to show:
 3. how those records shape the timing outlook
 
 That makes the forecast less like a static report and more like a real operating view.
+
+## Frequently asked questions
+
+### What is planned billing in a collections forecast?
+
+Planned billing is the set of active future invoices or contract-billing records expected to enter the receivables workflow soon. It helps teams see upcoming pressure before those invoices are already overdue.
+
+### Why are open invoices not enough for forecast review?
+
+Open invoices only show what is already billed and outstanding. They do not show what is about to convert into live receivables, which is often critical to near-term timing discussions.
+
+### How does planned billing improve collections planning?
+
+It helps teams anticipate customer concentration, staffing needs, follow-up load, and upcoming review conversations instead of reacting only after the receivable is already open.

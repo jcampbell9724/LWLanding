@@ -289,6 +289,49 @@ const initializeCaptureForms = () => {
   });
 };
 
+const initializeRevealTransitions = () => {
+  const revealNodes = Array.from(document.querySelectorAll(".reveal"));
+
+  if (!revealNodes.length) {
+    return;
+  }
+
+  const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  if (prefersReducedMotion || !("IntersectionObserver" in window)) {
+    revealNodes.forEach((node) => node.classList.add("is-visible"));
+    return;
+  }
+
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (!entry.isIntersecting) {
+          return;
+        }
+
+        entry.target.classList.add("is-visible");
+        observer.unobserve(entry.target);
+      });
+    },
+    {
+      threshold: 0.18,
+      rootMargin: "0px 0px -10% 0px",
+    }
+  );
+
+  revealNodes.forEach((node, index) => {
+    node.style.setProperty("--reveal-delay", `${Math.min(index * 45, 220)}ms`);
+
+    if (node.classList.contains("is-visible")) {
+      return;
+    }
+
+    observer.observe(node);
+  });
+};
+
 renderSharedChrome();
 initializeNavigation();
 initializeCaptureForms();
+initializeRevealTransitions();

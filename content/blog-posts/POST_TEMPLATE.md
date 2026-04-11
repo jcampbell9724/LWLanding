@@ -7,6 +7,8 @@ category: Operations
 author: Ledgewave Team
 read_time: 5 min read
 featured: no
+cover_asset: blog-cover-your-topic.png
+cover_note: One sentence on the screenshot, editorial cover, or concept image this article should use.
 ---
 
 # Start with a strong opening

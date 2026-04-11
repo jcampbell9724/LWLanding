@@ -2,11 +2,13 @@
 title: How teams move from spreadsheet follow-up to automated dunning
 slug: how-teams-move-from-spreadsheet-follow-up-to-automated-dunning
 date: 2026-04-01
-summary: Most teams do not jump from manual reminders to a perfect collections process in one step. They tighten the weekly workflow first.
+summary: Teams move from spreadsheet follow-up to automated dunning by standardizing imports, prioritization, and workflow stages before adding deeper automation.
 category: Operations
 author: Ledgewave Team
 read_time: 6 min read
 featured: no
+cover_asset: blog-cover-dunning-workflow.png
+cover_note: Use the dunning or workflow screen that best shows the move from manual follow-up into a repeatable system.
 ---
 
 # How teams move from spreadsheet follow-up to automated dunning
@@ -81,3 +83,17 @@ The goal is a weekly process where:
 - expected cash is easier to explain
 
 That is the point where teams stop using spreadsheets as duct tape and start using software as an operating system.
+
+## Frequently asked questions
+
+### What is automated dunning?
+
+Automated dunning is a structured follow-up workflow that helps teams stage reminders, prepare outreach, and track message history without rebuilding each step manually.
+
+### What should teams standardize before automating dunning?
+
+They should first standardize the imported portfolio, account prioritization, message stages, and the connection between follow-up activity and forecast review.
+
+### Can teams start with partial automation?
+
+Yes. Most teams start with the first repeatable workflow phase, then add deeper automation once the weekly motion is working and the team trusts the process.
