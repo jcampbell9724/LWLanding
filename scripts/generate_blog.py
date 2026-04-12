@@ -357,11 +357,14 @@ def render_image_placeholder(*, placeholder_id: str, asset_path: str, title: str
     safe_variant = escape(variant, quote=True)
     safe_id = escape(placeholder_id, quote=True)
     safe_title = escape(title)
+    safe_title_attr = escape(title, quote=True)
     safe_note = escape(note)
     safe_asset_path = escape(asset_path)
+    safe_asset_path_attr = escape(f"assets/images/{asset_path}", quote=True)
     note_markup = f'<p class="image-placeholder-note">{safe_note}</p>' if note else ""
     return (
-        f'<figure class="image-placeholder image-placeholder--{safe_variant}" data-placeholder-id="{safe_id}">\n'
+        f'<figure class="image-placeholder image-placeholder--{safe_variant}" data-placeholder-id="{safe_id}" '
+        f'data-asset-path="{safe_asset_path_attr}" data-image-title="{safe_title_attr}">\n'
         f'  <div class="image-placeholder-frame" role="img" aria-label="{safe_title} placeholder">\n'
         f'    <span class="image-placeholder-kicker">Image placeholder</span>\n'
         f"    <div>\n"

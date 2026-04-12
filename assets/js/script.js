@@ -19,6 +19,7 @@ const getSitePrefix = () => {
 
 const sitePrefix = getSitePrefix();
 const buildHref = (path) => `${sitePrefix}${path}`;
+const imageProbeCache = new Map();
 
 const renderIntoHost = ({ hostSelector, fallbackSelector, markup }) => {
   const host = document.querySelector(hostSelector);
@@ -199,6 +200,146 @@ const initializeNavigation = () => {
   window.addEventListener("scroll", syncHeaderScroll, { passive: true });
 };
 
+const normalizeAssetPath = (assetPath = "") => {
+  const trimmed = assetPath.trim();
+
+  if (!trimmed) {
+    return "";
+  }
+
+  if (/^(?:https?:)?\/\//i.test(trimmed) || trimmed.startsWith("data:")) {
+    return trimmed;
+  }
+
+  return trimmed
+    .replace(/^\.\/+/, "")
+    .replace(/^\/+/, "");
+};
+
+const resolvePlaceholderAssetHref = (assetPath) => {
+  const normalizedPath = normalizeAssetPath(assetPath);
+
+  if (!normalizedPath) {
+    return "";
+  }
+
+  if (
+    /^(?:https?:)?\/\//i.test(normalizedPath) ||
+    normalizedPath.startsWith("data:") ||
+    normalizedPath.startsWith("../")
+  ) {
+    return normalizedPath;
+  }
+
+  return buildHref(normalizedPath);
+};
+
+const probeImageAvailability = (src) => {
+  if (!src) {
+    return Promise.resolve(false);
+  }
+
+  if (imageProbeCache.has(src)) {
+    return imageProbeCache.get(src);
+  }
+
+  const probe = new Promise((resolve) => {
+    const image = new Image();
+    image.onload = () => resolve(true);
+    image.onerror = () => resolve(false);
+    image.src = src;
+  });
+
+  imageProbeCache.set(src, probe);
+  return probe;
+};
+
+const cleanPlaceholderCopy = (value = "") =>
+  value
+    .replace(/^placeholder for\s+/i, "")
+    .replace(/\s+placeholder$/i, "")
+    .replace(/\s+/g, " ")
+    .trim();
+
+const derivePlaceholderAlt = (figure) => {
+  const explicitAlt = cleanPlaceholderCopy(figure.dataset.imageAlt || "");
+  if (explicitAlt) {
+    return explicitAlt;
+  }
+
+  const frameLabel = cleanPlaceholderCopy(
+    figure.querySelector(".image-placeholder-frame")?.getAttribute("aria-label") || ""
+  );
+  if (frameLabel) {
+    return frameLabel.charAt(0).toUpperCase() + frameLabel.slice(1);
+  }
+
+  const title =
+    figure.dataset.imageTitle ||
+    figure.querySelector(".image-placeholder-title")?.textContent ||
+    "";
+  const cleanedTitle = cleanPlaceholderCopy(title)
+    .replace(/^[A-Z]\d+(?:-\d+)?\s+/, "")
+    .trim();
+
+  return cleanedTitle || "Ledgewave product image";
+};
+
+const upgradeImagePlaceholder = (figure, src) => {
+  if (figure.classList.contains("is-loaded")) {
+    return;
+  }
+
+  const frame = figure.querySelector(".image-placeholder-frame");
+  if (!frame) {
+    return;
+  }
+
+  const image = document.createElement("img");
+  image.className = "image-placeholder-media";
+  image.src = src;
+  image.alt = derivePlaceholderAlt(figure);
+  image.decoding = "async";
+  image.loading = figure.classList.contains("image-placeholder--hero") ? "eager" : "lazy";
+
+  if (figure.classList.contains("image-placeholder--hero")) {
+    image.fetchPriority = "high";
+  }
+
+  frame.replaceChildren(image);
+  frame.removeAttribute("role");
+  frame.removeAttribute("aria-label");
+  figure.classList.add("is-loaded");
+};
+
+const initializeImagePlaceholders = () => {
+  const placeholders = Array.from(document.querySelectorAll(".image-placeholder"));
+
+  if (!placeholders.length) {
+    return;
+  }
+
+  placeholders.forEach((figure) => {
+    const assetPath =
+      figure.dataset.assetPath ||
+      figure.querySelector(".image-placeholder-target code")?.textContent ||
+      "";
+    const assetHref = resolvePlaceholderAssetHref(assetPath);
+
+    if (!assetHref) {
+      return;
+    }
+
+    probeImageAvailability(assetHref).then((isAvailable) => {
+      if (!isAvailable) {
+        return;
+      }
+
+      upgradeImagePlaceholder(figure, assetHref);
+    });
+  });
+};
+
 const initializeCaptureForms = () => {
   const isConfiguredEndpoint =
     GOOGLE_SHEETS_ENDPOINT &&
@@ -333,5 +474,6 @@ const initializeRevealTransitions = () => {
 
 renderSharedChrome();
 initializeNavigation();
+initializeImagePlaceholders();
 initializeCaptureForms();
 initializeRevealTransitions();
