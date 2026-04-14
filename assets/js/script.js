@@ -93,7 +93,7 @@ const renderSharedChrome = () => {
                 <img src="${buildHref("assets/images/ledgewave-mark.svg")}" alt="" width="40" height="40">
                 <span class="footer-brand-copy">
                   <strong>Ledgewave</strong>
-                  <span>Collections automation and forecast visibility for modern finance teams.</span>
+                  <span>Receivables workflow and forecast visibility for modern finance teams.</span>
                 </span>
               </div>
               <p class="footer-note">
@@ -138,7 +138,7 @@ const renderSharedChrome = () => {
           </div>
 
           <div class="footer-meta">
-            <span>&copy; <span id="year"></span> Ledgewave. Collections automation and cash forecasting software.</span>
+            <span>&copy; <span id="year"></span> Ledgewave. Receivables workflow and cash forecasting software.</span>
             <span>Designed for operators, controllers, and finance teams who need one receivables command layer.</span>
           </div>
         </div>
@@ -261,6 +261,17 @@ const cleanPlaceholderCopy = (value = "") =>
     .replace(/\s+/g, " ")
     .trim();
 
+const derivePlaceholderTitle = (figure) => {
+  const title =
+    figure.dataset.imageTitle ||
+    figure.querySelector(".image-placeholder-title")?.textContent ||
+    "";
+
+  return cleanPlaceholderCopy(title)
+    .replace(/^[A-Z]\d+(?:-\d+)?\s+/, "")
+    .trim();
+};
+
 const derivePlaceholderAlt = (figure) => {
   const explicitAlt = cleanPlaceholderCopy(figure.dataset.imageAlt || "");
   if (explicitAlt) {
@@ -274,18 +285,199 @@ const derivePlaceholderAlt = (figure) => {
     return frameLabel.charAt(0).toUpperCase() + frameLabel.slice(1);
   }
 
-  const title =
-    figure.dataset.imageTitle ||
-    figure.querySelector(".image-placeholder-title")?.textContent ||
-    "";
-  const cleanedTitle = cleanPlaceholderCopy(title)
-    .replace(/^[A-Z]\d+(?:-\d+)?\s+/, "")
-    .trim();
+  const cleanedTitle = derivePlaceholderTitle(figure);
 
   return cleanedTitle || "Ledgewave product image";
 };
 
-const upgradeImagePlaceholder = (figure, src) => {
+const deriveFallbackTitle = (figure) => {
+  const title = derivePlaceholderTitle(figure);
+  const normalizedTitle = title.toLowerCase();
+  const isGenericTitle = normalizedTitle === "cover image" || normalizedTitle === "article cover" || normalizedTitle === "featured article cover";
+
+  if (title && !isGenericTitle) {
+    return title;
+  }
+
+  const nearbyHeading = cleanPlaceholderCopy(
+    figure.closest("article, aside, section, main")?.querySelector("h1, h2, h3")?.textContent || ""
+  );
+  if (nearbyHeading) {
+    return nearbyHeading;
+  }
+
+  if (figure.classList.contains("image-placeholder--logo")) {
+    return "Connected finance systems";
+  }
+
+  if (figure.classList.contains("image-placeholder--hero")) {
+    return "Ledgewave platform";
+  }
+
+  if (sitePrefix === "../") {
+    return "Ledgewave Insights";
+  }
+
+  return "Collections intelligence";
+};
+
+const deriveFallbackEyebrow = (figure, assetPath = "") => {
+  const normalizedAssetPath = assetPath.toLowerCase();
+
+  if (
+    figure.classList.contains("image-placeholder--logo") ||
+    normalizedAssetPath.includes("logos-")
+  ) {
+    return "Integrations";
+  }
+
+  if (normalizedAssetPath.includes("blog-cover") || sitePrefix === "../") {
+    return "Insights";
+  }
+
+  if (normalizedAssetPath.includes("workspace") || normalizedAssetPath.includes("photo")) {
+    return "About";
+  }
+
+  return "Ledgewave";
+};
+
+const deriveFallbackSubtitle = (figure, assetPath = "") => {
+  const normalizedAssetPath = assetPath.toLowerCase();
+
+  if (
+    figure.classList.contains("image-placeholder--logo") ||
+    normalizedAssetPath.includes("logos-")
+  ) {
+    return "Receivables CSVs, planned billing files, and customer-specific ingest paths reviewed through managed onboarding.";
+  }
+
+  if (normalizedAssetPath.includes("blog-cover") || sitePrefix === "../") {
+    return "Ideas for finance teams improving collections operations, forecasting discipline, and customer follow-up.";
+  }
+
+  if (normalizedAssetPath.includes("workspace") || normalizedAssetPath.includes("photo")) {
+    return "Built for modern finance teams replacing fragmented spreadsheets and disconnected follow-up work.";
+  }
+
+  if (normalizedAssetPath.includes("product-")) {
+    return "Draft follow-up, invoice history, and cash visibility held together inside one operating surface.";
+  }
+
+  return "A receivables operating system for teams replacing exports, trackers, and disconnected workflows.";
+};
+
+const createFallbackBarGroup = (count) => {
+  const bars = document.createElement("div");
+  bars.className = "image-fallback-bars";
+  bars.setAttribute("aria-hidden", "true");
+
+  for (let index = 0; index < count; index += 1) {
+    bars.append(document.createElement("span"));
+  }
+
+  return bars;
+};
+
+const buildPlaceholderFallback = (figure, assetPath = "") => {
+  const fallback = document.createElement("div");
+  fallback.className = "image-fallback";
+
+  const header = document.createElement("div");
+  header.className = "image-fallback-header";
+
+  const badge = document.createElement("span");
+  badge.className = "image-fallback-badge";
+  badge.textContent = deriveFallbackEyebrow(figure, assetPath);
+
+  const logo = document.createElement("img");
+  logo.className = "image-fallback-logo";
+  logo.src = buildHref("assets/images/ledgewave-mark.svg");
+  logo.alt = "";
+  logo.width = 38;
+  logo.height = 38;
+
+  header.append(badge, logo);
+
+  const copy = document.createElement("div");
+  copy.className = "image-fallback-copy";
+
+  const title = document.createElement("strong");
+  title.className = "image-fallback-title";
+  title.textContent = deriveFallbackTitle(figure);
+
+  const subtitle = document.createElement("p");
+  subtitle.className = "image-fallback-subtitle";
+  subtitle.textContent = deriveFallbackSubtitle(figure, assetPath);
+
+  copy.append(title, subtitle);
+
+  const barCount = figure.classList.contains("image-placeholder--logo") ? 5 : 3;
+  fallback.append(header, copy, createFallbackBarGroup(barCount));
+  return fallback;
+};
+
+const getPlaceholderPresentation = (figure, assetPath = "") => {
+  const normalizedAssetPath = assetPath.toLowerCase();
+  const isLogoAsset =
+    figure.classList.contains("image-placeholder--logo") ||
+    normalizedAssetPath.includes("logos-");
+
+  if (isLogoAsset) {
+    return {
+      fit: "contain",
+      position: "center center",
+      padding: "clamp(18px, 2vw, 24px)"
+    };
+  }
+
+  const isProductUiAsset = normalizedAssetPath.includes("product-");
+  if (isProductUiAsset) {
+    return {
+      fit: "contain",
+      position: "center center",
+      padding: "clamp(16px, 1.8vw, 24px)"
+    };
+  }
+
+  return {
+    fit: "cover",
+    position: "center center",
+    padding: "0px"
+  };
+};
+
+const applyPlaceholderPresentation = (figure, frame, assetPath) => {
+  const defaults = getPlaceholderPresentation(figure, assetPath);
+  const fit = (figure.dataset.imageFit || defaults.fit || "").trim().toLowerCase();
+  const position = (figure.dataset.imagePosition || defaults.position || "").trim();
+  const padding = (
+    figure.dataset.imagePadding ||
+    figure.dataset.imagePad ||
+    defaults.padding ||
+    ""
+  ).trim();
+  const ratio = (figure.dataset.imageRatio || "").trim();
+
+  if (fit) {
+    figure.dataset.imageFit = fit;
+    figure.style.setProperty("--image-fit", fit);
+  }
+
+  if (position) {
+    figure.style.setProperty("--image-position", position);
+  }
+
+  if (padding) {
+    figure.style.setProperty("--loaded-frame-padding", padding);
+  }
+
+  if (ratio) {
+    frame.style.setProperty("--placeholder-ratio", ratio);
+  }
+};
+
+const upgradeImagePlaceholder = (figure, src, assetPath = "") => {
   if (figure.classList.contains("is-loaded")) {
     return;
   }
@@ -294,6 +486,9 @@ const upgradeImagePlaceholder = (figure, src) => {
   if (!frame) {
     return;
   }
+
+  applyPlaceholderPresentation(figure, frame, assetPath);
+  figure.classList.remove("is-fallback");
 
   const image = document.createElement("img");
   image.className = "image-placeholder-media";
@@ -312,6 +507,23 @@ const upgradeImagePlaceholder = (figure, src) => {
   figure.classList.add("is-loaded");
 };
 
+const renderPlaceholderFallback = (figure, assetPath = "") => {
+  if (figure.classList.contains("is-loaded")) {
+    return;
+  }
+
+  const frame = figure.querySelector(".image-placeholder-frame");
+  if (!frame) {
+    return;
+  }
+
+  applyPlaceholderPresentation(figure, frame, assetPath);
+  frame.replaceChildren(buildPlaceholderFallback(figure, assetPath));
+  frame.setAttribute("role", "img");
+  frame.setAttribute("aria-label", deriveFallbackTitle(figure));
+  figure.classList.add("is-fallback");
+};
+
 const initializeImagePlaceholders = () => {
   const placeholders = Array.from(document.querySelectorAll(".image-placeholder"));
 
@@ -327,15 +539,17 @@ const initializeImagePlaceholders = () => {
     const assetHref = resolvePlaceholderAssetHref(assetPath);
 
     if (!assetHref) {
+      renderPlaceholderFallback(figure, assetPath);
       return;
     }
 
     probeImageAvailability(assetHref).then((isAvailable) => {
       if (!isAvailable) {
+        renderPlaceholderFallback(figure, assetPath);
         return;
       }
 
-      upgradeImagePlaceholder(figure, assetHref);
+      upgradeImagePlaceholder(figure, assetHref, assetPath);
     });
   });
 };

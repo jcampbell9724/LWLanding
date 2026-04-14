@@ -16,12 +16,12 @@ OUTPUT_DIR = ROOT / "blog"
 
 SITE_NAME = "Ledgewave"
 SITE_DESCRIPTION = (
-    "Insights on collections automation, dunning, payment behavior, planned billing, "
-    "and receivables forecasting for finance teams."
+    "Insights on receivables workflow, draft follow-up, payment behavior, planned billing, "
+    "and cash forecasting for finance teams."
 )
-BLOG_TITLE = "Collections Automation Blog"
+BLOG_TITLE = "Receivables Workflow Blog"
 SOCIAL_IMAGE_URL = "https://ledgewave.com/assets/images/ledgewave-social-card.svg"
-SOCIAL_IMAGE_ALT = "Ledgewave collections automation and forecast visibility for modern finance teams."
+SOCIAL_IMAGE_ALT = "Ledgewave receivables workflow and forecast visibility for modern finance teams."
 SITE_LOGO_URL = "https://ledgewave.com/assets/images/ledgewave-mark.svg"
 ORGANIZATION_ID = "https://ledgewave.com/#organization"
 WEBSITE_ID = "https://ledgewave.com/#website"
@@ -275,7 +275,7 @@ def organization_schema() -> dict[str, object]:
         "name": SITE_NAME,
         "url": "https://ledgewave.com/",
         "logo": SITE_LOGO_URL,
-        "description": "Ledgewave is collections automation and cash forecasting software for finance teams.",
+        "description": "Ledgewave is receivables workflow and cash forecasting software for finance teams.",
     }
 
 
@@ -356,23 +356,12 @@ def load_posts() -> list[Post]:
 def render_image_placeholder(*, placeholder_id: str, asset_path: str, title: str, note: str, variant: str = "card") -> str:
     safe_variant = escape(variant, quote=True)
     safe_id = escape(placeholder_id, quote=True)
-    safe_title = escape(title)
     safe_title_attr = escape(title, quote=True)
-    safe_note = escape(note)
-    safe_asset_path = escape(asset_path)
     safe_asset_path_attr = escape(f"assets/images/{asset_path}", quote=True)
-    note_markup = f'<p class="image-placeholder-note">{safe_note}</p>' if note else ""
     return (
         f'<figure class="image-placeholder image-placeholder--{safe_variant}" data-placeholder-id="{safe_id}" '
         f'data-asset-path="{safe_asset_path_attr}" data-image-title="{safe_title_attr}">\n'
-        f'  <div class="image-placeholder-frame" role="img" aria-label="{safe_title} placeholder">\n'
-        f'    <span class="image-placeholder-kicker">Image placeholder</span>\n'
-        f"    <div>\n"
-        f'      <strong class="image-placeholder-title">{safe_title}</strong>\n'
-        f"      {note_markup}\n"
-        f"    </div>\n"
-        f'    <p class="image-placeholder-target">Replace with <code>assets/images/{safe_asset_path}</code></p>\n'
-        f"  </div>\n"
+        f'  <div class="image-placeholder-frame" role="img" aria-label="{safe_title_attr}"></div>\n'
         f"</figure>"
     )
 
@@ -482,9 +471,9 @@ def render_blog_index(posts: list[Post]) -> str:
       <section class="page-hero reveal is-visible">
         <div class="page-hero-copy">
           <span class="section-pill">Blog</span>
-          <h1>Collections automation insights for AR and finance teams.</h1>
+          <h1>Receivables workflow insights for AR and finance teams.</h1>
           <p>
-            Writing from the Ledgewave team on collections workflow, dunning, planned billing,
+            Writing from the Ledgewave team on receivables workflow, draft follow-up, planned billing,
             payment behavior, and cash visibility.
           </p>
           <div class="page-hero-actions">
@@ -531,7 +520,7 @@ def render_blog_index(posts: list[Post]) -> str:
       <section class="page-hero reveal is-visible">
         <div class="page-hero-copy">
           <span class="section-pill">Blog</span>
-          <h1>Collections automation insights for AR and finance teams.</h1>
+          <h1>Receivables workflow insights for AR and finance teams.</h1>
           <p>
             Drop markdown files into <code>content/blog-posts</code> and run <code>python scripts/generate_blog.py</code>
             to publish your first articles.

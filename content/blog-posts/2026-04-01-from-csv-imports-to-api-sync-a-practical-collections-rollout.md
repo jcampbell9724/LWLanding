@@ -1,8 +1,8 @@
 ---
-title: How teams move from spreadsheet follow-up to automated dunning
-slug: how-teams-move-from-spreadsheet-follow-up-to-automated-dunning
+title: How teams move from spreadsheet follow-up to a structured dunning workflow
+slug: how-teams-move-from-spreadsheet-follow-up-to-a-structured-dunning-workflow
 date: 2026-04-01
-summary: Teams move from spreadsheet follow-up to automated dunning by standardizing imports, prioritization, and workflow stages before adding deeper automation.
+summary: Teams usually improve dunning by standardizing imports, prioritization, draft follow-up, and review discipline before adding deeper system connections.
 category: Operations
 author: Ledgewave Team
 read_time: 6 min read
@@ -11,25 +11,25 @@ cover_asset: blog-cover-dunning-workflow.png
 cover_note: Use the dunning or workflow screen that best shows the move from manual follow-up into a repeatable system.
 ---
 
-# How teams move from spreadsheet follow-up to automated dunning
+# How teams move from spreadsheet follow-up to a structured dunning workflow
 
 Very few finance teams wake up one day and replace manual follow-up all at once.
 
 What usually happens is slower and more practical. The team reaches a point where spreadsheets, inbox drafts, and personal notes can no longer hold together the weekly collections cycle.
 
-That is when automated dunning starts to matter.
+That is when a structured dunning workflow starts to matter.
 
-## The first problem is not automation. It is process drift.
+## The first problem is not direct sending. It is process drift.
 
-Before a team can automate anything well, it has to tighten the underlying motion:
+Before a team can scale follow-up well, it has to tighten the underlying motion:
 
 - where the latest receivables data comes from
 - how accounts get prioritized
-- when reminders go out
+- when draft reminders are prepared
 - what context collectors need before they send them
 - how the team connects dunning activity back to expected cash
 
-Without that structure, automation just makes inconsistency faster.
+Without that structure, faster follow-up just makes inconsistency faster.
 
 ## What teams usually standardize first
 
@@ -46,7 +46,7 @@ The practical rollout starts with a few basics:
 
 That is the bridge between spreadsheet follow-up and a cleaner operating system.
 
-## Automation works best when it supports judgment
+## A structured workflow works best when it supports judgment
 
 Buyers are not looking for a collections robot.
 
@@ -67,13 +67,13 @@ Once the workflow is tighter, buyers usually feel the improvement in three place
 - more consistent customer follow-up across collectors
 - stronger confidence in the cash conversation because expected collections are tied to live workflow activity
 
-That is why automated dunning is rarely only about sending messages faster.
+That is why a structured dunning workflow is rarely about sending messages faster.
 
 It is about making the whole collections cycle easier to run.
 
 ## The practical standard
 
-The goal is not full automation for its own sake.
+The goal is not a fully automated mailbox workflow for its own sake.
 
 The goal is a weekly process where:
 
@@ -86,14 +86,14 @@ That is the point where teams stop using spreadsheets as duct tape and start usi
 
 ## Frequently asked questions
 
-### What is automated dunning?
+### What is a structured dunning workflow?
 
-Automated dunning is a structured follow-up workflow that helps teams stage reminders, prepare outreach, and track message history without rebuilding each step manually.
+A structured dunning workflow helps teams stage reminders, prepare draft outreach, and track message history without rebuilding each step manually.
 
-### What should teams standardize before automating dunning?
+### What should teams standardize before scaling dunning?
 
 They should first standardize the imported portfolio, account prioritization, message stages, and the connection between follow-up activity and forecast review.
 
-### Can teams start with partial automation?
+### Can teams start with a partial rollout?
 
-Yes. Most teams start with the first repeatable workflow phase, then add deeper automation once the weekly motion is working and the team trusts the process.
+Yes. Most teams start with the first repeatable workflow phase, then add deeper ingest or reporting connections once the weekly motion is working and the team trusts the process.

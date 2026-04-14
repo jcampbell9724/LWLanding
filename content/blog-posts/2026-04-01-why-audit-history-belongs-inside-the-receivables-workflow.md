@@ -15,7 +15,7 @@ cover_note: Use the account timeline or follow-up history screen where notes, la
 
 Dunning breaks down when the team has to remember too much.
 
-One collector knows the customer promised to pay next week. Another remembers that billing disputed one invoice. A controller wants to understand why the account is still in the forecast. Most of that context lives in inbox threads, meeting notes, or personal tracker columns.
+One collector knows the customer promised to pay next week. Another remembers that billing questioned one invoice. A controller wants to understand why the account is still in the forecast. Most of that context lives in inbox threads, meeting notes, or personal tracker columns.
 
 That is the real process problem.
 
@@ -51,7 +51,7 @@ They want to know whether the team has real signal behind the expected cash timi
 
 - whether a customer has engaged
 - whether the payment date is grounded in a real conversation
-- whether the issue is a true delay or an unresolved dispute
+- whether the issue is a true delay or another open issue
 
 That turns forecast review into a better operating discussion instead of a separate recap exercise.
 
