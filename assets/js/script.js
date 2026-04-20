@@ -19,7 +19,8 @@ const getSitePrefix = () => {
 
 const sitePrefix = getSitePrefix();
 const buildHref = (path) => `${sitePrefix}${path}`;
-const imageProbeCache = new Map();
+const scheduleMicrotask =
+  window.queueMicrotask?.bind(window) || ((callback) => Promise.resolve().then(callback));
 
 const renderIntoHost = ({ hostSelector, fallbackSelector, markup }) => {
   const host = document.querySelector(hostSelector);
@@ -234,32 +235,18 @@ const resolvePlaceholderAssetHref = (assetPath) => {
   return buildHref(normalizedPath);
 };
 
-const probeImageAvailability = (src) => {
-  if (!src) {
-    return Promise.resolve(false);
-  }
-
-  if (imageProbeCache.has(src)) {
-    return imageProbeCache.get(src);
-  }
-
-  const probe = new Promise((resolve) => {
-    const image = new Image();
-    image.onload = () => resolve(true);
-    image.onerror = () => resolve(false);
-    image.src = src;
-  });
-
-  imageProbeCache.set(src, probe);
-  return probe;
-};
-
 const cleanPlaceholderCopy = (value = "") =>
   value
     .replace(/^placeholder for\s+/i, "")
     .replace(/\s+placeholder$/i, "")
     .replace(/\s+/g, " ")
     .trim();
+
+const hasExplicitPlaceholderAlt = (figure) =>
+  Object.prototype.hasOwnProperty.call(figure.dataset, "imageAlt");
+
+const isPlaceholderDecorative = (figure) =>
+  hasExplicitPlaceholderAlt(figure) && cleanPlaceholderCopy(figure.dataset.imageAlt || "") === "";
 
 const derivePlaceholderTitle = (figure) => {
   const title =
@@ -273,9 +260,8 @@ const derivePlaceholderTitle = (figure) => {
 };
 
 const derivePlaceholderAlt = (figure) => {
-  const explicitAlt = cleanPlaceholderCopy(figure.dataset.imageAlt || "");
-  if (explicitAlt) {
-    return explicitAlt;
+  if (hasExplicitPlaceholderAlt(figure)) {
+    return cleanPlaceholderCopy(figure.dataset.imageAlt || "");
   }
 
   const frameLabel = cleanPlaceholderCopy(
@@ -288,6 +274,22 @@ const derivePlaceholderAlt = (figure) => {
   const cleanedTitle = derivePlaceholderTitle(figure);
 
   return cleanedTitle || "Ledgewave product image";
+};
+
+const getPlaceholderDimensions = (figure) => {
+  if (figure.classList.contains("image-placeholder--logo")) {
+    return { width: 2000, height: 400 };
+  }
+
+  if (figure.classList.contains("image-placeholder--square")) {
+    return { width: 1600, height: 1200 };
+  }
+
+  if (figure.classList.contains("image-placeholder--hero")) {
+    return { width: 1600, height: 1000 };
+  }
+
+  return { width: 1600, height: 900 };
 };
 
 const deriveFallbackTitle = (figure) => {
@@ -417,67 +419,86 @@ const buildPlaceholderFallback = (figure, assetPath = "") => {
   return fallback;
 };
 
-const getPlaceholderPresentation = (figure, assetPath = "") => {
-  const normalizedAssetPath = assetPath.toLowerCase();
-  const isLogoAsset =
-    figure.classList.contains("image-placeholder--logo") ||
-    normalizedAssetPath.includes("logos-");
-
-  if (isLogoAsset) {
-    return {
-      fit: "contain",
-      position: "center center",
-      padding: "clamp(18px, 2vw, 24px)"
-    };
+const syncPlaceholderFrameAccessibility = (frame, figure, label = "") => {
+  if (isPlaceholderDecorative(figure)) {
+    frame.setAttribute("aria-hidden", "true");
+    frame.removeAttribute("role");
+    frame.removeAttribute("aria-label");
+    return;
   }
 
-  const isProductUiAsset = normalizedAssetPath.includes("product-");
-  if (isProductUiAsset) {
-    return {
-      fit: "contain",
-      position: "center center",
-      padding: "clamp(16px, 1.8vw, 24px)"
-    };
+  frame.removeAttribute("aria-hidden");
+
+  if (label) {
+    frame.setAttribute("role", "img");
+    frame.setAttribute("aria-label", label);
+    return;
   }
 
-  return {
-    fit: "cover",
-    position: "center center",
-    padding: "0px"
-  };
+  frame.removeAttribute("role");
+  frame.removeAttribute("aria-label");
 };
 
-const applyPlaceholderPresentation = (figure, frame, assetPath) => {
-  const defaults = getPlaceholderPresentation(figure, assetPath);
-  const fit = (figure.dataset.imageFit || defaults.fit || "").trim().toLowerCase();
-  const position = (figure.dataset.imagePosition || defaults.position || "").trim();
-  const padding = (
-    figure.dataset.imagePadding ||
-    figure.dataset.imagePad ||
-    defaults.padding ||
-    ""
-  ).trim();
-  const ratio = (figure.dataset.imageRatio || "").trim();
+const createPlaceholderImage = (figure, eager = false) => {
+  const image = document.createElement("img");
+  const { width, height } = getPlaceholderDimensions(figure);
 
-  if (fit) {
-    figure.dataset.imageFit = fit;
-    figure.style.setProperty("--image-fit", fit);
+  image.className = "image-placeholder-media";
+  image.alt = derivePlaceholderAlt(figure);
+  image.decoding = "async";
+  image.loading = eager ? "eager" : "lazy";
+  image.width = width;
+  image.height = height;
+
+  if (eager) {
+    image.fetchPriority = "high";
+  } else if (figure.classList.contains("image-placeholder--card")) {
+    image.fetchPriority = "low";
   }
 
-  if (position) {
-    figure.style.setProperty("--image-position", position);
-  }
-
-  if (padding) {
-    figure.style.setProperty("--loaded-frame-padding", padding);
-  }
-
-  if (ratio) {
-    frame.style.setProperty("--placeholder-ratio", ratio);
-  }
+  return image;
 };
 
-const upgradeImagePlaceholder = (figure, src, assetPath = "") => {
+const loadImageElement = (image, src) =>
+  new Promise((resolve, reject) => {
+    let settled = false;
+
+    const cleanup = () => {
+      image.removeEventListener("load", handleLoad);
+      image.removeEventListener("error", handleError);
+    };
+
+    const settle = (callback) => {
+      if (settled) {
+        return;
+      }
+
+      settled = true;
+      cleanup();
+      callback();
+    };
+
+    const handleLoad = () => settle(() => resolve(image));
+    const handleError = () =>
+      settle(() => reject(new Error(`Failed to load image: ${src}`)));
+
+    image.addEventListener("load", handleLoad, { once: true });
+    image.addEventListener("error", handleError, { once: true });
+    image.src = src;
+
+    if (image.complete) {
+      scheduleMicrotask(() => {
+        if (image.naturalWidth > 0) {
+          handleLoad();
+          return;
+        }
+
+        handleError();
+      });
+    }
+  });
+
+const upgradeImagePlaceholder = (figure, image) => {
   if (figure.classList.contains("is-loaded")) {
     return;
   }
@@ -487,23 +508,9 @@ const upgradeImagePlaceholder = (figure, src, assetPath = "") => {
     return;
   }
 
-  applyPlaceholderPresentation(figure, frame, assetPath);
   figure.classList.remove("is-fallback");
-
-  const image = document.createElement("img");
-  image.className = "image-placeholder-media";
-  image.src = src;
-  image.alt = derivePlaceholderAlt(figure);
-  image.decoding = "async";
-  image.loading = figure.classList.contains("image-placeholder--hero") ? "eager" : "lazy";
-
-  if (figure.classList.contains("image-placeholder--hero")) {
-    image.fetchPriority = "high";
-  }
-
   frame.replaceChildren(image);
-  frame.removeAttribute("role");
-  frame.removeAttribute("aria-label");
+  syncPlaceholderFrameAccessibility(frame, figure);
   figure.classList.add("is-loaded");
 };
 
@@ -517,11 +524,40 @@ const renderPlaceholderFallback = (figure, assetPath = "") => {
     return;
   }
 
-  applyPlaceholderPresentation(figure, frame, assetPath);
   frame.replaceChildren(buildPlaceholderFallback(figure, assetPath));
-  frame.setAttribute("role", "img");
-  frame.setAttribute("aria-label", deriveFallbackTitle(figure));
+  syncPlaceholderFrameAccessibility(frame, figure, deriveFallbackTitle(figure));
   figure.classList.add("is-fallback");
+};
+
+const hydrateImagePlaceholder = async (figure, assetHref, assetPath = "", eager = false) => {
+  if (
+    !assetHref ||
+    figure.classList.contains("is-loaded") ||
+    figure.dataset.imageState === "loading"
+  ) {
+    return;
+  }
+
+  figure.dataset.imageState = "loading";
+
+  try {
+    const image = createPlaceholderImage(figure, eager);
+    await loadImageElement(image, assetHref);
+
+    if (typeof image.decode === "function") {
+      await image.decode().catch(() => {});
+    }
+
+    if (!figure.isConnected) {
+      return;
+    }
+
+    upgradeImagePlaceholder(figure, image);
+    figure.dataset.imageState = "loaded";
+  } catch (error) {
+    renderPlaceholderFallback(figure, assetPath);
+    figure.dataset.imageState = "fallback";
+  }
 };
 
 const initializeImagePlaceholders = () => {
@@ -530,6 +566,8 @@ const initializeImagePlaceholders = () => {
   if (!placeholders.length) {
     return;
   }
+
+  const lazyPlaceholderMap = new Map();
 
   placeholders.forEach((figure) => {
     const assetPath =
@@ -543,14 +581,55 @@ const initializeImagePlaceholders = () => {
       return;
     }
 
-    probeImageAvailability(assetHref).then((isAvailable) => {
-      if (!isAvailable) {
-        renderPlaceholderFallback(figure, assetPath);
-        return;
-      }
+    if (figure.classList.contains("image-placeholder--hero")) {
+      hydrateImagePlaceholder(figure, assetHref, assetPath, true);
+      return;
+    }
 
-      upgradeImagePlaceholder(figure, assetHref, assetPath);
+    lazyPlaceholderMap.set(figure, { assetHref, assetPath });
+  });
+
+  if (!lazyPlaceholderMap.size) {
+    return;
+  }
+
+  if (!("IntersectionObserver" in window)) {
+    lazyPlaceholderMap.forEach(({ assetHref, assetPath }, figure) => {
+      hydrateImagePlaceholder(figure, assetHref, assetPath, false);
     });
+    return;
+  }
+
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (!entry.isIntersecting) {
+          return;
+        }
+
+        const assetDetails = lazyPlaceholderMap.get(entry.target);
+        observer.unobserve(entry.target);
+
+        if (!assetDetails) {
+          return;
+        }
+
+        hydrateImagePlaceholder(
+          entry.target,
+          assetDetails.assetHref,
+          assetDetails.assetPath,
+          false
+        );
+      });
+    },
+    {
+      threshold: 0.01,
+      rootMargin: "320px 0px",
+    }
+  );
+
+  lazyPlaceholderMap.forEach((_, figure) => {
+    observer.observe(figure);
   });
 };
 
