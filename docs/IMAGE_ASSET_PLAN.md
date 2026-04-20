@@ -14,6 +14,27 @@ The goal is not to fill every section with random visuals. The goal is to add a 
 - Avoid handshake photos, office stock images, abstract AI art, and generic team shots.
 - Keep screenshots clean, anonymized, and visually consistent.
 
+## Exact Output Sizes
+
+These are the final sizes the site expects after export:
+
+- Hero screenshots and the About photo: `1600 x 1000`
+- Wide screenshots and blog covers: `1600 x 900`
+- Resource guide covers: `1600 x 1200`
+- Logo strips or onboarding-path graphics: `2000 x 400`
+
+If you are resizing in Photoshop, the cleanest workflow is:
+
+- Build the crop artboard at `2x` the final export size while you edit.
+- Export down to the exact final size above as the last step.
+
+Recommended Photoshop artboard sizes while working:
+
+- `3200 x 2000` for any `1600 x 1000` asset
+- `3200 x 1800` for any `1600 x 900` asset
+- `3200 x 2400` for any `1600 x 1200` asset
+- `4000 x 800` for any `2000 x 400` asset
+
 ## What You Actually Need
 
 You do not need 30 unique images.
@@ -30,20 +51,20 @@ If you only get a small set tonight, get the product screenshots first.
 
 ## Core Asset Library
 
-| ID | Asset | Type | Ideal Ratio | Priority | Notes |
-|---|---|---|---|---|---|
-| A01 | Command center / portfolio dashboard | Product screenshot | 16:10 or 3:2 | Must-have | Main hero-quality screenshot showing portfolio health, queue, and cash visibility |
-| A02 | Collector queue / prioritization view | Product screenshot | 16:10 | Must-have | Show high-priority accounts, aging, status, next action |
-| A03 | Invoice detail / follow-up history | Product screenshot | 4:3 or 16:10 | Must-have | Show notes, promise dates, sent outreach, invoice context, and next-step history |
-| A04 | Draft follow-up / outreach workflow | Product screenshot | 16:10 | Must-have | Show stages, cadence, draft communication, and review status |
-| A05 | Forecast intelligence / cash view | Product screenshot | 16:10 | Must-have | Show expected collections, confidence, billing impact, timing |
-| A06 | Import validation / data readiness screen | Product screenshot | 16:10 | Strongly recommended | Show file validation, flagged rows, mapping, and exceptions. This is rollout proof, not the hero image. |
-| A07 | Analytics / payment behavior screen | Product screenshot | 16:10 | Recommended | Use for analytics, resources, and blog content |
-| A08 | Onboarding paths overview | Logo pack or simple graphic | Wide strip | Recommended | Show the real rollout paths you support today: receivables files, planned billing files, and scoped ingest |
-| A09 | Customer or industry logos strip | Logo pack | Wide strip | Optional | Only if real and approved |
-| A10 | Founder workspace or desk photo | Real photo | 4:5 or 3:2 | Optional | Better than a formal headshot if you want the About page to feel more personal |
-| A11 | Resource guide cover set | Branded graphic set | 4:3 or 3:4 | Recommended | 4 covers for guides or templates |
-| A12 | Blog cover set | Branded graphic set | 16:9 | Recommended | 5 article covers; can be screenshot crops or simple editorial graphics |
+| ID | Asset | Type | Ideal Ratio | Export Size | Priority | Notes |
+|---|---|---|---|---|---|---|
+| A01 | Command center / portfolio dashboard | Product screenshot | 16:10 | `1600 x 1000` | Must-have | Main hero-quality screenshot showing portfolio health, queue, and cash visibility |
+| A02 | Collector queue / prioritization view | Product screenshot | 16:9 | `1600 x 900` | Must-have | Show high-priority accounts, aging, status, next action |
+| A03 | Invoice detail / follow-up history | Product screenshot | 16:10 master, crop-safe for 16:9 | `1600 x 1000` | Must-have | Show notes, promise dates, sent outreach, invoice context, and next-step history |
+| A04 | Draft follow-up / outreach workflow | Product screenshot | 16:9 | `1600 x 900` | Must-have | Show stages, cadence, draft communication, and review status |
+| A05 | Forecast intelligence / cash view | Product screenshot | 16:9 | `1600 x 900` | Must-have | Show expected collections, confidence, billing impact, timing |
+| A06 | Import validation / data readiness screen | Product screenshot | 16:9 | `1600 x 900` | Strongly recommended | Show file validation, flagged rows, mapping, and exceptions. This is rollout proof, not the hero image. |
+| A07 | Analytics / payment behavior screen | Product screenshot | 16:9 | `1600 x 900` | Recommended | Use for analytics, resources, and blog content |
+| A08 | Onboarding paths overview | Logo pack or simple graphic | 5:1 | `2000 x 400` | Recommended | Show the real rollout paths you support today: receivables files, planned billing files, and scoped ingest |
+| A09 | Customer or industry logos strip | Logo pack | 5:1 | `2000 x 400` | Optional | Only if real and approved |
+| A10 | Founder workspace or desk photo | Real photo | 16:10 | `1600 x 1000` | Optional | Better than a formal headshot if you want the About page to feel more personal |
+| A11 | Resource guide cover set | Branded graphic set | 4:3 | `1600 x 1200` | Recommended | 4 covers for guides or templates |
+| A12 | Blog cover set | Branded graphic set | 16:9 | `1600 x 900` | Recommended | 5 article covers; can be screenshot crops or simple editorial graphics |
 
 ## Page-by-Page Placement
 
@@ -213,6 +234,15 @@ If you still have time after that:
 - Keep chrome and framing consistent so the site feels intentional.
 - If you only capture one onboarding visual, use it lower on the page. Keep the homepage and platform hero slots product-led.
 - Import validation should prove rollout discipline, not carry the full marketing story.
+
+## Photoshop Notes
+
+- Crop to the final ratio before you start polishing. The site uses fixed aspect ratios, so ratio mistakes turn into visible cropping.
+- Keep the critical UI inside the center `80%` of the frame. Loaded images use `object-fit: cover`, so edges can get trimmed on some placements.
+- Convert to `sRGB IEC61966-2.1` before export so colors stay predictable in browsers.
+- Use `PNG-24` for screenshots and editorial covers. Use `JPG` at roughly `80-85` quality for the About photo. Keep logos and simple line art as `SVG`.
+- Resize down to the final export size at the end, then apply a light sharpen pass after resizing if the UI text softens.
+- Avoid tiny labels or micro-copy near the outer edges. If it is not readable at `1600px` wide, simplify the crop rather than hoping CSS will save it.
 
 ## Suggested File Names
 

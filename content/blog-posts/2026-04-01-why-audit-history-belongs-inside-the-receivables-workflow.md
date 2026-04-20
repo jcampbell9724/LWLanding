@@ -8,6 +8,7 @@ author: Ledgewave Team
 read_time: 5 min read
 featured: no
 cover_asset: blog-cover-follow-up-history.png
+cover_alt: Account timeline showing invoice detail, follow-up notes, last touch, and expected payment context together.
 cover_note: Use the account timeline or follow-up history screen where notes, last touch, and payment expectation stay visible together.
 ---
 

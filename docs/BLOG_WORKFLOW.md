@@ -24,3 +24,5 @@ python scripts/generate_blog.py
 - Posts are sorted newest first by the `date` field.
 - Set `featured: yes` on one post if you want it highlighted on the blog index.
 - If no `slug` is provided, the script builds one from the filename.
+- Add `cover_alt:` in the frontmatter for the article hero image and featured blog card description.
+- Regular blog grid cards keep their cover images decorative, so you only need one useful `cover_alt` sentence per post.

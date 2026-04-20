@@ -7,6 +7,7 @@ author: Ledgewave Team
 read_time: 5 min read
 featured: no
 cover_asset: blog-cover-planned-billing.png
+cover_alt: Forecast screen showing planned billing alongside expected collections timing and confidence.
 cover_note: Best option is a forecast screenshot that shows planned billing visible inside the near-term collections view.
 ---
 

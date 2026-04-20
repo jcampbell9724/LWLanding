@@ -40,6 +40,7 @@ class Post:
     read_time: str
     featured: bool
     cover_asset: str
+    cover_alt: str
     cover_note: str
     source_path: Path
     html_content: str
@@ -302,6 +303,12 @@ def author_schema(name: str) -> dict[str, str]:
     return {"@type": author_type, "name": name}
 
 
+def cover_image_url(asset_path: str) -> str:
+    if not asset_path:
+        return SOCIAL_IMAGE_URL
+    return f"https://ledgewave.com/assets/images/{asset_path}"
+
+
 def render_json_ld(payload: dict[str, object], script_id: str) -> str:
     return (
         f'<script id="{escape(script_id, quote=True)}" type="application/ld+json">\n'
@@ -328,6 +335,7 @@ def load_posts() -> list[Post]:
         read_time = metadata.get("read_time") or "5 min read"
         featured = metadata.get("featured", "").lower() in {"yes", "true", "1"}
         cover_asset = metadata.get("cover_asset", "")
+        cover_alt = metadata.get("cover_alt", "")
         cover_note = metadata.get("cover_note", "")
         faq_items = extract_faq_items(body)
         html_content = strip_leading_h1(markdown_to_html(body.strip()))
@@ -344,6 +352,7 @@ def load_posts() -> list[Post]:
                 read_time=read_time,
                 featured=featured,
                 cover_asset=cover_asset,
+                cover_alt=cover_alt,
                 cover_note=cover_note,
                 source_path=path,
                 html_content=html_content,
@@ -353,15 +362,39 @@ def load_posts() -> list[Post]:
     return sorted(posts, key=lambda post: (post.date_iso, post.slug), reverse=True)
 
 
-def render_image_placeholder(*, placeholder_id: str, asset_path: str, title: str, note: str, variant: str = "card") -> str:
+def render_image_placeholder(
+    *,
+    placeholder_id: str,
+    asset_path: str,
+    title: str,
+    note: str,
+    alt_text: str | None = None,
+    variant: str = "card",
+) -> str:
     safe_variant = escape(variant, quote=True)
     safe_id = escape(placeholder_id, quote=True)
     safe_title_attr = escape(title, quote=True)
     safe_asset_path_attr = escape(f"assets/images/{asset_path}", quote=True)
+    attribute_parts = [
+        f'class="image-placeholder image-placeholder--{safe_variant}"',
+        f'data-placeholder-id="{safe_id}"',
+        f'data-asset-path="{safe_asset_path_attr}"',
+        f'data-image-title="{safe_title_attr}"',
+    ]
+
+    if alt_text is None:
+        frame_accessibility = f' role="img" aria-label="{safe_title_attr}"'
+    elif alt_text.strip():
+        safe_alt_attr = escape(alt_text, quote=True)
+        attribute_parts.append(f'data-image-alt="{safe_alt_attr}"')
+        frame_accessibility = f' role="img" aria-label="{safe_alt_attr}"'
+    else:
+        attribute_parts.append('data-image-alt=""')
+        frame_accessibility = ' aria-hidden="true"'
+
     return (
-        f'<figure class="image-placeholder image-placeholder--{safe_variant}" data-placeholder-id="{safe_id}" '
-        f'data-asset-path="{safe_asset_path_attr}" data-image-title="{safe_title_attr}">\n'
-        f'  <div class="image-placeholder-frame" role="img" aria-label="{safe_title_attr}"></div>\n'
+        f"<figure {' '.join(attribute_parts)}>\n"
+        f'  <div class="image-placeholder-frame"{frame_accessibility}></div>\n'
         f"</figure>"
     )
 
@@ -377,6 +410,7 @@ def render_post_cards(posts: Iterable[Post], base_href: str = "") -> str:
                 asset_path=post.cover_asset,
                 title="Cover image",
                 note="",
+                alt_text="",
                 variant="card",
             )
             if post.cover_asset
@@ -491,6 +525,7 @@ def render_blog_index(posts: list[Post]) -> str:
               asset_path=featured_post.cover_asset,
               title="Featured article cover",
               note=featured_post.cover_note,
+              alt_text=featured_post.cover_alt or featured_post.cover_note or featured_post.title,
               variant="wide",
           ) if featured_post.cover_asset else ""}
           <div class="blog-post-meta">
@@ -560,6 +595,7 @@ def render_post_page(post: Post, posts: list[Post]) -> str:
     related_posts = [candidate for candidate in posts if candidate.slug != post.slug][:3]
     related_markup = render_post_cards(related_posts, base_href="") if related_posts else ""
     canonical_url = f"https://ledgewave.com/blog/{post.slug}.html"
+    cover_url = cover_image_url(post.cover_asset)
 
     body = f"""
       <section class="page-hero reveal is-visible">
@@ -587,6 +623,7 @@ def render_post_page(post: Post, posts: list[Post]) -> str:
               asset_path=post.cover_asset,
               title="Article cover",
               note=post.cover_note,
+              alt_text=post.cover_alt or post.cover_note or post.title,
               variant="wide",
           ) if post.cover_asset else ""}
           <div class="pill-row">
@@ -626,7 +663,7 @@ def render_post_page(post: Post, posts: list[Post]) -> str:
         "isPartOf": {"@id": WEBSITE_ID},
         "about": {"@id": ORGANIZATION_ID},
         "inLanguage": "en-US",
-        "primaryImageOfPage": SOCIAL_IMAGE_URL,
+        "primaryImageOfPage": cover_url,
     }
     article = {
         "@type": "BlogPosting",
@@ -638,7 +675,7 @@ def render_post_page(post: Post, posts: list[Post]) -> str:
         "author": author_schema(post.author),
         "publisher": {"@id": ORGANIZATION_ID},
         "mainEntityOfPage": {"@id": f"{canonical_url}#webpage"},
-        "image": SOCIAL_IMAGE_URL,
+        "image": cover_url,
         "articleSection": post.category,
         "url": canonical_url,
     }

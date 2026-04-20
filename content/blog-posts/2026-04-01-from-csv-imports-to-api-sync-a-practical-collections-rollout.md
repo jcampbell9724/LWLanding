@@ -8,6 +8,7 @@ author: Ledgewave Team
 read_time: 6 min read
 featured: no
 cover_asset: blog-cover-dunning-workflow.png
+cover_alt: Workflow screen showing prioritized accounts, draft follow-up steps, and review checkpoints in one collections process.
 cover_note: Use the dunning or workflow screen that best shows the move from manual follow-up into a repeatable system.
 ---
 
