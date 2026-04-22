@@ -59,6 +59,26 @@ const IMAGE_PLACEHOLDER_ASSET_MAP = {
   "why-hero-command-center": "assets/images/product-command-center.png",
 };
 
+const IMAGE_ASSET_ID_BY_PATH = {
+  "assets/images/product-command-center.png": "A01",
+  "assets/images/product-collector-queue.png": "A02",
+  "assets/images/product-account-detail-timeline.png": "A03",
+  "assets/images/product-dunning-workflow.png": "A04",
+  "assets/images/product-forecast-intelligence.png": "A05",
+  "assets/images/product-import-validation.png": "A06",
+  "assets/images/logos-integrations.svg": "A08",
+  "assets/images/about-workspace-photo.jpg": "A10",
+  "assets/images/resource-guide-exit-plan.png": "A11-1",
+  "assets/images/resource-guide-planned-billing.png": "A11-2",
+  "assets/images/resource-guide-payment-behavior.png": "A11-3",
+  "assets/images/resource-guide-follow-up-history.png": "A11-4",
+  "assets/images/blog-cover-spreadsheet-exit.png": "A12-1",
+  "assets/images/blog-cover-planned-billing.png": "A12-2",
+  "assets/images/blog-cover-payment-behavior.png": "A12-3",
+  "assets/images/blog-cover-dunning-workflow.png": "A12-4",
+  "assets/images/blog-cover-follow-up-history.png": "A12-5",
+};
+
 const getSitePrefix = () => {
   const assetEntrypoints = [
     document.querySelector('script[src*="assets/js/script.js"]')?.getAttribute("src") || "",
@@ -304,6 +324,70 @@ const resolvePlaceholderAssetPath = (figure) => {
     figure.querySelector(".image-placeholder-target code")?.textContent ||
     ""
   );
+};
+
+const buildAssetCandidatePaths = (assetPath = "") => {
+  const normalizedPath = normalizeAssetPath(assetPath);
+
+  if (!normalizedPath) {
+    return [];
+  }
+
+  if (
+    /^(?:https?:)?\/\//i.test(normalizedPath) ||
+    normalizedPath.startsWith("data:") ||
+    normalizedPath.startsWith("../")
+  ) {
+    return [normalizedPath];
+  }
+
+  const candidates = [normalizedPath];
+  const extensionMatch = normalizedPath.match(/^(.*?)(\.[^.]+)$/);
+
+  if (extensionMatch) {
+    const [, basePath, extension] = extensionMatch;
+    const currentExtension = extension.toLowerCase();
+    const extensionCandidates =
+      currentExtension === ".svg"
+        ? [".png", ".webp"]
+        : [".png", ".jpg", ".jpeg", ".webp"];
+
+    extensionCandidates.forEach((candidateExtension) => {
+      if (candidateExtension !== currentExtension) {
+        candidates.push(`${basePath}${candidateExtension}`);
+      }
+    });
+  }
+
+  const assetId = IMAGE_ASSET_ID_BY_PATH[normalizedPath];
+  if (assetId && extensionMatch) {
+    const [, , extension] = extensionMatch;
+    const currentExtension = extension.toLowerCase();
+    const extensionCandidates =
+      currentExtension === ".svg"
+        ? [".svg", ".png", ".webp"]
+        : [currentExtension, ".png", ".jpg", ".jpeg", ".webp"];
+    const directory = normalizedPath.slice(0, normalizedPath.lastIndexOf("/"));
+    const compactAssetId = assetId.replace(/^A0+/, "A");
+    const assetIdVariants = [
+      assetId,
+      compactAssetId,
+      assetId.replace(/-/g, "_"),
+      compactAssetId.replace(/-/g, "_"),
+      assetId.toLowerCase(),
+      compactAssetId.toLowerCase(),
+      assetId.toLowerCase().replace(/-/g, "_"),
+      compactAssetId.toLowerCase().replace(/-/g, "_"),
+    ];
+
+    assetIdVariants.forEach((assetIdVariant) => {
+      extensionCandidates.forEach((candidateExtension) => {
+        candidates.push(`${directory}/${assetIdVariant}${candidateExtension}`);
+      });
+    });
+  }
+
+  return [...new Set(candidates)];
 };
 
 const cleanPlaceholderCopy = (value = "") =>
@@ -600,9 +684,9 @@ const renderPlaceholderFallback = (figure, assetPath = "") => {
   figure.classList.add("is-fallback");
 };
 
-const hydrateImagePlaceholder = async (figure, assetHref, assetPath = "", eager = false) => {
+const hydrateImagePlaceholder = async (figure, assetHrefs, assetPath = "", eager = false) => {
   if (
-    !assetHref ||
+    !assetHrefs.length ||
     figure.classList.contains("is-loaded") ||
     figure.dataset.imageState === "loading"
   ) {
@@ -611,24 +695,29 @@ const hydrateImagePlaceholder = async (figure, assetHref, assetPath = "", eager 
 
   figure.dataset.imageState = "loading";
 
-  try {
-    const image = createPlaceholderImage(figure, eager);
-    await loadImageElement(image, assetHref);
+  for (const assetHref of assetHrefs) {
+    try {
+      const image = createPlaceholderImage(figure, eager);
+      await loadImageElement(image, assetHref);
 
-    if (typeof image.decode === "function") {
-      await image.decode().catch(() => {});
-    }
+      if (typeof image.decode === "function") {
+        await image.decode().catch(() => {});
+      }
 
-    if (!figure.isConnected) {
+      if (!figure.isConnected) {
+        return;
+      }
+
+      upgradeImagePlaceholder(figure, image);
+      figure.dataset.imageState = "loaded";
       return;
+    } catch (error) {
+      continue;
     }
-
-    upgradeImagePlaceholder(figure, image);
-    figure.dataset.imageState = "loaded";
-  } catch (error) {
-    renderPlaceholderFallback(figure, assetPath);
-    figure.dataset.imageState = "fallback";
   }
+
+  renderPlaceholderFallback(figure, assetPath);
+  figure.dataset.imageState = "fallback";
 };
 
 const initializeImagePlaceholders = () => {
@@ -642,19 +731,19 @@ const initializeImagePlaceholders = () => {
 
   placeholders.forEach((figure) => {
     const assetPath = resolvePlaceholderAssetPath(figure);
-    const assetHref = resolvePlaceholderAssetHref(assetPath);
+    const assetHrefs = buildAssetCandidatePaths(assetPath).map(resolvePlaceholderAssetHref);
 
-    if (!assetHref) {
+    if (!assetHrefs.length) {
       renderPlaceholderFallback(figure, assetPath);
       return;
     }
 
     if (figure.classList.contains("image-placeholder--hero")) {
-      hydrateImagePlaceholder(figure, assetHref, assetPath, true);
+      hydrateImagePlaceholder(figure, assetHrefs, assetPath, true);
       return;
     }
 
-    lazyPlaceholderMap.set(figure, { assetHref, assetPath });
+    lazyPlaceholderMap.set(figure, { assetHrefs, assetPath });
   });
 
   if (!lazyPlaceholderMap.size) {
@@ -662,8 +751,8 @@ const initializeImagePlaceholders = () => {
   }
 
   if (!("IntersectionObserver" in window)) {
-    lazyPlaceholderMap.forEach(({ assetHref, assetPath }, figure) => {
-      hydrateImagePlaceholder(figure, assetHref, assetPath, false);
+    lazyPlaceholderMap.forEach(({ assetHrefs, assetPath }, figure) => {
+      hydrateImagePlaceholder(figure, assetHrefs, assetPath, false);
     });
     return;
   }
@@ -682,12 +771,7 @@ const initializeImagePlaceholders = () => {
           return;
         }
 
-        hydrateImagePlaceholder(
-          entry.target,
-          assetDetails.assetHref,
-          assetDetails.assetPath,
-          false
-        );
+        hydrateImagePlaceholder(entry.target, assetDetails.assetHrefs, assetDetails.assetPath, false);
       });
     },
     {
