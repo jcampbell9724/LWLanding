@@ -6,7 +6,7 @@ category: Operations
 author: Ledgewave Team
 read_time: 6 min read
 featured: yes
-cover_asset: blog-cover-spreadsheet-exit.png
+cover_asset: blog-cover-spreadsheet-exit.svg
 cover_alt: Editorial cover showing a spreadsheet-heavy collections process contrasted with a cleaner structured receivables workflow.
 cover_note: Use a split-view editorial graphic or product-led comparison between spreadsheet-heavy work and a clean collections workflow.
 ---

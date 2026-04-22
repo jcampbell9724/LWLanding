@@ -1,0 +1,43 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 1200" width="1600" height="1200" role="img" aria-labelledby="title desc">
+  <title id="title">Payment Behavior guide cover</title>
+  <desc id="desc">A branded guide cover with payment timing charts and risk signals.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#071321"/>
+      <stop offset="100%" stop-color="#114a7e"/>
+    </linearGradient>
+  </defs>
+  <rect width="1600" height="1200" rx="42" fill="url(#bg)"/>
+  <text x="96" y="124" fill="#8fe1c4" font-family="Space Grotesk, Segoe UI, sans-serif" font-size="28" font-weight="700" letter-spacing="4">LEDGEWAVE GUIDE</text>
+  <text x="96" y="254" fill="#ffffff" font-family="Space Grotesk, Segoe UI, sans-serif" font-size="90" font-weight="700">Payment</text>
+  <text x="96" y="344" fill="#ffffff" font-family="Space Grotesk, Segoe UI, sans-serif" font-size="90" font-weight="700">Behavior Guide</text>
+  <text x="96" y="424" fill="rgba(233,241,255,0.8)" font-family="Manrope, Segoe UI, sans-serif" font-size="34">Timing patterns, lag, and payment habits that sharpen prioritization and expected cash review.</text>
+  <g transform="translate(92 566)">
+    <rect width="548" height="474" rx="34" fill="rgba(255,255,255,0.08)" stroke="rgba(233,241,255,0.12)"/>
+    <path d="M42 352c92-88 146-70 222-168 64-82 164-100 242-204" fill="none" stroke="#8fe1c4" stroke-width="12" stroke-linecap="round"/>
+    <path d="M42 392c120-50 160-34 238-102 76-66 144-76 226-122" fill="none" stroke="#8fb2ff" stroke-width="12" stroke-linecap="round"/>
+    <g fill="rgba(255,255,255,0.16)">
+      <rect x="40" y="92" width="466" height="2"/>
+      <rect x="40" y="176" width="466" height="2"/>
+      <rect x="40" y="260" width="466" height="2"/>
+      <rect x="40" y="344" width="466" height="2"/>
+    </g>
+  </g>
+  <g transform="translate(812 198)">
+    <rect width="664" height="832" rx="36" fill="#ffffff" opacity="0.96"/>
+    <text x="54" y="70" fill="#1748ca" font-family="Space Grotesk, Segoe UI, sans-serif" font-size="22" font-weight="700">RISK SIGNALS</text>
+    <rect x="54" y="118" width="556" height="112" rx="26" fill="#dce8ff"/>
+    <text x="90" y="180" fill="#0a1420" font-family="Manrope, Segoe UI, sans-serif" font-size="32" font-weight="700">Average lag increasing on top accounts</text>
+    <rect x="54" y="278" width="556" height="112" rx="26" fill="#eff8f3"/>
+    <text x="90" y="340" fill="#0a1420" font-family="Manrope, Segoe UI, sans-serif" font-size="32" font-weight="700">On-time rate stable for priority segment</text>
+    <rect x="54" y="438" width="556" height="298" rx="30" fill="#0b1730"/>
+    <g fill="#8fe1c4">
+      <rect x="96" y="626" width="72" height="66" rx="20"/>
+      <rect x="196" y="578" width="72" height="114" rx="20"/>
+      <rect x="296" y="530" width="72" height="162" rx="20"/>
+      <rect x="396" y="564" width="72" height="128" rx="20"/>
+      <rect x="496" y="492" width="72" height="200" rx="20"/>
+    </g>
+    <text x="96" y="500" fill="#d7e4ff" font-family="Manrope, Segoe UI, sans-serif" font-size="28" font-weight="700">Behavior-adjusted forecast view</text>
+  </g>
+</svg>

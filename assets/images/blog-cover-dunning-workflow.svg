@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900" width="1600" height="900" role="img" aria-labelledby="title desc">
+  <title id="title">Dunning workflow article cover</title>
+  <desc id="desc">An editorial blog cover showing a structured follow-up workflow with staged review columns.</desc>
+  <rect width="1600" height="900" rx="34" fill="#eef3fb"/>
+  <text x="88" y="110" fill="#1748ca" font-family="Space Grotesk, Segoe UI, sans-serif" font-size="24" font-weight="700" letter-spacing="4">LEDGEWAVE INSIGHTS</text>
+  <text x="88" y="206" fill="#0a1420" font-family="Space Grotesk, Segoe UI, sans-serif" font-size="74" font-weight="700">Structured</text>
+  <text x="88" y="280" fill="#0a1420" font-family="Space Grotesk, Segoe UI, sans-serif" font-size="74" font-weight="700">dunning</text>
+  <text x="88" y="354" fill="#0a1420" font-family="Space Grotesk, Segoe UI, sans-serif" font-size="74" font-weight="700">workflow</text>
+  <text x="88" y="430" fill="#465364" font-family="Manrope, Segoe UI, sans-serif" font-size="28">Repeatable stages, invoice context, and review-ready drafts instead of ad hoc follow-up.</text>
+  <g transform="translate(860 122)">
+    <rect width="650" height="656" rx="34" fill="#0b1730"/>
+    <rect x="44" y="64" width="170" height="530" rx="28" fill="rgba(255,255,255,0.08)"/>
+    <rect x="240" y="64" width="170" height="530" rx="28" fill="rgba(255,255,255,0.08)"/>
+    <rect x="436" y="64" width="170" height="530" rx="28" fill="rgba(255,255,255,0.08)"/>
+    <g fill="#ffffff">
+      <rect x="68" y="114" width="122" height="108" rx="20"/>
+      <rect x="264" y="160" width="122" height="108" rx="20"/>
+      <rect x="460" y="214" width="122" height="108" rx="20"/>
+    </g>
+    <g fill="#8fb2ff">
+      <rect x="68" y="248" width="122" height="84" rx="20"/>
+      <rect x="264" y="294" width="122" height="84" rx="20"/>
+      <rect x="460" y="348" width="122" height="84" rx="20"/>
+    </g>
+  </g>
+</svg>

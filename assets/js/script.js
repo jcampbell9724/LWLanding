@@ -13,28 +13,29 @@ const PRIMARY_NAV = [
 
 // Keep this in sync with docs/IMAGE_PLACEHOLDER_MAP.md.
 const IMAGE_PLACEHOLDER_ASSET_MAP = {
-  "about-hero-workspace-photo": "assets/images/about-workspace-photo.jpg",
   "blog-card-2026-03-30-5-signs-your-collections-workflow-has-outgrown-spreadsheets":
-    "assets/images/blog-cover-spreadsheet-exit.png",
+    "assets/images/blog-cover-spreadsheet-exit.svg",
   "blog-card-2026-03-30-why-planned-billing-belongs-in-the-collections-forecast":
-    "assets/images/blog-cover-planned-billing.png",
+    "assets/images/blog-cover-planned-billing.svg",
   "blog-card-2026-04-01-what-payment-behavior-reveals-about-collections-risk":
-    "assets/images/blog-cover-payment-behavior.png",
+    "assets/images/blog-cover-payment-behavior.svg",
   "blog-card-how-teams-move-from-spreadsheet-follow-up-to-a-structured-dunning-workflow":
-    "assets/images/blog-cover-dunning-workflow.png",
+    "assets/images/blog-cover-dunning-workflow.svg",
   "blog-card-why-follow-up-history-matters-in-dunning":
-    "assets/images/blog-cover-follow-up-history.png",
-  "blog-featured-cover": "assets/images/blog-cover-spreadsheet-exit.png",
+    "assets/images/blog-cover-follow-up-history.svg",
+  "blog-featured-cover": "assets/images/blog-cover-spreadsheet-exit.svg",
   "blog-post-hero-2026-03-30-5-signs-your-collections-workflow-has-outgrown-spreadsheets":
-    "assets/images/blog-cover-spreadsheet-exit.png",
+    "assets/images/blog-cover-spreadsheet-exit.svg",
   "blog-post-hero-2026-03-30-why-planned-billing-belongs-in-the-collections-forecast":
-    "assets/images/blog-cover-planned-billing.png",
+    "assets/images/blog-cover-planned-billing.svg",
   "blog-post-hero-2026-04-01-what-payment-behavior-reveals-about-collections-risk":
-    "assets/images/blog-cover-payment-behavior.png",
+    "assets/images/blog-cover-payment-behavior.svg",
+  "blog-post-hero-how-teams-move-from-spreadsheet-follow-up-to-automated-dunning":
+    "assets/images/blog-cover-dunning-workflow.svg",
   "blog-post-hero-how-teams-move-from-spreadsheet-follow-up-to-a-structured-dunning-workflow":
-    "assets/images/blog-cover-dunning-workflow.png",
+    "assets/images/blog-cover-dunning-workflow.svg",
   "blog-post-hero-why-follow-up-history-matters-in-dunning":
-    "assets/images/blog-cover-follow-up-history.png",
+    "assets/images/blog-cover-follow-up-history.svg",
   "demo-hero-account-history": "assets/images/product-account-detail-timeline.png",
   "demo-request-form-logos": "assets/images/logos-integrations.svg",
   "home-enterprise-fit-logos": "assets/images/logos-integrations.svg",
@@ -45,17 +46,17 @@ const IMAGE_PLACEHOLDER_ASSET_MAP = {
   "integrations-supported-environments-logos": "assets/images/logos-integrations.svg",
   "platform-forecast": "assets/images/product-forecast-intelligence.png",
   "platform-hero-command-center": "assets/images/product-command-center.png",
-  "platform-import-validation": "assets/images/product-import-validation.png",
+  "platform-import-validation": "assets/images/product-import-validation.svg",
   "platform-outreach-dunning": "assets/images/product-dunning-workflow.png",
   "platform-portfolio-queue": "assets/images/product-collector-queue.png",
   "platform-team-consistency-history": "assets/images/product-account-detail-timeline.png",
-  "resources-blog-dunning-workflow": "assets/images/blog-cover-dunning-workflow.png",
-  "resources-blog-payment-behavior": "assets/images/blog-cover-payment-behavior.png",
-  "resources-blog-planned-billing": "assets/images/blog-cover-planned-billing.png",
-  "resources-guide-exit-plan": "assets/images/resource-guide-exit-plan.png",
-  "resources-guide-follow-up-history": "assets/images/resource-guide-follow-up-history.png",
-  "resources-guide-payment-behavior": "assets/images/resource-guide-payment-behavior.png",
-  "resources-guide-planned-billing": "assets/images/resource-guide-planned-billing.png",
+  "resources-blog-dunning-workflow": "assets/images/blog-cover-dunning-workflow.svg",
+  "resources-blog-payment-behavior": "assets/images/blog-cover-payment-behavior.svg",
+  "resources-blog-planned-billing": "assets/images/blog-cover-planned-billing.svg",
+  "resources-guide-exit-plan": "assets/images/resource-guide-exit-plan.svg",
+  "resources-guide-follow-up-history": "assets/images/resource-guide-follow-up-history.svg",
+  "resources-guide-payment-behavior": "assets/images/resource-guide-payment-behavior.svg",
+  "resources-guide-planned-billing": "assets/images/resource-guide-planned-billing.svg",
   "why-hero-command-center": "assets/images/product-command-center.png",
 };
 
@@ -65,18 +66,17 @@ const IMAGE_ASSET_ID_BY_PATH = {
   "assets/images/product-account-detail-timeline.png": "A03",
   "assets/images/product-dunning-workflow.png": "A04",
   "assets/images/product-forecast-intelligence.png": "A05",
-  "assets/images/product-import-validation.png": "A06",
+  "assets/images/product-import-validation.svg": "A06",
   "assets/images/logos-integrations.svg": "A08",
-  "assets/images/about-workspace-photo.jpg": "A10",
-  "assets/images/resource-guide-exit-plan.png": "A11-1",
-  "assets/images/resource-guide-planned-billing.png": "A11-2",
-  "assets/images/resource-guide-payment-behavior.png": "A11-3",
-  "assets/images/resource-guide-follow-up-history.png": "A11-4",
-  "assets/images/blog-cover-spreadsheet-exit.png": "A12-1",
-  "assets/images/blog-cover-planned-billing.png": "A12-2",
-  "assets/images/blog-cover-payment-behavior.png": "A12-3",
-  "assets/images/blog-cover-dunning-workflow.png": "A12-4",
-  "assets/images/blog-cover-follow-up-history.png": "A12-5",
+  "assets/images/resource-guide-exit-plan.svg": "A11-1",
+  "assets/images/resource-guide-planned-billing.svg": "A11-2",
+  "assets/images/resource-guide-payment-behavior.svg": "A11-3",
+  "assets/images/resource-guide-follow-up-history.svg": "A11-4",
+  "assets/images/blog-cover-spreadsheet-exit.svg": "A12-1",
+  "assets/images/blog-cover-planned-billing.svg": "A12-2",
+  "assets/images/blog-cover-payment-behavior.svg": "A12-3",
+  "assets/images/blog-cover-dunning-workflow.svg": "A12-4",
+  "assets/images/blog-cover-follow-up-history.svg": "A12-5",
 };
 
 const getSitePrefix = () => {
@@ -350,7 +350,7 @@ const buildAssetCandidatePaths = (assetPath = "") => {
     const extensionCandidates =
       currentExtension === ".svg"
         ? [".png", ".webp"]
-        : [".png", ".jpg", ".jpeg", ".webp"];
+        : [".png", ".svg", ".jpg", ".jpeg", ".webp"];
 
     extensionCandidates.forEach((candidateExtension) => {
       if (candidateExtension !== currentExtension) {
@@ -366,7 +366,7 @@ const buildAssetCandidatePaths = (assetPath = "") => {
     const extensionCandidates =
       currentExtension === ".svg"
         ? [".svg", ".png", ".webp"]
-        : [currentExtension, ".png", ".jpg", ".jpeg", ".webp"];
+        : [currentExtension, ".png", ".svg", ".jpg", ".jpeg", ".webp"];
     const directory = normalizedPath.slice(0, normalizedPath.lastIndexOf("/"));
     const compactAssetId = assetId.replace(/^A0+/, "A");
     const assetIdVariants = [
@@ -727,8 +727,6 @@ const initializeImagePlaceholders = () => {
     return;
   }
 
-  const lazyPlaceholderMap = new Map();
-
   placeholders.forEach((figure) => {
     const assetPath = resolvePlaceholderAssetPath(figure);
     const assetHrefs = buildAssetCandidatePaths(assetPath).map(resolvePlaceholderAssetHref);
@@ -742,46 +740,7 @@ const initializeImagePlaceholders = () => {
       hydrateImagePlaceholder(figure, assetHrefs, assetPath, true);
       return;
     }
-
-    lazyPlaceholderMap.set(figure, { assetHrefs, assetPath });
-  });
-
-  if (!lazyPlaceholderMap.size) {
-    return;
-  }
-
-  if (!("IntersectionObserver" in window)) {
-    lazyPlaceholderMap.forEach(({ assetHrefs, assetPath }, figure) => {
-      hydrateImagePlaceholder(figure, assetHrefs, assetPath, false);
-    });
-    return;
-  }
-
-  const observer = new IntersectionObserver(
-    (entries) => {
-      entries.forEach((entry) => {
-        if (!entry.isIntersecting) {
-          return;
-        }
-
-        const assetDetails = lazyPlaceholderMap.get(entry.target);
-        observer.unobserve(entry.target);
-
-        if (!assetDetails) {
-          return;
-        }
-
-        hydrateImagePlaceholder(entry.target, assetDetails.assetHrefs, assetDetails.assetPath, false);
-      });
-    },
-    {
-      threshold: 0.01,
-      rootMargin: "320px 0px",
-    }
-  );
-
-  lazyPlaceholderMap.forEach((_, figure) => {
-    observer.observe(figure);
+    hydrateImagePlaceholder(figure, assetHrefs, assetPath, false);
   });
 };
 

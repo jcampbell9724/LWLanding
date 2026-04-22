@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900" width="1600" height="900" role="img" aria-labelledby="title desc">
+  <title id="title">Spreadsheet exit article cover</title>
+  <desc id="desc">An editorial blog cover contrasting spreadsheet-heavy collections work with a cleaner operating workflow.</desc>
+  <rect width="1600" height="900" rx="34" fill="#0b1730"/>
+  <rect x="0" y="0" width="760" height="900" fill="#f6f9ff"/>
+  <text x="88" y="110" fill="#1748ca" font-family="Space Grotesk, Segoe UI, sans-serif" font-size="24" font-weight="700" letter-spacing="4">LEDGEWAVE INSIGHTS</text>
+  <text x="88" y="206" fill="#0a1420" font-family="Space Grotesk, Segoe UI, sans-serif" font-size="74" font-weight="700">Leaving</text>
+  <text x="88" y="280" fill="#0a1420" font-family="Space Grotesk, Segoe UI, sans-serif" font-size="74" font-weight="700">spreadsheet</text>
+  <text x="88" y="354" fill="#0a1420" font-family="Space Grotesk, Segoe UI, sans-serif" font-size="74" font-weight="700">follow-up</text>
+  <text x="88" y="430" fill="#465364" font-family="Manrope, Segoe UI, sans-serif" font-size="28">A practical transition into a more structured collections workflow.</text>
+  <g transform="translate(82 534)" fill="#dce8ff">
+    <rect width="266" height="184" rx="26"/>
+    <rect x="294" width="266" height="184" rx="26"/>
+  </g>
+  <g transform="translate(896 140)">
+    <rect width="600" height="620" rx="32" fill="rgba(255,255,255,0.08)" stroke="rgba(255,255,255,0.12)"/>
+    <rect x="48" y="54" width="504" height="98" rx="24" fill="#ffffff"/>
+    <text x="82" y="114" fill="#1748ca" font-family="Space Grotesk, Segoe UI, sans-serif" font-size="22" font-weight="700">OPERATING MODEL</text>
+    <rect x="48" y="198" width="148" height="300" rx="24" fill="#1748ca"/>
+    <rect x="226" y="198" width="148" height="300" rx="24" fill="#2d71ff"/>
+    <rect x="404" y="198" width="148" height="300" rx="24" fill="#8fe1c4"/>
+  </g>
+</svg>

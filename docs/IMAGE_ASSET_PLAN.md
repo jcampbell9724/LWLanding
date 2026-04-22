@@ -240,7 +240,7 @@ If you still have time after that:
 - Crop to the final ratio before you start polishing. The site uses fixed aspect ratios, so ratio mistakes turn into visible cropping.
 - Keep the critical UI inside the center `80%` of the frame. Loaded images use `object-fit: cover`, so edges can get trimmed on some placements.
 - Convert to `sRGB IEC61966-2.1` before export so colors stay predictable in browsers.
-- Use `PNG-24` for screenshots and editorial covers. Use `JPG` at roughly `80-85` quality for the About photo. Keep logos and simple line art as `SVG`.
+- Use `PNG-24` for product screenshots. Keep logos, simple line art, and generated editorial covers as `SVG`.
 - Resize down to the final export size at the end, then apply a light sharpen pass after resizing if the UI text softens.
 - Avoid tiny labels or micro-copy near the outer edges. If it is not readable at `1600px` wide, simplify the crop rather than hoping CSS will save it.
 
@@ -251,20 +251,17 @@ If you still have time after that:
 - `product-account-detail-timeline.png`
 - `product-dunning-workflow.png`
 - `product-forecast-intelligence.png`
-- `product-import-validation.png`
-- `product-payment-behavior-analytics.png`
+- `product-import-validation.svg`
 - `logos-integrations.svg`
-- `logos-customers.svg`
-- `about-workspace-photo.jpg`
-- `resource-guide-exit-plan.png`
-- `resource-guide-planned-billing.png`
-- `resource-guide-payment-behavior.png`
-- `resource-guide-follow-up-history.png`
-- `blog-cover-spreadsheet-exit.png`
-- `blog-cover-planned-billing.png`
-- `blog-cover-payment-behavior.png`
-- `blog-cover-dunning-workflow.png`
-- `blog-cover-follow-up-history.png`
+- `resource-guide-exit-plan.svg`
+- `resource-guide-planned-billing.svg`
+- `resource-guide-payment-behavior.svg`
+- `resource-guide-follow-up-history.svg`
+- `blog-cover-spreadsheet-exit.svg`
+- `blog-cover-planned-billing.svg`
+- `blog-cover-payment-behavior.svg`
+- `blog-cover-dunning-workflow.svg`
+- `blog-cover-follow-up-history.svg`
 
 ## What Not To Spend Time On
 

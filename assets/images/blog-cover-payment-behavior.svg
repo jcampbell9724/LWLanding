@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900" width="1600" height="900" role="img" aria-labelledby="title desc">
+  <title id="title">Payment behavior article cover</title>
+  <desc id="desc">An editorial blog cover with payment timing charts and collections risk signals.</desc>
+  <rect width="1600" height="900" rx="34" fill="#0a1525"/>
+  <text x="88" y="110" fill="#8fe1c4" font-family="Space Grotesk, Segoe UI, sans-serif" font-size="24" font-weight="700" letter-spacing="4">LEDGEWAVE INSIGHTS</text>
+  <text x="88" y="206" fill="#ffffff" font-family="Space Grotesk, Segoe UI, sans-serif" font-size="76" font-weight="700">What payment</text>
+  <text x="88" y="280" fill="#ffffff" font-family="Space Grotesk, Segoe UI, sans-serif" font-size="76" font-weight="700">behavior reveals</text>
+  <text x="88" y="354" fill="#ffffff" font-family="Space Grotesk, Segoe UI, sans-serif" font-size="76" font-weight="700">about risk</text>
+  <text x="88" y="430" fill="rgba(233,241,255,0.8)" font-family="Manrope, Segoe UI, sans-serif" font-size="28">Timing patterns and customer habits change the way teams prioritize the portfolio.</text>
+  <g transform="translate(862 116)">
+    <rect width="640" height="668" rx="34" fill="rgba(255,255,255,0.08)" stroke="rgba(255,255,255,0.12)"/>
+    <g stroke-linecap="round" fill="none">
+      <path d="M64 542c120-84 180-44 278-148 74-78 140-108 232-246" stroke="#8fe1c4" stroke-width="12"/>
+      <path d="M64 586c112-42 178-52 282-120 70-46 132-78 228-128" stroke="#8fb2ff" stroke-width="12"/>
+    </g>
+    <g fill="rgba(255,255,255,0.12)">
+      <rect x="64" y="132" width="510" height="2"/>
+      <rect x="64" y="250" width="510" height="2"/>
+      <rect x="64" y="368" width="510" height="2"/>
+      <rect x="64" y="486" width="510" height="2"/>
+    </g>
+    <rect x="64" y="66" width="230" height="58" rx="18" fill="#ffffff"/>
+    <text x="96" y="104" fill="#1748ca" font-family="Space Grotesk, Segoe UI, sans-serif" font-size="22" font-weight="700">BEHAVIOR SIGNALS</text>
+  </g>
+</svg>

@@ -6,7 +6,7 @@ category: Analytics
 author: Ledgewave Team
 read_time: 6 min read
 featured: no
-cover_asset: blog-cover-payment-behavior.png
+cover_asset: blog-cover-payment-behavior.svg
 cover_alt: Analytics view highlighting customer payment timing patterns and collections risk signals across the portfolio.
 cover_note: Use an analytics or payment-pattern screen that makes timing behavior feel concrete and operational.
 ---

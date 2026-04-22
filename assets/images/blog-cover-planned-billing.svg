@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900" width="1600" height="900" role="img" aria-labelledby="title desc">
+  <title id="title">Planned billing article cover</title>
+  <desc id="desc">An editorial blog cover showing planned billing and expected cash timing.</desc>
+  <rect width="1600" height="900" rx="34" fill="#eef7f4"/>
+  <circle cx="1350" cy="110" r="190" fill="#dce8ff"/>
+  <text x="88" y="110" fill="#1748ca" font-family="Space Grotesk, Segoe UI, sans-serif" font-size="24" font-weight="700" letter-spacing="4">LEDGEWAVE INSIGHTS</text>
+  <text x="88" y="206" fill="#0a1420" font-family="Space Grotesk, Segoe UI, sans-serif" font-size="76" font-weight="700">Planned billing</text>
+  <text x="88" y="280" fill="#0a1420" font-family="Space Grotesk, Segoe UI, sans-serif" font-size="76" font-weight="700">belongs in the</text>
+  <text x="88" y="354" fill="#0a1420" font-family="Space Grotesk, Segoe UI, sans-serif" font-size="76" font-weight="700">forecast</text>
+  <text x="88" y="430" fill="#465364" font-family="Manrope, Segoe UI, sans-serif" font-size="28">The next billing cycle matters when finance teams explain expected cash timing.</text>
+  <g transform="translate(908 126)">
+    <rect width="576" height="648" rx="34" fill="#0b1730"/>
+    <rect x="48" y="54" width="480" height="186" rx="28" fill="#ffffff"/>
+    <g fill="#dce8ff">
+      <rect x="82" y="96" width="86" height="86" rx="18"/>
+      <rect x="196" y="96" width="86" height="86" rx="18"/>
+      <rect x="310" y="96" width="86" height="86" rx="18"/>
+      <rect x="424" y="96" width="56" height="86" rx="18"/>
+    </g>
+    <g fill="#8fe1c4">
+      <rect x="78" y="452" width="84" height="130" rx="20"/>
+      <rect x="190" y="404" width="84" height="178" rx="20"/>
+      <rect x="302" y="334" width="84" height="248" rx="20"/>
+      <rect x="414" y="380" width="84" height="202" rx="20"/>
+    </g>
+  </g>
+</svg>
