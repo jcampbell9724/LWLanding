@@ -11,10 +11,70 @@ const PRIMARY_NAV = [
   { href: "resources.html", key: "resources", label: "Resources" },
 ];
 
+// Keep this in sync with docs/IMAGE_PLACEHOLDER_MAP.md.
+const IMAGE_PLACEHOLDER_ASSET_MAP = {
+  "about-hero-workspace-photo": "assets/images/about-workspace-photo.jpg",
+  "blog-card-2026-03-30-5-signs-your-collections-workflow-has-outgrown-spreadsheets":
+    "assets/images/blog-cover-spreadsheet-exit.png",
+  "blog-card-2026-03-30-why-planned-billing-belongs-in-the-collections-forecast":
+    "assets/images/blog-cover-planned-billing.png",
+  "blog-card-2026-04-01-what-payment-behavior-reveals-about-collections-risk":
+    "assets/images/blog-cover-payment-behavior.png",
+  "blog-card-how-teams-move-from-spreadsheet-follow-up-to-a-structured-dunning-workflow":
+    "assets/images/blog-cover-dunning-workflow.png",
+  "blog-card-why-follow-up-history-matters-in-dunning":
+    "assets/images/blog-cover-follow-up-history.png",
+  "blog-featured-cover": "assets/images/blog-cover-spreadsheet-exit.png",
+  "blog-post-hero-2026-03-30-5-signs-your-collections-workflow-has-outgrown-spreadsheets":
+    "assets/images/blog-cover-spreadsheet-exit.png",
+  "blog-post-hero-2026-03-30-why-planned-billing-belongs-in-the-collections-forecast":
+    "assets/images/blog-cover-planned-billing.png",
+  "blog-post-hero-2026-04-01-what-payment-behavior-reveals-about-collections-risk":
+    "assets/images/blog-cover-payment-behavior.png",
+  "blog-post-hero-how-teams-move-from-spreadsheet-follow-up-to-a-structured-dunning-workflow":
+    "assets/images/blog-cover-dunning-workflow.png",
+  "blog-post-hero-why-follow-up-history-matters-in-dunning":
+    "assets/images/blog-cover-follow-up-history.png",
+  "demo-hero-account-history": "assets/images/product-account-detail-timeline.png",
+  "demo-request-form-logos": "assets/images/logos-integrations.svg",
+  "home-enterprise-fit-logos": "assets/images/logos-integrations.svg",
+  "home-hero-command-center": "assets/images/product-command-center.png",
+  "home-why-teams-buy-forecast": "assets/images/product-forecast-intelligence.png",
+  "home-why-teams-buy-history": "assets/images/product-account-detail-timeline.png",
+  "home-why-teams-buy-queue": "assets/images/product-collector-queue.png",
+  "integrations-supported-environments-logos": "assets/images/logos-integrations.svg",
+  "platform-forecast": "assets/images/product-forecast-intelligence.png",
+  "platform-hero-command-center": "assets/images/product-command-center.png",
+  "platform-import-validation": "assets/images/product-import-validation.png",
+  "platform-outreach-dunning": "assets/images/product-dunning-workflow.png",
+  "platform-portfolio-queue": "assets/images/product-collector-queue.png",
+  "platform-team-consistency-history": "assets/images/product-account-detail-timeline.png",
+  "resources-blog-dunning-workflow": "assets/images/blog-cover-dunning-workflow.png",
+  "resources-blog-payment-behavior": "assets/images/blog-cover-payment-behavior.png",
+  "resources-blog-planned-billing": "assets/images/blog-cover-planned-billing.png",
+  "resources-guide-exit-plan": "assets/images/resource-guide-exit-plan.png",
+  "resources-guide-follow-up-history": "assets/images/resource-guide-follow-up-history.png",
+  "resources-guide-payment-behavior": "assets/images/resource-guide-payment-behavior.png",
+  "resources-guide-planned-billing": "assets/images/resource-guide-planned-billing.png",
+  "why-hero-command-center": "assets/images/product-command-center.png",
+};
+
 const getSitePrefix = () => {
-  const stylesheet = document.querySelector('link[rel="stylesheet"][href$="styles.css"]');
-  const stylesheetHref = stylesheet?.getAttribute("href") || "";
-  return stylesheetHref.startsWith("../") ? "../" : "";
+  const assetEntrypoints = [
+    document.querySelector('script[src*="assets/js/script.js"]')?.getAttribute("src") || "",
+    document.querySelector('link[rel="stylesheet"][href*="assets/css/styles.css"]')?.getAttribute("href") || "",
+  ];
+
+  for (const entrypoint of assetEntrypoints) {
+    const match = entrypoint.match(
+      /^(.*?)(?:assets\/(?:js\/script\.js|css\/styles\.css))(?:[?#].*)?$/
+    );
+    if (match) {
+      return match[1];
+    }
+  }
+
+  return "";
 };
 
 const sitePrefix = getSitePrefix();
@@ -233,6 +293,17 @@ const resolvePlaceholderAssetHref = (assetPath) => {
   }
 
   return buildHref(normalizedPath);
+};
+
+const resolvePlaceholderAssetPath = (figure) => {
+  const placeholderId = figure.dataset.placeholderId || "";
+
+  return (
+    figure.dataset.assetPath ||
+    IMAGE_PLACEHOLDER_ASSET_MAP[placeholderId] ||
+    figure.querySelector(".image-placeholder-target code")?.textContent ||
+    ""
+  );
 };
 
 const cleanPlaceholderCopy = (value = "") =>
@@ -570,10 +641,7 @@ const initializeImagePlaceholders = () => {
   const lazyPlaceholderMap = new Map();
 
   placeholders.forEach((figure) => {
-    const assetPath =
-      figure.dataset.assetPath ||
-      figure.querySelector(".image-placeholder-target code")?.textContent ||
-      "";
+    const assetPath = resolvePlaceholderAssetPath(figure);
     const assetHref = resolvePlaceholderAssetHref(assetPath);
 
     if (!assetHref) {
