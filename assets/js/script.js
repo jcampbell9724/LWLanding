@@ -11,8 +11,12 @@ const PRIMARY_NAV = [
   { href: "resources.html", key: "resources", label: "Resources" },
 ];
 
+const NAV_PAGE_ALIASES = {
+  blog: "resources",
+};
+
 // Keep this in sync with docs/IMAGE_PLACEHOLDER_MAP.md.
-const IMAGE_PLACEHOLDER_ASSET_MAP = {
+const IMAGE_ASSET_MAP = {
   "blog-card-2026-03-30-5-signs-your-collections-workflow-has-outgrown-spreadsheets":
     "assets/images/blog-cover-spreadsheet-exit.svg",
   "blog-card-2026-03-30-why-planned-billing-belongs-in-the-collections-forecast":
@@ -36,20 +40,20 @@ const IMAGE_PLACEHOLDER_ASSET_MAP = {
     "assets/images/blog-cover-dunning-workflow.svg",
   "blog-post-hero-why-follow-up-history-matters-in-dunning":
     "assets/images/blog-cover-follow-up-history.svg",
-  "demo-hero-account-history": "assets/images/product-account-detail-timeline.png",
+  "demo-hero-account-history": "assets/images/product-account-detail-timeline-framed.png",
   "demo-request-form-logos": "assets/images/logos-integrations.svg",
   "home-enterprise-fit-logos": "assets/images/logos-integrations.svg",
-  "home-hero-command-center": "assets/images/product-command-center.png",
-  "home-why-teams-buy-forecast": "assets/images/product-forecast-intelligence.png",
-  "home-why-teams-buy-history": "assets/images/product-account-detail-timeline.png",
-  "home-why-teams-buy-queue": "assets/images/product-collector-queue.png",
+  "home-hero-command-center": "assets/images/product-command-center-framed.png",
+  "home-why-teams-buy-forecast": "assets/images/product-forecast-intelligence-framed.png",
+  "home-why-teams-buy-history": "assets/images/product-account-detail-timeline-framed.png",
+  "home-why-teams-buy-queue": "assets/images/product-collector-queue-framed.png",
   "integrations-supported-environments-logos": "assets/images/logos-integrations.svg",
-  "platform-forecast": "assets/images/product-forecast-intelligence.png",
-  "platform-hero-command-center": "assets/images/product-command-center.png",
+  "platform-forecast": "assets/images/product-forecast-intelligence-framed.png",
+  "platform-hero-command-center": "assets/images/product-command-center-framed.png",
   "platform-import-validation": "assets/images/product-import-validation.svg",
-  "platform-outreach-dunning": "assets/images/product-dunning-workflow.png",
-  "platform-portfolio-queue": "assets/images/product-collector-queue.png",
-  "platform-team-consistency-history": "assets/images/product-account-detail-timeline.png",
+  "platform-outreach-dunning": "assets/images/product-dunning-workflow-framed.png",
+  "platform-portfolio-queue": "assets/images/product-collector-queue-framed.png",
+  "platform-team-consistency-history": "assets/images/product-account-detail-timeline-framed.png",
   "resources-blog-dunning-workflow": "assets/images/blog-cover-dunning-workflow.svg",
   "resources-blog-payment-behavior": "assets/images/blog-cover-payment-behavior.svg",
   "resources-blog-planned-billing": "assets/images/blog-cover-planned-billing.svg",
@@ -57,15 +61,20 @@ const IMAGE_PLACEHOLDER_ASSET_MAP = {
   "resources-guide-follow-up-history": "assets/images/resource-guide-follow-up-history.svg",
   "resources-guide-payment-behavior": "assets/images/resource-guide-payment-behavior.svg",
   "resources-guide-planned-billing": "assets/images/resource-guide-planned-billing.svg",
-  "why-hero-command-center": "assets/images/product-command-center.png",
+  "why-hero-command-center": "assets/images/product-command-center-framed.png",
 };
 
 const IMAGE_ASSET_ID_BY_PATH = {
   "assets/images/product-command-center.png": "A01",
+  "assets/images/product-command-center-framed.png": "A01",
   "assets/images/product-collector-queue.png": "A02",
+  "assets/images/product-collector-queue-framed.png": "A02",
   "assets/images/product-account-detail-timeline.png": "A03",
+  "assets/images/product-account-detail-timeline-framed.png": "A03",
   "assets/images/product-dunning-workflow.png": "A04",
+  "assets/images/product-dunning-workflow-framed.png": "A04",
   "assets/images/product-forecast-intelligence.png": "A05",
+  "assets/images/product-forecast-intelligence-framed.png": "A05",
   "assets/images/product-import-validation.svg": "A06",
   "assets/images/logos-integrations.svg": "A08",
   "assets/images/resource-guide-exit-plan.svg": "A11-1",
@@ -99,6 +108,7 @@ const getSitePrefix = () => {
 
 const sitePrefix = getSitePrefix();
 const buildHref = (path) => `${sitePrefix}${path}`;
+const activeNavKey = NAV_PAGE_ALIASES[currentPage] || currentPage;
 const scheduleMicrotask =
   window.queueMicrotask?.bind(window) || ((callback) => Promise.resolve().then(callback));
 
@@ -120,9 +130,16 @@ const renderIntoHost = ({ hostSelector, fallbackSelector, markup }) => {
 
 const renderNavLinks = () =>
   PRIMARY_NAV.map(({ href, key, label }) => {
-    const state = key === currentPage ? ' class="is-active" aria-current="page"' : "";
+    const state = key === activeNavKey ? ' class="is-active" aria-current="page"' : "";
     return `<a href="${buildHref(href)}" data-nav="${key}"${state}>${label}</a>`;
   }).join("");
+
+const ensureMainContentTarget = () => {
+  const main = document.querySelector(".page-main");
+  if (main && !main.id) {
+    main.id = "main-content";
+  }
+};
 
 const renderSharedChrome = () => {
   const demoState = currentPage === "demo" ? ' aria-current="page"' : "";
@@ -132,13 +149,17 @@ const renderSharedChrome = () => {
     fallbackSelector: ".site-header",
     markup: `
       <header class="site-header" id="top">
+        <a class="skip-link" href="#main-content">Skip to content</a>
         <div class="site-header-inner">
           <a class="brand" href="${buildHref("index.html")}" aria-label="Ledgewave home">
-            <img src="${buildHref("assets/images/ledgewave-mark.svg")}" alt="" width="44" height="44">
-            <span class="brand-copy">
-              <strong>Ledgewave</strong>
-              <span>Receivables OS</span>
-            </span>
+            <img
+              class="brand-logo"
+              src="${buildHref("assets/images/brand/primary-logo.png")}"
+              alt="Ledgewave"
+              width="220"
+              height="45"
+            >
+            <span class="brand-chip">Clarity. Empathy. Results.</span>
           </a>
 
           <button
@@ -170,16 +191,19 @@ const renderSharedChrome = () => {
         <div class="site-footer-inner">
           <div class="footer-grid">
             <div class="footer-brand">
-              <div class="footer-brand-top">
-                <img src="${buildHref("assets/images/ledgewave-mark.svg")}" alt="" width="40" height="40">
-                <span class="footer-brand-copy">
-                  <strong>Ledgewave</strong>
-                  <span>Receivables workflow and forecast visibility for modern finance teams.</span>
-                </span>
-              </div>
+              <img
+                class="footer-brand-card"
+                src="${buildHref("assets/images/brand/logo-card-light.png")}"
+                alt="Ledgewave"
+                width="260"
+                height="104"
+              >
+              <span class="footer-brand-copy">
+                <strong>Clarity. Empathy. Results.</strong>
+                <span>Collections software that keeps cash flowing.</span>
+              </span>
               <p class="footer-note">
-                Built for finance organizations replacing exported receivables files, spreadsheet trackers, and disconnected
-                follow-up work with a more disciplined operating system.
+                We help businesses strengthen relationships and financial outcomes through smarter, more human collections.
               </p>
             </div>
 
@@ -220,7 +244,7 @@ const renderSharedChrome = () => {
 
           <div class="footer-meta">
             <span>&copy; <span id="year"></span> Ledgewave. Receivables workflow and cash forecasting software.</span>
-            <span>Designed for operators, controllers, and finance teams who need one receivables command layer.</span>
+            <span>Built for finance teams that need a cleaner receivables operating system.</span>
           </div>
         </div>
       </footer>
@@ -297,7 +321,7 @@ const normalizeAssetPath = (assetPath = "") => {
     .replace(/^\/+/, "");
 };
 
-const resolvePlaceholderAssetHref = (assetPath) => {
+const resolveImageAssetHref = (assetPath) => {
   const normalizedPath = normalizeAssetPath(assetPath);
 
   if (!normalizedPath) {
@@ -315,13 +339,13 @@ const resolvePlaceholderAssetHref = (assetPath) => {
   return buildHref(normalizedPath);
 };
 
-const resolvePlaceholderAssetPath = (figure) => {
+const resolveImageAssetPath = (figure) => {
   const placeholderId = figure.dataset.placeholderId || "";
 
   return (
     figure.dataset.assetPath ||
-    IMAGE_PLACEHOLDER_ASSET_MAP[placeholderId] ||
-    figure.querySelector(".image-placeholder-target code")?.textContent ||
+    IMAGE_ASSET_MAP[placeholderId] ||
+    figure.querySelector(".image-asset-target code")?.textContent ||
     ""
   );
 };
@@ -390,57 +414,57 @@ const buildAssetCandidatePaths = (assetPath = "") => {
   return [...new Set(candidates)];
 };
 
-const cleanPlaceholderCopy = (value = "") =>
+const cleanImageAssetCopy = (value = "") =>
   value
     .replace(/^placeholder for\s+/i, "")
     .replace(/\s+placeholder$/i, "")
     .replace(/\s+/g, " ")
     .trim();
 
-const hasExplicitPlaceholderAlt = (figure) =>
+const hasExplicitImageAssetAlt = (figure) =>
   Object.prototype.hasOwnProperty.call(figure.dataset, "imageAlt");
 
-const isPlaceholderDecorative = (figure) =>
-  hasExplicitPlaceholderAlt(figure) && cleanPlaceholderCopy(figure.dataset.imageAlt || "") === "";
+const isImageAssetDecorative = (figure) =>
+  hasExplicitImageAssetAlt(figure) && cleanImageAssetCopy(figure.dataset.imageAlt || "") === "";
 
-const derivePlaceholderTitle = (figure) => {
+const deriveImageAssetTitle = (figure) => {
   const title =
     figure.dataset.imageTitle ||
-    figure.querySelector(".image-placeholder-title")?.textContent ||
+    figure.querySelector(".image-asset-title")?.textContent ||
     "";
 
-  return cleanPlaceholderCopy(title)
+  return cleanImageAssetCopy(title)
     .replace(/^[A-Z]\d+(?:-\d+)?\s+/, "")
     .trim();
 };
 
-const derivePlaceholderAlt = (figure) => {
-  if (hasExplicitPlaceholderAlt(figure)) {
-    return cleanPlaceholderCopy(figure.dataset.imageAlt || "");
+const deriveImageAssetAlt = (figure) => {
+  if (hasExplicitImageAssetAlt(figure)) {
+    return cleanImageAssetCopy(figure.dataset.imageAlt || "");
   }
 
-  const frameLabel = cleanPlaceholderCopy(
-    figure.querySelector(".image-placeholder-frame")?.getAttribute("aria-label") || ""
+  const frameLabel = cleanImageAssetCopy(
+    figure.querySelector(".image-asset-frame")?.getAttribute("aria-label") || ""
   );
   if (frameLabel) {
     return frameLabel.charAt(0).toUpperCase() + frameLabel.slice(1);
   }
 
-  const cleanedTitle = derivePlaceholderTitle(figure);
+  const cleanedTitle = deriveImageAssetTitle(figure);
 
   return cleanedTitle || "Ledgewave product image";
 };
 
-const getPlaceholderDimensions = (figure) => {
-  if (figure.classList.contains("image-placeholder--logo")) {
+const getImageAssetDimensions = (figure) => {
+  if (figure.classList.contains("image-asset--logo")) {
     return { width: 2000, height: 400 };
   }
 
-  if (figure.classList.contains("image-placeholder--square")) {
+  if (figure.classList.contains("image-asset--square")) {
     return { width: 1600, height: 1200 };
   }
 
-  if (figure.classList.contains("image-placeholder--hero")) {
+  if (figure.classList.contains("image-asset--hero")) {
     return { width: 1600, height: 1000 };
   }
 
@@ -448,7 +472,7 @@ const getPlaceholderDimensions = (figure) => {
 };
 
 const deriveFallbackTitle = (figure) => {
-  const title = derivePlaceholderTitle(figure);
+  const title = deriveImageAssetTitle(figure);
   const normalizedTitle = title.toLowerCase();
   const isGenericTitle = normalizedTitle === "cover image" || normalizedTitle === "article cover" || normalizedTitle === "featured article cover";
 
@@ -456,18 +480,18 @@ const deriveFallbackTitle = (figure) => {
     return title;
   }
 
-  const nearbyHeading = cleanPlaceholderCopy(
+  const nearbyHeading = cleanImageAssetCopy(
     figure.closest("article, aside, section, main")?.querySelector("h1, h2, h3")?.textContent || ""
   );
   if (nearbyHeading) {
     return nearbyHeading;
   }
 
-  if (figure.classList.contains("image-placeholder--logo")) {
+  if (figure.classList.contains("image-asset--logo")) {
     return "Connected finance systems";
   }
 
-  if (figure.classList.contains("image-placeholder--hero")) {
+  if (figure.classList.contains("image-asset--hero")) {
     return "Ledgewave platform";
   }
 
@@ -482,7 +506,7 @@ const deriveFallbackEyebrow = (figure, assetPath = "") => {
   const normalizedAssetPath = assetPath.toLowerCase();
 
   if (
-    figure.classList.contains("image-placeholder--logo") ||
+    figure.classList.contains("image-asset--logo") ||
     normalizedAssetPath.includes("logos-")
   ) {
     return "Integrations";
@@ -503,7 +527,7 @@ const deriveFallbackSubtitle = (figure, assetPath = "") => {
   const normalizedAssetPath = assetPath.toLowerCase();
 
   if (
-    figure.classList.contains("image-placeholder--logo") ||
+    figure.classList.contains("image-asset--logo") ||
     normalizedAssetPath.includes("logos-")
   ) {
     return "Receivables CSVs, planned billing files, and customer-specific ingest paths reviewed through managed onboarding.";
@@ -536,7 +560,7 @@ const createFallbackBarGroup = (count) => {
   return bars;
 };
 
-const buildPlaceholderFallback = (figure, assetPath = "") => {
+const buildImageAssetFallback = (figure, assetPath = "") => {
   const fallback = document.createElement("div");
   fallback.className = "image-fallback";
 
@@ -549,7 +573,7 @@ const buildPlaceholderFallback = (figure, assetPath = "") => {
 
   const logo = document.createElement("img");
   logo.className = "image-fallback-logo";
-  logo.src = buildHref("assets/images/ledgewave-mark.svg");
+  logo.src = buildHref("assets/images/brand/logo-mark.png");
   logo.alt = "";
   logo.width = 38;
   logo.height = 38;
@@ -569,13 +593,13 @@ const buildPlaceholderFallback = (figure, assetPath = "") => {
 
   copy.append(title, subtitle);
 
-  const barCount = figure.classList.contains("image-placeholder--logo") ? 5 : 3;
+  const barCount = figure.classList.contains("image-asset--logo") ? 5 : 3;
   fallback.append(header, copy, createFallbackBarGroup(barCount));
   return fallback;
 };
 
-const syncPlaceholderFrameAccessibility = (frame, figure, label = "") => {
-  if (isPlaceholderDecorative(figure)) {
+const syncImageAssetFrameAccessibility = (frame, figure, label = "") => {
+  if (isImageAssetDecorative(figure)) {
     frame.setAttribute("aria-hidden", "true");
     frame.removeAttribute("role");
     frame.removeAttribute("aria-label");
@@ -594,12 +618,12 @@ const syncPlaceholderFrameAccessibility = (frame, figure, label = "") => {
   frame.removeAttribute("aria-label");
 };
 
-const createPlaceholderImage = (figure, eager = false) => {
+const createImageAssetElement = (figure, eager = false) => {
   const image = document.createElement("img");
-  const { width, height } = getPlaceholderDimensions(figure);
+  const { width, height } = getImageAssetDimensions(figure);
 
-  image.className = "image-placeholder-media";
-  image.alt = derivePlaceholderAlt(figure);
+  image.className = "image-asset-media";
+  image.alt = deriveImageAssetAlt(figure);
   image.decoding = "async";
   image.loading = eager ? "eager" : "lazy";
   image.width = width;
@@ -607,7 +631,7 @@ const createPlaceholderImage = (figure, eager = false) => {
 
   if (eager) {
     image.fetchPriority = "high";
-  } else if (figure.classList.contains("image-placeholder--card")) {
+  } else if (figure.classList.contains("image-asset--card")) {
     image.fetchPriority = "low";
   }
 
@@ -653,38 +677,38 @@ const loadImageElement = (image, src) =>
     }
   });
 
-const upgradeImagePlaceholder = (figure, image) => {
+const upgradeImageAsset = (figure, image) => {
   if (figure.classList.contains("is-loaded")) {
     return;
   }
 
-  const frame = figure.querySelector(".image-placeholder-frame");
+  const frame = figure.querySelector(".image-asset-frame");
   if (!frame) {
     return;
   }
 
   figure.classList.remove("is-fallback");
   frame.replaceChildren(image);
-  syncPlaceholderFrameAccessibility(frame, figure);
+  syncImageAssetFrameAccessibility(frame, figure);
   figure.classList.add("is-loaded");
 };
 
-const renderPlaceholderFallback = (figure, assetPath = "") => {
+const renderImageAssetFallback = (figure, assetPath = "") => {
   if (figure.classList.contains("is-loaded")) {
     return;
   }
 
-  const frame = figure.querySelector(".image-placeholder-frame");
+  const frame = figure.querySelector(".image-asset-frame");
   if (!frame) {
     return;
   }
 
-  frame.replaceChildren(buildPlaceholderFallback(figure, assetPath));
-  syncPlaceholderFrameAccessibility(frame, figure, deriveFallbackTitle(figure));
+  frame.replaceChildren(buildImageAssetFallback(figure, assetPath));
+  syncImageAssetFrameAccessibility(frame, figure, deriveFallbackTitle(figure));
   figure.classList.add("is-fallback");
 };
 
-const hydrateImagePlaceholder = async (figure, assetHrefs, assetPath = "", eager = false) => {
+const hydrateImageAsset = async (figure, assetHrefs, assetPath = "", eager = false) => {
   if (
     !assetHrefs.length ||
     figure.classList.contains("is-loaded") ||
@@ -697,7 +721,7 @@ const hydrateImagePlaceholder = async (figure, assetHrefs, assetPath = "", eager
 
   for (const assetHref of assetHrefs) {
     try {
-      const image = createPlaceholderImage(figure, eager);
+      const image = createImageAssetElement(figure, eager);
       await loadImageElement(image, assetHref);
 
       if (typeof image.decode === "function") {
@@ -708,7 +732,7 @@ const hydrateImagePlaceholder = async (figure, assetHrefs, assetPath = "", eager
         return;
       }
 
-      upgradeImagePlaceholder(figure, image);
+      upgradeImageAsset(figure, image);
       figure.dataset.imageState = "loaded";
       return;
     } catch (error) {
@@ -716,31 +740,60 @@ const hydrateImagePlaceholder = async (figure, assetHrefs, assetPath = "", eager
     }
   }
 
-  renderPlaceholderFallback(figure, assetPath);
+  renderImageAssetFallback(figure, assetPath);
   figure.dataset.imageState = "fallback";
 };
 
-const initializeImagePlaceholders = () => {
-  const placeholders = Array.from(document.querySelectorAll(".image-placeholder"));
+const initializeStaticImageAsset = (figure, assetPath = "") => {
+  const image = figure.querySelector("img.image-asset-media");
 
-  if (!placeholders.length) {
+  if (!image) {
+    return false;
+  }
+
+  const renderImageFallback = () => {
+    figure.classList.remove("is-loaded");
+    renderImageAssetFallback(figure, assetPath || image.getAttribute("src") || "");
+    figure.dataset.imageState = "fallback";
+  };
+
+  if (image.complete && image.naturalWidth === 0) {
+    renderImageFallback();
+    return true;
+  }
+
+  image.addEventListener("error", renderImageFallback, { once: true });
+  figure.classList.add("is-loaded");
+  figure.dataset.imageState = "loaded";
+  return true;
+};
+
+const initializeImageAssets = () => {
+  const assetFigures = Array.from(document.querySelectorAll(".image-asset"));
+
+  if (!assetFigures.length) {
     return;
   }
 
-  placeholders.forEach((figure) => {
-    const assetPath = resolvePlaceholderAssetPath(figure);
-    const assetHrefs = buildAssetCandidatePaths(assetPath).map(resolvePlaceholderAssetHref);
+  assetFigures.forEach((figure) => {
+    const assetPath = resolveImageAssetPath(figure);
+
+    if (initializeStaticImageAsset(figure, assetPath)) {
+      return;
+    }
+
+    const assetHrefs = buildAssetCandidatePaths(assetPath).map(resolveImageAssetHref);
 
     if (!assetHrefs.length) {
-      renderPlaceholderFallback(figure, assetPath);
+      renderImageAssetFallback(figure, assetPath);
       return;
     }
 
-    if (figure.classList.contains("image-placeholder--hero")) {
-      hydrateImagePlaceholder(figure, assetHrefs, assetPath, true);
+    if (figure.classList.contains("image-asset--hero")) {
+      hydrateImageAsset(figure, assetHrefs, assetPath, true);
       return;
     }
-    hydrateImagePlaceholder(figure, assetHrefs, assetPath, false);
+    hydrateImageAsset(figure, assetHrefs, assetPath, false);
   });
 };
 
@@ -766,7 +819,7 @@ const initializeCaptureForms = () => {
       if (!isConfiguredEndpoint) {
         if (feedback) {
           feedback.textContent =
-            "Form endpoint is not configured yet. Paste the deployed Google Apps Script URL into assets/js/script.js.";
+            "We could not submit the form right now. Please email sales@ledgewave.com and we will follow up.";
           feedback.classList.remove("is-success");
         }
         return;
@@ -876,8 +929,9 @@ const initializeRevealTransitions = () => {
   });
 };
 
+ensureMainContentTarget();
 renderSharedChrome();
 initializeNavigation();
-initializeImagePlaceholders();
+initializeImageAssets();
 initializeCaptureForms();
 initializeRevealTransitions();

@@ -11,7 +11,8 @@
   <text x="96" y="124" fill="#8fe1c4" font-family="Space Grotesk, Segoe UI, sans-serif" font-size="28" font-weight="700" letter-spacing="4">LEDGEWAVE GUIDE</text>
   <text x="96" y="254" fill="#ffffff" font-family="Space Grotesk, Segoe UI, sans-serif" font-size="90" font-weight="700">Payment</text>
   <text x="96" y="344" fill="#ffffff" font-family="Space Grotesk, Segoe UI, sans-serif" font-size="90" font-weight="700">Behavior Guide</text>
-  <text x="96" y="424" fill="rgba(233,241,255,0.8)" font-family="Manrope, Segoe UI, sans-serif" font-size="34">Timing patterns, lag, and payment habits that sharpen prioritization and expected cash review.</text>
+  <text x="96" y="416" fill="rgba(233,241,255,0.8)" font-family="Manrope, Segoe UI, sans-serif" font-size="32">Use timing patterns and payment habits</text>
+  <text x="96" y="460" fill="rgba(233,241,255,0.8)" font-family="Manrope, Segoe UI, sans-serif" font-size="32">to sharpen expected cash review.</text>
   <g transform="translate(92 566)">
     <rect width="548" height="474" rx="34" fill="rgba(255,255,255,0.08)" stroke="rgba(233,241,255,0.12)"/>
     <path d="M42 352c92-88 146-70 222-168 64-82 164-100 242-204" fill="none" stroke="#8fe1c4" stroke-width="12" stroke-linecap="round"/>
@@ -27,9 +28,9 @@
     <rect width="664" height="832" rx="36" fill="#ffffff" opacity="0.96"/>
     <text x="54" y="70" fill="#1748ca" font-family="Space Grotesk, Segoe UI, sans-serif" font-size="22" font-weight="700">RISK SIGNALS</text>
     <rect x="54" y="118" width="556" height="112" rx="26" fill="#dce8ff"/>
-    <text x="90" y="180" fill="#0a1420" font-family="Manrope, Segoe UI, sans-serif" font-size="32" font-weight="700">Average lag increasing on top accounts</text>
+    <text x="90" y="180" fill="#0a1420" font-family="Manrope, Segoe UI, sans-serif" font-size="32" font-weight="700">Lag rising on top accounts</text>
     <rect x="54" y="278" width="556" height="112" rx="26" fill="#eff8f3"/>
-    <text x="90" y="340" fill="#0a1420" font-family="Manrope, Segoe UI, sans-serif" font-size="32" font-weight="700">On-time rate stable for priority segment</text>
+    <text x="90" y="340" fill="#0a1420" font-family="Manrope, Segoe UI, sans-serif" font-size="32" font-weight="700">Priority segment stable</text>
     <rect x="54" y="438" width="556" height="298" rx="30" fill="#0b1730"/>
     <g fill="#8fe1c4">
       <rect x="96" y="626" width="72" height="66" rx="20"/>

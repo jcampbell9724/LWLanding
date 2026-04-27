@@ -39,7 +39,7 @@ Collections work is not just reactive. Teams want to know what pressure is comin
 
 That is much easier when the forecast includes both:
 
-- current open receivables
+- open receivables
 - active planned billing records
 
 ## Better timing conversations start with a better base

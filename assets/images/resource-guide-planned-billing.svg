@@ -12,7 +12,8 @@
   <text x="96" y="124" fill="#1748ca" font-family="Space Grotesk, Segoe UI, sans-serif" font-size="28" font-weight="700" letter-spacing="4">LEDGEWAVE GUIDE</text>
   <text x="96" y="254" fill="#0a1420" font-family="Space Grotesk, Segoe UI, sans-serif" font-size="90" font-weight="700">Planned Billing</text>
   <text x="96" y="344" fill="#0a1420" font-family="Space Grotesk, Segoe UI, sans-serif" font-size="90" font-weight="700">Guide</text>
-  <text x="96" y="422" fill="#465364" font-family="Manrope, Segoe UI, sans-serif" font-size="34">Why forecast quality improves when near-term billing sits beside open receivables.</text>
+  <text x="96" y="416" fill="#465364" font-family="Manrope, Segoe UI, sans-serif" font-size="32">Why forecast quality improves when</text>
+  <text x="96" y="460" fill="#465364" font-family="Manrope, Segoe UI, sans-serif" font-size="32">billing sits beside receivables.</text>
   <g transform="translate(88 560)">
     <rect width="560" height="450" rx="34" fill="#ffffff" stroke="rgba(23,36,54,0.12)"/>
     <text x="42" y="62" fill="#1748ca" font-family="Space Grotesk, Segoe UI, sans-serif" font-size="22" font-weight="700">FORECAST INPUTS</text>
@@ -41,6 +42,7 @@
       <rect x="392" y="526" width="82" height="118" rx="18"/>
       <rect x="492" y="454" width="40" height="190" rx="18"/>
     </g>
-    <text x="92" y="414" fill="#ffffff" font-family="Manrope, Segoe UI, sans-serif" font-size="28" font-weight="700">Include near-term billing in the same review motion.</text>
+    <text x="92" y="406" fill="#ffffff" font-family="Manrope, Segoe UI, sans-serif" font-size="26" font-weight="700">Include near-term billing</text>
+    <text x="92" y="444" fill="#ffffff" font-family="Manrope, Segoe UI, sans-serif" font-size="26" font-weight="700">in the same review.</text>
   </g>
 </svg>

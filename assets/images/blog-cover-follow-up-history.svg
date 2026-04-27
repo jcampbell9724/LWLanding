@@ -6,19 +6,20 @@
   <text x="88" y="206" fill="#0a1420" font-family="Space Grotesk, Segoe UI, sans-serif" font-size="74" font-weight="700">Why follow-up</text>
   <text x="88" y="280" fill="#0a1420" font-family="Space Grotesk, Segoe UI, sans-serif" font-size="74" font-weight="700">history matters</text>
   <text x="88" y="354" fill="#0a1420" font-family="Space Grotesk, Segoe UI, sans-serif" font-size="74" font-weight="700">in dunning</text>
-  <text x="88" y="430" fill="#465364" font-family="Manrope, Segoe UI, sans-serif" font-size="28">Account memory, promise dates, and sent history keep the next collector action grounded.</text>
+  <text x="88" y="426" fill="#465364" font-family="Manrope, Segoe UI, sans-serif" font-size="28">Account memory keeps each</text>
+  <text x="88" y="466" fill="#465364" font-family="Manrope, Segoe UI, sans-serif" font-size="28">next action grounded.</text>
   <g transform="translate(860 120)">
     <rect width="654" height="660" rx="34" fill="#0b1730"/>
     <g transform="translate(54 80)">
       <rect width="546" height="118" rx="24" fill="#ffffff"/>
       <text x="34" y="50" fill="#1748ca" font-family="Space Grotesk, Segoe UI, sans-serif" font-size="20" font-weight="700">APR 14</text>
-      <text x="34" y="88" fill="#0a1420" font-family="Manrope, Segoe UI, sans-serif" font-size="28" font-weight="700">Promise to pay confirmed for Friday close</text>
+      <text x="34" y="88" fill="#0a1420" font-family="Manrope, Segoe UI, sans-serif" font-size="28" font-weight="700">Promise to pay Friday</text>
       <rect y="150" width="546" height="118" rx="24" fill="rgba(255,255,255,0.1)"/>
       <text x="34" y="200" fill="#d7e4ff" font-family="Space Grotesk, Segoe UI, sans-serif" font-size="20" font-weight="700">APR 11</text>
       <text x="34" y="238" fill="#ffffff" font-family="Manrope, Segoe UI, sans-serif" font-size="28" font-weight="700">Draft follow-up reviewed and sent</text>
       <rect y="300" width="546" height="118" rx="24" fill="rgba(255,255,255,0.1)"/>
       <text x="34" y="350" fill="#d7e4ff" font-family="Space Grotesk, Segoe UI, sans-serif" font-size="20" font-weight="700">APR 08</text>
-      <text x="34" y="388" fill="#ffffff" font-family="Manrope, Segoe UI, sans-serif" font-size="28" font-weight="700">Invoice detail reviewed with dispute notes</text>
+      <text x="34" y="388" fill="#ffffff" font-family="Manrope, Segoe UI, sans-serif" font-size="28" font-weight="700">Dispute notes reviewed</text>
     </g>
   </g>
 </svg>

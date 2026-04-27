@@ -40,7 +40,7 @@ A better collections workflow keeps the running story visible:
 - last follow-up
 - key account notes
 - invoice-level context
-- current expectation for payment timing
+- latest payment expectation
 
 That helps the team avoid duplicated effort and inconsistent customer treatment.
 
@@ -69,7 +69,7 @@ When follow-up history is easier to carry forward, three things tend to happen:
 
 ## The real point
 
-Buyers often think they need "better reminders."
+Teams often think they need "better reminders."
 
 What they usually need is a better operating layer around the reminder process itself.
 
@@ -79,11 +79,11 @@ That means the next touch should start with context, not memory.
 
 ### What is follow-up history in dunning?
 
-Follow-up history is the shared record of the last touch, account notes, invoice context, and current payment expectation attached to the receivable workflow.
+Follow-up history is the shared record of the last touch, account notes, invoice context, and latest payment expectation attached to the receivable workflow.
 
 ### Why does follow-up history affect forecast review?
 
-It gives finance teams real evidence behind expected cash timing by showing whether the customer has engaged, what issues are open, and why the current expectation exists.
+It gives finance teams real evidence behind expected cash timing by showing whether the customer has engaged, what issues are open, and why the latest expectation exists.
 
 ### What improves when teams keep shared history?
 

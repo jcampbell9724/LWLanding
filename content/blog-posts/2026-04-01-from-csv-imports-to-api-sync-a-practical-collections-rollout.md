@@ -1,6 +1,7 @@
 ---
 title: How teams move from spreadsheet follow-up to a structured dunning workflow
 slug: how-teams-move-from-spreadsheet-follow-up-to-a-structured-dunning-workflow
+aliases: how-teams-move-from-spreadsheet-follow-up-to-automated-dunning
 date: 2026-04-01
 summary: Teams usually improve dunning by standardizing imports, prioritization, draft follow-up, and review discipline before adding deeper system connections.
 category: Operations
@@ -39,7 +40,7 @@ The practical rollout starts with a few basics:
 1. **One imported portfolio**
    The team needs a shared view of the live book instead of multiple versions of the truth.
 2. **Clear aging and prioritization**
-   Buyers need to know which accounts deserve attention first and why.
+   Teams need to know which accounts deserve attention first and why.
 3. **Repeatable dunning stages**
    The workflow should not depend on every collector inventing the next touch from scratch.
 4. **Forecast context**
@@ -49,7 +50,7 @@ That is the bridge between spreadsheet follow-up and a cleaner operating system.
 
 ## A structured workflow works best when it supports judgment
 
-Buyers are not looking for a collections robot.
+Teams are not looking for a collections robot.
 
 They want software that makes the process easier to run:
 
@@ -62,7 +63,7 @@ The best dunning workflow still leaves room for collector judgment. It just remo
 
 ## What changes after rollout
 
-Once the workflow is tighter, buyers usually feel the improvement in three places:
+Once the workflow is tighter, teams usually feel the improvement in three places:
 
 - less weekly cleanup before the team can start working accounts
 - more consistent customer follow-up across collectors

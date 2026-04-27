@@ -6,7 +6,8 @@
   <text x="88" y="206" fill="#0a1420" font-family="Space Grotesk, Segoe UI, sans-serif" font-size="74" font-weight="700">Structured</text>
   <text x="88" y="280" fill="#0a1420" font-family="Space Grotesk, Segoe UI, sans-serif" font-size="74" font-weight="700">dunning</text>
   <text x="88" y="354" fill="#0a1420" font-family="Space Grotesk, Segoe UI, sans-serif" font-size="74" font-weight="700">workflow</text>
-  <text x="88" y="430" fill="#465364" font-family="Manrope, Segoe UI, sans-serif" font-size="28">Repeatable stages, invoice context, and review-ready drafts instead of ad hoc follow-up.</text>
+  <text x="88" y="426" fill="#465364" font-family="Manrope, Segoe UI, sans-serif" font-size="28">Standard stages and</text>
+  <text x="88" y="466" fill="#465364" font-family="Manrope, Segoe UI, sans-serif" font-size="28">review-ready drafts.</text>
   <g transform="translate(860 122)">
     <rect width="650" height="656" rx="34" fill="#0b1730"/>
     <rect x="44" y="64" width="170" height="530" rx="28" fill="rgba(255,255,255,0.08)"/>

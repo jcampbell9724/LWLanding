@@ -7,7 +7,8 @@
   <text x="88" y="206" fill="#0a1420" font-family="Space Grotesk, Segoe UI, sans-serif" font-size="76" font-weight="700">Planned billing</text>
   <text x="88" y="280" fill="#0a1420" font-family="Space Grotesk, Segoe UI, sans-serif" font-size="76" font-weight="700">belongs in the</text>
   <text x="88" y="354" fill="#0a1420" font-family="Space Grotesk, Segoe UI, sans-serif" font-size="76" font-weight="700">forecast</text>
-  <text x="88" y="430" fill="#465364" font-family="Manrope, Segoe UI, sans-serif" font-size="28">The next billing cycle matters when finance teams explain expected cash timing.</text>
+  <text x="88" y="426" fill="#465364" font-family="Manrope, Segoe UI, sans-serif" font-size="28">Connect near-term billing to</text>
+  <text x="88" y="466" fill="#465364" font-family="Manrope, Segoe UI, sans-serif" font-size="28">expected cash timing.</text>
   <g transform="translate(908 126)">
     <rect width="576" height="648" rx="34" fill="#0b1730"/>
     <rect x="48" y="54" width="480" height="186" rx="28" fill="#ffffff"/>

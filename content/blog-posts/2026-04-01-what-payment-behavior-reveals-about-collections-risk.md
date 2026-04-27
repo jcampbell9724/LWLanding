@@ -21,7 +21,7 @@ That second question matters because overdue balance alone does not tell you whe
 
 ## Aging is a snapshot. Payment behavior is a pattern.
 
-Aging is still important. It shows current pressure.
+Aging is still important. It shows present pressure.
 
 But payment behavior adds the operating context that aging misses:
 
@@ -77,7 +77,7 @@ That is the point: payment behavior should improve prioritization, not just deco
 
 A better receivables workflow keeps three layers close together:
 
-- current exposure
+- open exposure
 - customer and invoice context
 - observed payment behavior
 

@@ -11,7 +11,8 @@
   <text x="96" y="124" fill="#1748ca" font-family="Space Grotesk, Segoe UI, sans-serif" font-size="28" font-weight="700" letter-spacing="4">LEDGEWAVE GUIDE</text>
   <text x="96" y="254" fill="#0a1420" font-family="Space Grotesk, Segoe UI, sans-serif" font-size="90" font-weight="700">Follow-Up</text>
   <text x="96" y="344" fill="#0a1420" font-family="Space Grotesk, Segoe UI, sans-serif" font-size="90" font-weight="700">History Guide</text>
-  <text x="96" y="422" fill="#465364" font-family="Manrope, Segoe UI, sans-serif" font-size="34">Why shared account memory becomes more important as customer complexity, volume, and team size grow.</text>
+  <text x="96" y="416" fill="#465364" font-family="Manrope, Segoe UI, sans-serif" font-size="32">Why shared account memory matters</text>
+  <text x="96" y="460" fill="#465364" font-family="Manrope, Segoe UI, sans-serif" font-size="32">as volume and team size grow.</text>
   <g transform="translate(92 544)">
     <rect width="560" height="502" rx="34" fill="#ffffff" stroke="rgba(23,36,54,0.12)"/>
     <text x="42" y="64" fill="#1748ca" font-family="Space Grotesk, Segoe UI, sans-serif" font-size="22" font-weight="700">ACCOUNT MEMORY</text>
@@ -37,13 +38,13 @@
     <g transform="translate(54 128)">
       <rect width="566" height="134" rx="28" fill="#ffffff"/>
       <text x="34" y="52" fill="#0a1420" font-family="Manrope, Segoe UI, sans-serif" font-size="18" font-weight="700">Apr 14</text>
-      <text x="34" y="94" fill="#0a1420" font-family="Manrope, Segoe UI, sans-serif" font-size="30" font-weight="700">Promise to pay confirmed for Friday close</text>
+      <text x="34" y="94" fill="#0a1420" font-family="Manrope, Segoe UI, sans-serif" font-size="30" font-weight="700">Promise to pay Friday</text>
       <rect y="168" width="566" height="134" rx="28" fill="rgba(255,255,255,0.1)"/>
       <text x="34" y="220" fill="#d7e4ff" font-family="Manrope, Segoe UI, sans-serif" font-size="18" font-weight="700">Apr 11</text>
       <text x="34" y="262" fill="#ffffff" font-family="Manrope, Segoe UI, sans-serif" font-size="30" font-weight="700">Draft follow-up reviewed and sent</text>
       <rect y="336" width="566" height="134" rx="28" fill="rgba(255,255,255,0.1)"/>
       <text x="34" y="388" fill="#d7e4ff" font-family="Manrope, Segoe UI, sans-serif" font-size="18" font-weight="700">Apr 08</text>
-      <text x="34" y="430" fill="#ffffff" font-family="Manrope, Segoe UI, sans-serif" font-size="30" font-weight="700">Invoice detail reviewed with dispute notes</text>
+      <text x="34" y="430" fill="#ffffff" font-family="Manrope, Segoe UI, sans-serif" font-size="30" font-weight="700">Dispute notes reviewed</text>
     </g>
   </g>
 </svg>

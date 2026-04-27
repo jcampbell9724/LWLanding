@@ -31,12 +31,12 @@
   <g transform="translate(570 238)">
     <rect width="220" height="84" rx="24" fill="#ffffff" stroke="rgba(23,36,54,0.12)"/>
     <text x="28" y="34" fill="#1748ca" font-family="Space Grotesk, Segoe UI, sans-serif" font-size="18" font-weight="700">SCOPED API</text>
-    <text x="28" y="62" fill="#0a1420" font-family="Manrope, Segoe UI, sans-serif" font-size="24" font-weight="700">Customer and invoice</text>
+    <text x="28" y="62" fill="#0a1420" font-family="Manrope, Segoe UI, sans-serif" font-size="24" font-weight="700">Customer data</text>
   </g>
   <g transform="translate(818 238)">
     <rect width="220" height="84" rx="24" fill="#ffffff" stroke="rgba(23,36,54,0.12)"/>
     <text x="28" y="34" fill="#1748ca" font-family="Space Grotesk, Segoe UI, sans-serif" font-size="18" font-weight="700">SCOPED API</text>
-    <text x="28" y="62" fill="#0a1420" font-family="Manrope, Segoe UI, sans-serif" font-size="24" font-weight="700">Payment and notes</text>
+    <text x="28" y="62" fill="#0a1420" font-family="Manrope, Segoe UI, sans-serif" font-size="24" font-weight="700">Payment notes</text>
   </g>
 
   <g stroke="#8ba9ea" stroke-width="8" stroke-linecap="round">
@@ -63,8 +63,8 @@
   <g transform="translate(1436 158)">
     <rect width="480" height="194" rx="34" fill="url(#panel)"/>
     <text x="42" y="58" fill="#d7e4ff" font-family="Space Grotesk, Segoe UI, sans-serif" font-size="22" font-weight="700" letter-spacing="3">LEDGEWAVE</text>
-    <text x="42" y="104" fill="#ffffff" font-family="Space Grotesk, Segoe UI, sans-serif" font-size="42" font-weight="700">Receivables command layer</text>
-    <text x="42" y="142" fill="rgba(233,241,255,0.82)" font-family="Manrope, Segoe UI, sans-serif" font-size="22">Prioritization, invoice context, draft follow-up, reporting, and forecast review.</text>
+    <text x="42" y="100" fill="#ffffff" font-family="Space Grotesk, Segoe UI, sans-serif" font-size="38" font-weight="700">Receivables command</text>
+    <text x="42" y="140" fill="rgba(233,241,255,0.82)" font-family="Manrope, Segoe UI, sans-serif" font-size="22">Priority, context, drafts, reports, forecast.</text>
     <rect x="42" y="162" width="122" height="10" rx="5" fill="#8fe1c4"/>
     <rect x="180" y="162" width="122" height="10" rx="5" fill="#9fc2ff"/>
     <rect x="318" y="162" width="122" height="10" rx="5" fill="#ffffff" opacity="0.58"/>

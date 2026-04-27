@@ -27,11 +27,11 @@ You can still search the codebase for a `data-placeholder-id` when you want to r
 
 | Asset ID | Save gathered file as | Put it here | Required size | Main placeholder IDs | Used on pages | What to capture |
 |---|---|---|---|---|---|---|
-| A01 | `product-command-center.png` | `assets/images/product-command-center.png` | `1600 x 1000 PNG` | `home-hero-command-center`, `platform-hero-command-center`, `why-hero-command-center` | Homepage, Platform, Why Ledgewave | One polished all-in-one dashboard showing portfolio health, queue coverage, and cash visibility in the same frame |
-| A02 | `product-collector-queue.png` | `assets/images/product-collector-queue.png` | `1600 x 900 PNG` | `home-why-teams-buy-queue`, `platform-portfolio-queue` | Homepage, Platform | Prioritized work queue with aging pressure, owner, status, and next action |
-| A03 | `product-account-detail-timeline.png` | `assets/images/product-account-detail-timeline.png` | `1600 x 1000 PNG` | `home-why-teams-buy-history`, `platform-team-consistency-history`, `demo-hero-account-history` | Homepage, Platform, Demo | Invoice detail with notes, promise dates, sent outreach, follow-up history, and next-step context. Keep the key detail centered so the wide placements can crop cleanly. |
-| A04 | `product-dunning-workflow.png` | `assets/images/product-dunning-workflow.png` | `1600 x 900 PNG` | `platform-outreach-dunning` | Platform | Draft follow-up or stage-based workflow with communication review visible |
-| A05 | `product-forecast-intelligence.png` | `assets/images/product-forecast-intelligence.png` | `1600 x 900 PNG` | `home-why-teams-buy-forecast`, `platform-forecast` | Homepage, Platform | Forecast timing, confidence, buckets, and planned billing impact |
+| A01 | `product-command-center-framed.png` | `assets/images/product-command-center-framed.png` | `1600 x 1000 PNG` | `home-hero-command-center`, `platform-hero-command-center`, `why-hero-command-center` | Homepage, Platform, Why Ledgewave | One polished all-in-one dashboard showing portfolio health, queue coverage, and cash visibility in the same frame |
+| A02 | `product-collector-queue-framed.png` | `assets/images/product-collector-queue-framed.png` | `1600 x 900 PNG` | `home-why-teams-buy-queue`, `platform-portfolio-queue` | Homepage, Platform | Prioritized work queue with aging pressure, owner, status, and next action |
+| A03 | `product-account-detail-timeline-framed.png` | `assets/images/product-account-detail-timeline-framed.png` | `1600 x 1000 PNG` | `home-why-teams-buy-history`, `platform-team-consistency-history`, `demo-hero-account-history` | Homepage, Platform, Demo | Invoice detail with notes, promise dates, sent outreach, follow-up history, and next-step context. Keep the key detail centered so the wide placements can crop cleanly. |
+| A04 | `product-dunning-workflow-framed.png` | `assets/images/product-dunning-workflow-framed.png` | `1600 x 900 PNG` | `platform-outreach-dunning` | Platform | Draft follow-up or stage-based workflow with communication review visible |
+| A05 | `product-forecast-intelligence-framed.png` | `assets/images/product-forecast-intelligence-framed.png` | `1600 x 900 PNG` | `home-why-teams-buy-forecast`, `platform-forecast` | Homepage, Platform | Forecast timing, confidence, buckets, and planned billing impact |
 | A06 | `product-import-validation.svg` | `assets/images/product-import-validation.svg` | `1600 x 900 SVG` | `platform-import-validation` | Platform | File validation, mapping, flagged rows, dry-run review, or readiness exceptions. Use this as rollout proof, not as the main hero visual. |
 
 ## Logos And Brand Support
@@ -63,11 +63,11 @@ You can still search the codebase for a `data-placeholder-id` when you want to r
 
 If you are gathering assets in priority order, collect them like this:
 
-1. `assets/images/product-command-center.png`
-2. `assets/images/product-collector-queue.png`
-3. `assets/images/product-account-detail-timeline.png`
-4. `assets/images/product-forecast-intelligence.png`
-5. `assets/images/product-dunning-workflow.png`
+1. `assets/images/product-command-center-framed.png`
+2. `assets/images/product-collector-queue-framed.png`
+3. `assets/images/product-account-detail-timeline-framed.png`
+4. `assets/images/product-forecast-intelligence-framed.png`
+5. `assets/images/product-dunning-workflow-framed.png`
 6. `assets/images/product-import-validation.svg`
 7. `assets/images/logos-integrations.svg`
 8. The five `assets/images/blog-cover-*.svg` files

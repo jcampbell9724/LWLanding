@@ -6,12 +6,14 @@ from html import escape
 from pathlib import Path
 import json
 import re
+import struct
 from typing import Iterable
 
 
 ROOT = Path(__file__).resolve().parent.parent
 POSTS_DIR = ROOT / "content" / "blog-posts"
 OUTPUT_DIR = ROOT / "blog"
+SITEMAP_PATH = ROOT / "sitemap.xml"
 
 
 SITE_NAME = "Ledgewave"
@@ -45,6 +47,7 @@ class Post:
     source_path: Path
     html_content: str
     faq_items: list[tuple[str, str]]
+    aliases: list[str]
 
 
 def slugify(value: str) -> str:
@@ -52,6 +55,29 @@ def slugify(value: str) -> str:
     lowered = re.sub(r"[^a-z0-9]+", "-", lowered)
     lowered = re.sub(r"-{2,}", "-", lowered)
     return lowered.strip("-") or "post"
+
+
+def normalize_alias_slug(value: str) -> str:
+    cleaned = value.strip().replace("\\", "/")
+    if not cleaned:
+        return ""
+
+    cleaned = re.sub(r"^https?://(?:www\.)?ledgewave\.com/", "", cleaned)
+    cleaned = re.sub(r"^/?blog/", "", cleaned)
+    cleaned = re.sub(r"\.html?$", "", cleaned)
+    if not cleaned:
+        return ""
+
+    return slugify(cleaned)
+
+
+def parse_aliases(value: str) -> list[str]:
+    aliases: list[str] = []
+    for raw_alias in re.split(r"[,;]", value):
+        alias = normalize_alias_slug(raw_alias)
+        if alias and alias not in aliases:
+            aliases.append(alias)
+    return aliases
 
 
 def split_frontmatter(raw_text: str) -> tuple[dict[str, str], str]:
@@ -83,7 +109,7 @@ def process_inline(text: str) -> str:
     escaped = re.sub(
         r"\[([^\]]+)\]\(([^)]+)\)",
         lambda match: (
-            f'<a href="{escape(match.group(2), quote=True)}" target="_blank" rel="noreferrer">'
+            f'<a href="{escape(match.group(2), quote=True)}" target="_blank" rel="noopener noreferrer">'
             f"{match.group(1)}</a>"
         ),
         escaped,
@@ -337,6 +363,7 @@ def load_posts() -> list[Post]:
         cover_asset = metadata.get("cover_asset", "")
         cover_alt = metadata.get("cover_alt", "")
         cover_note = metadata.get("cover_note", "")
+        aliases = parse_aliases(metadata.get("aliases", ""))
         faq_items = extract_faq_items(body)
         html_content = strip_leading_h1(markdown_to_html(body.strip()))
         posts.append(
@@ -357,44 +384,70 @@ def load_posts() -> list[Post]:
                 source_path=path,
                 html_content=html_content,
                 faq_items=faq_items,
+                aliases=aliases,
             )
         )
     return sorted(posts, key=lambda post: (post.date_iso, post.slug), reverse=True)
 
 
-def render_image_placeholder(
+def image_asset_dimensions(asset_path: str, variant: str) -> tuple[int, int]:
+    asset_file = ROOT / "assets" / "images" / asset_path
+    if asset_file.exists() and asset_file.suffix.lower() == ".png":
+        with asset_file.open("rb") as image_file:
+            header = image_file.read(24)
+        if header.startswith(b"\x89PNG\r\n\x1a\n") and len(header) >= 24:
+            return struct.unpack(">II", header[16:24])
+
+    if asset_file.exists() and asset_file.suffix.lower() == ".svg":
+        svg_head = asset_file.read_text(errors="ignore")[:1000]
+        svg_match = re.search(r"<svg\b([^>]*)>", svg_head, flags=re.I | re.S)
+        if svg_match:
+            width_match = re.search(r'\bwidth="(\d+)"', svg_match.group(1))
+            height_match = re.search(r'\bheight="(\d+)"', svg_match.group(1))
+            if width_match and height_match:
+                return int(width_match.group(1)), int(height_match.group(1))
+
+            viewbox_match = re.search(r'\bviewBox="[^"]*?\s+([\d.]+)\s+([\d.]+)"', svg_match.group(1))
+            if viewbox_match:
+                return int(float(viewbox_match.group(1))), int(float(viewbox_match.group(2)))
+
+    if variant == "logo":
+        return 2000, 400
+    if variant == "square":
+        return 1600, 1200
+    if variant == "hero":
+        return 1600, 1000
+    return 1600, 900
+
+
+def render_image_asset(
     *,
-    placeholder_id: str,
     asset_path: str,
     title: str,
-    note: str,
     alt_text: str | None = None,
     variant: str = "card",
 ) -> str:
     safe_variant = escape(variant, quote=True)
-    safe_id = escape(placeholder_id, quote=True)
     safe_title_attr = escape(title, quote=True)
-    safe_asset_path_attr = escape(f"assets/images/{asset_path}", quote=True)
-    attribute_parts = [
-        f'class="image-placeholder image-placeholder--{safe_variant}"',
-        f'data-placeholder-id="{safe_id}"',
-        f'data-asset-path="{safe_asset_path_attr}"',
-        f'data-image-title="{safe_title_attr}"',
-    ]
+    safe_src = escape(f"../assets/images/{asset_path}", quote=True)
+    width, height = image_asset_dimensions(asset_path, variant)
+    is_hero = variant == "hero"
+    loading = "eager" if is_hero else "lazy"
+    fetch_priority = ' fetchpriority="high"' if is_hero else ""
 
     if alt_text is None:
-        frame_accessibility = f' role="img" aria-label="{safe_title_attr}"'
+        safe_alt_attr = safe_title_attr
     elif alt_text.strip():
         safe_alt_attr = escape(alt_text, quote=True)
-        attribute_parts.append(f'data-image-alt="{safe_alt_attr}"')
-        frame_accessibility = f' role="img" aria-label="{safe_alt_attr}"'
     else:
-        attribute_parts.append('data-image-alt=""')
-        frame_accessibility = ' aria-hidden="true"'
+        safe_alt_attr = ""
 
     return (
-        f"<figure {' '.join(attribute_parts)}>\n"
-        f'  <div class="image-placeholder-frame"{frame_accessibility}></div>\n'
+        f'<figure class="image-asset image-asset--{safe_variant} is-loaded">\n'
+        f'  <div class="image-asset-frame">\n'
+        f'    <img class="image-asset-media" src="{safe_src}" alt="{safe_alt_attr}" '
+        f'width="{width}" height="{height}" loading="{loading}" decoding="async"{fetch_priority}>\n'
+        f"  </div>\n"
         f"</figure>"
     )
 
@@ -405,11 +458,9 @@ def render_post_cards(posts: Iterable[Post], base_href: str = "") -> str:
         href = f"{base_href}{post.slug}.html"
         featured_badge = '<span class="blog-badge">Featured</span>' if post.featured else ""
         cover_markup = (
-            render_image_placeholder(
-                placeholder_id=f"blog-card-{post.slug}",
+            render_image_asset(
                 asset_path=post.cover_asset,
                 title="Cover image",
-                note="",
                 alt_text="",
                 variant="card",
             )
@@ -485,7 +536,7 @@ def render_layout(
   <div class="site-shell">
     <div data-site-header></div>
 
-    <main class="page-main">
+    <main class="page-main" id="main-content">
 {body_page}
     </main>
 
@@ -520,11 +571,9 @@ def render_blog_index(posts: list[Post]) -> str:
           <span class="section-pill">Featured Post</span>
           <h2>{escape(featured_post.title)}</h2>
           <p>{escape(featured_post.summary)}</p>
-          {render_image_placeholder(
-              placeholder_id="blog-featured-cover",
+          {render_image_asset(
               asset_path=featured_post.cover_asset,
               title="Featured article cover",
-              note=featured_post.cover_note,
               alt_text=featured_post.cover_alt or featured_post.cover_note or featured_post.title,
               variant="wide",
           ) if featured_post.cover_asset else ""}
@@ -563,9 +612,9 @@ def render_blog_index(posts: list[Post]) -> str:
         </div>
 
         <aside class="page-hero-card">
-          <span class="section-pill">No Posts Yet</span>
-          <h2>Your blog is ready.</h2>
-          <p>Create a source post in the folder and regenerate the site to populate this page.</p>
+          <span class="section-pill">Blog</span>
+          <h2>Articles are being prepared.</h2>
+          <p>New receivables workflow insights will appear here as they are published.</p>
         </aside>
       </section>
         """
@@ -618,11 +667,9 @@ def render_post_page(post: Post, posts: list[Post]) -> str:
           <span class="section-pill">Why It Matters</span>
           <h2>Collections performance is more than an aging report.</h2>
           <p>Each article ties receivables data, workflow discipline, and forecast visibility back to the day-to-day decisions finance teams actually make.</p>
-          {render_image_placeholder(
-              placeholder_id=f"blog-post-hero-{post.slug}",
+          {render_image_asset(
               asset_path=post.cover_asset,
               title="Article cover",
-              note=post.cover_note,
               alt_text=post.cover_alt or post.cover_note or post.title,
               variant="wide",
           ) if post.cover_asset else ""}
@@ -715,16 +762,93 @@ def render_post_page(post: Post, posts: list[Post]) -> str:
     )
 
 
+def render_redirect_page(target_post: Post) -> str:
+    target_href = f"{target_post.slug}.html"
+    target_url = f"https://ledgewave.com/blog/{target_href}"
+    body = f"""
+      <section class="page-hero reveal is-visible">
+        <div class="page-hero-copy">
+          <span class="section-pill">Moved</span>
+          <h1>This article has moved.</h1>
+          <p>The dunning workflow article now lives at its updated canonical URL.</p>
+          <div class="page-hero-actions">
+            <a class="btn btn-primary" href="{escape(target_href, quote=True)}">Read the article</a>
+            <a class="btn btn-secondary" href="index.html">Back to Blog</a>
+          </div>
+        </div>
+
+        <aside class="page-hero-card">
+          <span class="section-pill">Updated Article</span>
+          <h2>{escape(target_post.title)}</h2>
+          <p>{escape(target_post.summary)}</p>
+        </aside>
+      </section>
+    """
+    head_extra = "\n  ".join(
+        [
+            '<meta name="robots" content="noindex, follow">',
+            f'<meta http-equiv="refresh" content="0; url={escape(target_href, quote=True)}">',
+        ]
+    )
+
+    return render_layout(
+        title=f"Moved: {target_post.title}",
+        meta_description=f"This page has moved to {target_post.title}.",
+        relative_prefix="../",
+        canonical_url=target_url,
+        body_page=body,
+        head_extra=head_extra,
+    )
+
+
+def render_sitemap(posts: list[Post]) -> str:
+    urls = ["https://ledgewave.com/"]
+    urls.extend(
+        f"https://ledgewave.com/{path.name}"
+        for path in sorted(ROOT.glob("*.html"))
+        if path.name != "index.html"
+    )
+    urls.append("https://ledgewave.com/blog/")
+    urls.extend(f"https://ledgewave.com/blog/{post.slug}.html" for post in posts)
+
+    entries = "\n".join(
+        [
+            "  <url>\n"
+            f"    <loc>{escape(url)}</loc>\n"
+            "  </url>"
+            for url in urls
+        ]
+    )
+    return (
+        '<?xml version="1.0" encoding="UTF-8"?>\n'
+        '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'
+        f"{entries}\n"
+        "</urlset>\n"
+    )
+
+
 def main() -> None:
     OUTPUT_DIR.mkdir(exist_ok=True)
     for existing_file in OUTPUT_DIR.glob("*.html"):
         existing_file.unlink()
     posts = load_posts()
+    post_slugs = {post.slug for post in posts}
+    redirect_count = 0
     (OUTPUT_DIR / "index.html").write_text(render_blog_index(posts), encoding="utf-8")
     for post in posts:
         output_path = OUTPUT_DIR / f"{post.slug}.html"
         output_path.write_text(render_post_page(post, posts), encoding="utf-8")
-    print(f"Generated blog with {len(posts)} post(s) in {OUTPUT_DIR}")
+    for post in posts:
+        for alias in post.aliases:
+            if alias in post_slugs:
+                continue
+            redirect_path = OUTPUT_DIR / f"{alias}.html"
+            redirect_path.write_text(render_redirect_page(post), encoding="utf-8")
+            redirect_count += 1
+    SITEMAP_PATH.write_text(render_sitemap(posts), encoding="utf-8")
+    print(
+        f"Generated blog with {len(posts)} post(s), {redirect_count} redirect(s), and refreshed sitemap"
+    )
 
 
 if __name__ == "__main__":
