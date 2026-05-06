@@ -1,78 +1,189 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
   <url>
     <loc>https://ledgewave.com/</loc>
+    <lastmod>2026-05-05</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+    <image:image>
+      <image:loc>https://ledgewave.com/assets/images/ledgewave-social-card.svg</image:loc>
+      <image:title>Ledgewave receivables workflow software</image:title>
+    </image:image>
   </url>
   <url>
     <loc>https://ledgewave.com/about.html</loc>
+    <lastmod>2026-05-05</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
   </url>
   <url>
     <loc>https://ledgewave.com/contact.html</loc>
+    <lastmod>2026-05-05</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
   </url>
   <url>
     <loc>https://ledgewave.com/customers.html</loc>
+    <lastmod>2026-05-05</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
   </url>
   <url>
     <loc>https://ledgewave.com/demo.html</loc>
+    <lastmod>2026-05-05</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
   </url>
   <url>
     <loc>https://ledgewave.com/integrations.html</loc>
+    <lastmod>2026-05-05</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
   </url>
   <url>
     <loc>https://ledgewave.com/operations.html</loc>
+    <lastmod>2026-05-05</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
   </url>
   <url>
     <loc>https://ledgewave.com/platform.html</loc>
+    <lastmod>2026-05-05</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
   </url>
   <url>
     <loc>https://ledgewave.com/pricing.html</loc>
+    <lastmod>2026-05-05</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
   </url>
   <url>
     <loc>https://ledgewave.com/privacy.html</loc>
+    <lastmod>2026-05-05</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
   </url>
   <url>
     <loc>https://ledgewave.com/resources.html</loc>
+    <lastmod>2026-05-05</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
   </url>
   <url>
     <loc>https://ledgewave.com/security.html</loc>
+    <lastmod>2026-05-05</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
   </url>
   <url>
     <loc>https://ledgewave.com/solutions.html</loc>
+    <lastmod>2026-05-05</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
   </url>
   <url>
     <loc>https://ledgewave.com/terms-of-service.html</loc>
+    <lastmod>2026-05-05</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
   </url>
   <url>
     <loc>https://ledgewave.com/terms.html</loc>
+    <lastmod>2026-05-05</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
   </url>
   <url>
     <loc>https://ledgewave.com/why-ledgewave.html</loc>
+    <lastmod>2026-05-05</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
   </url>
   <url>
     <loc>https://ledgewave.com/blog/</loc>
+    <lastmod>2026-05-05</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
   </url>
   <url>
     <loc>https://ledgewave.com/blog/why-promise-dates-belong-inside-the-receivables-workflow.html</loc>
+    <lastmod>2026-05-05</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://ledgewave.com/assets/images/blog-cover-promise-dates.svg</image:loc>
+      <image:title>Why promise dates belong inside the receivables workflow</image:title>
+    </image:image>
   </url>
   <url>
     <loc>https://ledgewave.com/blog/how-to-plan-receivables-integrations-without-slowing-rollout.html</loc>
+    <lastmod>2026-05-05</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://ledgewave.com/assets/images/blog-cover-integration-rollout.svg</image:loc>
+      <image:title>How to plan receivables integrations without slowing the rollout</image:title>
+    </image:image>
   </url>
   <url>
     <loc>https://ledgewave.com/blog/how-controllers-can-run-a-better-weekly-cash-review.html</loc>
+    <lastmod>2026-05-05</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://ledgewave.com/assets/images/blog-cover-weekly-cash-review.svg</image:loc>
+      <image:title>How controllers can run a better weekly cash review</image:title>
+    </image:image>
   </url>
   <url>
     <loc>https://ledgewave.com/blog/why-follow-up-history-matters-in-dunning.html</loc>
+    <lastmod>2026-05-05</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://ledgewave.com/assets/images/blog-cover-follow-up-history.svg</image:loc>
+      <image:title>Why follow-up history matters in dunning</image:title>
+    </image:image>
   </url>
   <url>
     <loc>https://ledgewave.com/blog/how-teams-move-from-spreadsheet-follow-up-to-a-structured-dunning-workflow.html</loc>
+    <lastmod>2026-05-05</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://ledgewave.com/assets/images/blog-cover-dunning-workflow.svg</image:loc>
+      <image:title>How teams move from spreadsheet follow-up to a structured dunning workflow</image:title>
+    </image:image>
   </url>
   <url>
     <loc>https://ledgewave.com/blog/2026-04-01-what-payment-behavior-reveals-about-collections-risk.html</loc>
+    <lastmod>2026-05-05</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://ledgewave.com/assets/images/blog-cover-payment-behavior.svg</image:loc>
+      <image:title>What payment behavior reveals about collections risk</image:title>
+    </image:image>
   </url>
   <url>
     <loc>https://ledgewave.com/blog/2026-03-30-why-planned-billing-belongs-in-the-collections-forecast.html</loc>
+    <lastmod>2026-05-05</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://ledgewave.com/assets/images/blog-cover-planned-billing.svg</image:loc>
+      <image:title>Why planned billing belongs in the collections forecast</image:title>
+    </image:image>
   </url>
   <url>
     <loc>https://ledgewave.com/blog/2026-03-30-5-signs-your-collections-workflow-has-outgrown-spreadsheets.html</loc>
+    <lastmod>2026-05-05</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://ledgewave.com/assets/images/blog-cover-spreadsheet-exit.svg</image:loc>
+      <image:title>5 signs your collections workflow has outgrown spreadsheets</image:title>
+    </image:image>
   </url>
 </urlset>

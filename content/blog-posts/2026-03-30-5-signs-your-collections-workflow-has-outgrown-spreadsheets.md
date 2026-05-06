@@ -1,7 +1,8 @@
 ---
 title: 5 signs your collections workflow has outgrown spreadsheets
+seo_title: Collections workflow outgrown spreadsheets
 date: 2026-03-30
-summary: If your collections team spends each cycle cleaning exports, rebuilding customer context, and explaining forecast changes by hand, the spreadsheet workflow has stopped scaling.
+summary: If your collections team spends each cycle rebuilding customer context and explaining forecast changes by hand, the spreadsheet workflow has stopped scaling.
 category: Operations
 author: Ledgewave Team
 read_time: 6 min read

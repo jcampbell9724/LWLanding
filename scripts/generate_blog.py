@@ -32,6 +32,7 @@ WEBSITE_ID = "https://ledgewave.com/#website"
 @dataclass
 class Post:
     title: str
+    seo_title: str
     slug: str
     summary: str
     date_iso: str
@@ -317,6 +318,21 @@ def website_schema() -> dict[str, object]:
     }
 
 
+def breadcrumb_schema(items: list[tuple[str, str]]) -> dict[str, object]:
+    return {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+            {
+                "@type": "ListItem",
+                "position": index,
+                "name": name,
+                "item": url,
+            }
+            for index, (name, url) in enumerate(items, start=1)
+        ],
+    }
+
+
 def page_graph(page: dict[str, object], *entities: dict[str, object]) -> dict[str, object]:
     return {
         "@context": "https://schema.org",
@@ -351,6 +367,7 @@ def load_posts() -> list[Post]:
         raw_text = path.read_text(encoding="utf-8")
         metadata, body = split_frontmatter(raw_text)
         title = metadata.get("title") or path.stem.replace("-", " ").title()
+        seo_title = metadata.get("seo_title") or title
         slug = metadata.get("slug") or slugify(path.stem)
         summary = metadata.get("summary") or infer_summary(body)
         modified_dt = datetime.fromtimestamp(path.stat().st_mtime)
@@ -369,6 +386,7 @@ def load_posts() -> list[Post]:
         posts.append(
             Post(
                 title=title,
+                seo_title=seo_title,
                 slug=slug,
                 summary=summary,
                 date_iso=date_iso,
@@ -498,6 +516,11 @@ def render_layout(
     canonical_url: str,
     og_type: str = "website",
     current_page: str = "blog",
+    robots_content: str = "index, follow, max-image-preview:large",
+    social_image_url: str = SOCIAL_IMAGE_URL,
+    social_image_alt: str = SOCIAL_IMAGE_ALT,
+    social_image_width: int = 1200,
+    social_image_height: int = 630,
     head_extra: str = "",
 ) -> str:
     full_title = f"{title} | {SITE_NAME}"
@@ -506,6 +529,7 @@ def render_layout(
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="{escape(robots_content, quote=True)}">
   <meta name="description" content="{escape(meta_description, quote=True)}">
   <title>{escape(full_title)}</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -518,18 +542,20 @@ def render_layout(
   <link rel="stylesheet" href="{relative_prefix}assets/css/styles.css">
   <link rel="canonical" href="{escape(canonical_url, quote=True)}">
   <meta property="og:type" content="{escape(og_type, quote=True)}">
+  <meta property="og:locale" content="en_US">
   <meta property="og:site_name" content="{SITE_NAME}">
   <meta property="og:title" content="{escape(full_title, quote=True)}">
   <meta property="og:description" content="{escape(meta_description, quote=True)}">
   <meta property="og:url" content="{escape(canonical_url, quote=True)}">
-  <meta property="og:image" content="{SOCIAL_IMAGE_URL}">
-  <meta property="og:image:alt" content="{SOCIAL_IMAGE_ALT}">
-  <meta property="og:image:width" content="1200">
-  <meta property="og:image:height" content="630">
+  <meta property="og:image" content="{escape(social_image_url, quote=True)}">
+  <meta property="og:image:alt" content="{escape(social_image_alt, quote=True)}">
+  <meta property="og:image:width" content="{social_image_width}">
+  <meta property="og:image:height" content="{social_image_height}">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="{escape(full_title, quote=True)}">
   <meta name="twitter:description" content="{escape(meta_description, quote=True)}">
-  <meta name="twitter:image" content="{SOCIAL_IMAGE_URL}">
+  <meta name="twitter:image" content="{escape(social_image_url, quote=True)}">
+  <meta name="twitter:image:alt" content="{escape(social_image_alt, quote=True)}">
   {head_extra}
 </head>
 <body data-page="{escape(current_page)}">
@@ -629,6 +655,12 @@ def render_blog_index(posts: list[Post]) -> str:
         "about": {"@id": ORGANIZATION_ID},
         "inLanguage": "en-US",
     }
+    breadcrumbs = breadcrumb_schema(
+        [
+            ("Home", "https://ledgewave.com/"),
+            ("Blog", "https://ledgewave.com/blog/"),
+        ]
+    )
 
     return render_layout(
         title=BLOG_TITLE,
@@ -636,7 +668,7 @@ def render_blog_index(posts: list[Post]) -> str:
         relative_prefix="../",
         canonical_url="https://ledgewave.com/blog/",
         body_page=featured_markup,
-        head_extra=render_json_ld(page_graph(blog_page), "structured-data"),
+        head_extra=render_json_ld(page_graph(blog_page, breadcrumbs), "structured-data"),
     )
 
 
@@ -645,6 +677,8 @@ def render_post_page(post: Post, posts: list[Post]) -> str:
     related_markup = render_post_cards(related_posts, base_href="") if related_posts else ""
     canonical_url = f"https://ledgewave.com/blog/{post.slug}.html"
     cover_url = cover_image_url(post.cover_asset)
+    cover_alt = post.cover_alt or post.cover_note or post.title
+    cover_width, cover_height = image_asset_dimensions(post.cover_asset, "wide")
 
     body = f"""
       <section class="page-hero reveal is-visible">
@@ -725,13 +759,21 @@ def render_post_page(post: Post, posts: list[Post]) -> str:
         "image": cover_url,
         "articleSection": post.category,
         "url": canonical_url,
+        "wordCount": len(re.findall(r"\b\w+\b", re.sub(r"<[^>]+>", " ", post.html_content))),
     }
+    breadcrumbs = breadcrumb_schema(
+        [
+            ("Home", "https://ledgewave.com/"),
+            ("Blog", "https://ledgewave.com/blog/"),
+            (post.title, canonical_url),
+        ]
+    )
     head_parts = [
         f'<meta name="author" content="{escape(post.author, quote=True)}">',
         f'<meta property="article:published_time" content="{escape(post.date_iso, quote=True)}">',
         f'<meta property="article:modified_time" content="{escape(post.modified_iso, quote=True)}">',
         f'<meta property="article:section" content="{escape(post.category, quote=True)}">',
-        render_json_ld(page_graph(page, article), "structured-data"),
+        render_json_ld(page_graph(page, article, breadcrumbs), "structured-data"),
     ]
     if post.faq_items:
         faq_payload = {
@@ -752,12 +794,16 @@ def render_post_page(post: Post, posts: list[Post]) -> str:
         head_parts.append(render_json_ld(faq_payload, "faq-structured-data"))
 
     return render_layout(
-        title=post.title,
+        title=post.seo_title,
         meta_description=post.summary,
         relative_prefix="../",
         canonical_url=canonical_url,
         og_type="article",
         body_page=body,
+        social_image_url=cover_url,
+        social_image_alt=cover_alt,
+        social_image_width=cover_width,
+        social_image_height=cover_height,
         head_extra="\n  ".join(head_parts),
     )
 
@@ -786,7 +832,6 @@ def render_redirect_page(target_post: Post) -> str:
     """
     head_extra = "\n  ".join(
         [
-            '<meta name="robots" content="noindex, follow">',
             f'<meta http-equiv="refresh" content="0; url={escape(target_href, quote=True)}">',
         ]
     )
@@ -797,32 +842,90 @@ def render_redirect_page(target_post: Post) -> str:
         relative_prefix="../",
         canonical_url=target_url,
         body_page=body,
+        robots_content="noindex, follow",
         head_extra=head_extra,
     )
 
 
 def render_sitemap(posts: list[Post]) -> str:
-    urls = ["https://ledgewave.com/"]
-    urls.extend(
-        f"https://ledgewave.com/{path.name}"
-        for path in sorted(ROOT.glob("*.html"))
-        if path.name != "index.html"
-    )
-    urls.append("https://ledgewave.com/blog/")
-    urls.extend(f"https://ledgewave.com/blog/{post.slug}.html" for post in posts)
+    def file_lastmod(path: Path) -> str:
+        return datetime.fromtimestamp(path.stat().st_mtime).strftime("%Y-%m-%d")
 
-    entries = "\n".join(
-        [
+    def url_entry(
+        loc: str,
+        lastmod: str,
+        *,
+        changefreq: str = "monthly",
+        priority: str = "0.6",
+        image_url: str = "",
+        image_title: str = "",
+    ) -> str:
+        image_markup = ""
+        if image_url:
+            image_markup = (
+                "\n"
+                "    <image:image>\n"
+                f"      <image:loc>{escape(image_url)}</image:loc>\n"
+                f"      <image:title>{escape(image_title or SITE_NAME)}</image:title>\n"
+                "    </image:image>"
+            )
+        return (
             "  <url>\n"
-            f"    <loc>{escape(url)}</loc>\n"
+            f"    <loc>{escape(loc)}</loc>\n"
+            f"    <lastmod>{escape(lastmod)}</lastmod>\n"
+            f"    <changefreq>{escape(changefreq)}</changefreq>\n"
+            f"    <priority>{escape(priority)}</priority>"
+            f"{image_markup}\n"
             "  </url>"
-            for url in urls
-        ]
+        )
+
+    entries: list[str] = []
+    entries.append(
+        url_entry(
+            "https://ledgewave.com/",
+            file_lastmod(ROOT / "index.html"),
+            changefreq="weekly",
+            priority="1.0",
+            image_url=SOCIAL_IMAGE_URL,
+            image_title="Ledgewave receivables workflow software",
+        )
     )
+    for path in sorted(ROOT.glob("*.html")):
+        if path.name == "index.html":
+            continue
+        entries.append(
+            url_entry(
+                f"https://ledgewave.com/{path.name}",
+                file_lastmod(path),
+                changefreq="monthly",
+                priority="0.7",
+            )
+        )
+    entries.append(
+        url_entry(
+            "https://ledgewave.com/blog/",
+            file_lastmod(OUTPUT_DIR / "index.html"),
+            changefreq="weekly",
+            priority="0.8",
+        )
+    )
+    for post in posts:
+        entries.append(
+            url_entry(
+                f"https://ledgewave.com/blog/{post.slug}.html",
+                post.modified_iso,
+                changefreq="monthly",
+                priority="0.7",
+                image_url=cover_image_url(post.cover_asset),
+                image_title=post.title,
+            )
+        )
+
     return (
         '<?xml version="1.0" encoding="UTF-8"?>\n'
-        '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'
-        f"{entries}\n"
+        '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" '
+        'xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">\n'
+        f"{chr(10).join(entries)}\n"
         "</urlset>\n"
     )
 

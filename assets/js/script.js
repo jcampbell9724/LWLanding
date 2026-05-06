@@ -257,6 +257,81 @@ const renderSharedChrome = () => {
   }
 };
 
+const hasStructuredDataType = (typeName) =>
+  Array.from(document.querySelectorAll('script[type="application/ld+json"]')).some((script) =>
+    script.textContent.includes(`"${typeName}"`)
+  );
+
+const getCanonicalUrl = () =>
+  document.querySelector('link[rel="canonical"]')?.href || window.location.href.split("#")[0];
+
+const getPageBreadcrumbLabel = () => {
+  const pageTitle = cleanImageAssetCopy(document.querySelector("h1")?.textContent || "");
+
+  if (pageTitle) {
+    return pageTitle.replace(/\.$/, "");
+  }
+
+  return cleanImageAssetCopy(document.title.replace(/\s*\|\s*Ledgewave\s*$/, "")) || "Page";
+};
+
+const injectBreadcrumbStructuredData = () => {
+  if (hasStructuredDataType("BreadcrumbList")) {
+    return;
+  }
+
+  const canonicalUrl = getCanonicalUrl();
+  const canonicalPath = new URL(canonicalUrl, window.location.origin).pathname;
+
+  if (canonicalPath === "/" || canonicalPath.endsWith("/index.html")) {
+    return;
+  }
+
+  const items = [
+    {
+      "@type": "ListItem",
+      position: 1,
+      name: "Home",
+      item: "https://ledgewave.com/",
+    },
+  ];
+
+  if (canonicalPath.startsWith("/blog/")) {
+    items.push({
+      "@type": "ListItem",
+      position: 2,
+      name: "Blog",
+      item: "https://ledgewave.com/blog/",
+    });
+
+    if (canonicalPath !== "/blog/" && !canonicalPath.endsWith("/blog/index.html")) {
+      items.push({
+        "@type": "ListItem",
+        position: 3,
+        name: getPageBreadcrumbLabel(),
+        item: canonicalUrl,
+      });
+    }
+  } else {
+    items.push({
+      "@type": "ListItem",
+      position: 2,
+      name: getPageBreadcrumbLabel(),
+      item: canonicalUrl,
+    });
+  }
+
+  const script = document.createElement("script");
+  script.id = "breadcrumb-structured-data";
+  script.type = "application/ld+json";
+  script.textContent = JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: items,
+  });
+  document.head.append(script);
+};
+
 const initializeNavigation = () => {
   const header = document.querySelector(".site-header");
   const navToggle = document.querySelector(".nav-toggle");
@@ -931,6 +1006,7 @@ const initializeRevealTransitions = () => {
 
 ensureMainContentTarget();
 renderSharedChrome();
+injectBreadcrumbStructuredData();
 initializeNavigation();
 initializeImageAssets();
 initializeCaptureForms();

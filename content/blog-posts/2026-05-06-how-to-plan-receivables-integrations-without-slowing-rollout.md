@@ -1,8 +1,9 @@
 ---
 title: How to plan receivables integrations without slowing the rollout
+seo_title: Receivables integration rollout planning
 slug: how-to-plan-receivables-integrations-without-slowing-rollout
 date: 2026-05-06
-summary: A practical integration plan starts with the receivables workflow, then maps ERP, accounting, CRM, billing, payment, API, and secure file sources around the first useful launch.
+summary: A practical integration plan starts with the receivables workflow, then maps ERP, accounting, CRM, billing, payment, API, and secure file sources around launch.
 category: Integrations
 author: Ledgewave Team
 read_time: 6 min read

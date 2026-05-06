@@ -1,9 +1,10 @@
 ---
 title: How teams move from spreadsheet follow-up to a structured dunning workflow
+seo_title: Spreadsheet follow-up to dunning workflow
 slug: how-teams-move-from-spreadsheet-follow-up-to-a-structured-dunning-workflow
 aliases: how-teams-move-from-spreadsheet-follow-up-to-automated-dunning
 date: 2026-04-01
-summary: Teams usually improve dunning by standardizing imports, prioritization, draft follow-up, and review discipline before adding deeper system connections.
+summary: Teams improve dunning by standardizing prioritization, draft follow-up, and review discipline before adding deeper system connections.
 category: Operations
 author: Ledgewave Team
 read_time: 6 min read

@@ -1,5 +1,6 @@
 ---
 title: Why promise dates belong inside the receivables workflow
+seo_title: Promise dates in receivables workflow
 slug: why-promise-dates-belong-inside-the-receivables-workflow
 date: 2026-05-06
 summary: Promise dates are most useful when they stay connected to invoice context, follow-up history, collector activity, and forecast review instead of living in side notes.

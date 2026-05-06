@@ -1,25 +1,49 @@
 User-agent: *
+Disallow: /content/
+Disallow: /docs/
+Disallow: /scripts/
 Allow: /
 
 User-agent: GPTBot
+Disallow: /content/
+Disallow: /docs/
+Disallow: /scripts/
 Allow: /
 
 User-agent: PerplexityBot
+Disallow: /content/
+Disallow: /docs/
+Disallow: /scripts/
 Allow: /
 
 User-agent: ClaudeBot
+Disallow: /content/
+Disallow: /docs/
+Disallow: /scripts/
 Allow: /
 
 User-agent: anthropic-ai
+Disallow: /content/
+Disallow: /docs/
+Disallow: /scripts/
 Allow: /
 
 User-agent: Google-Extended
+Disallow: /content/
+Disallow: /docs/
+Disallow: /scripts/
 Allow: /
 
 User-agent: Applebot-Extended
+Disallow: /content/
+Disallow: /docs/
+Disallow: /scripts/
 Allow: /
 
 User-agent: cohere-ai
+Disallow: /content/
+Disallow: /docs/
+Disallow: /scripts/
 Allow: /
 
 Sitemap: https://ledgewave.com/sitemap.xml

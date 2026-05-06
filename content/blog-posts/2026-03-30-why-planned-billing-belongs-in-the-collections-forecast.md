@@ -1,5 +1,6 @@
 ---
 title: Why planned billing belongs in the collections forecast
+seo_title: Planned billing in collections forecasts
 date: 2026-03-30
 summary: Planned billing gives finance teams a more complete collections forecast by showing what is about to enter the receivables workflow, not just what is already open.
 category: Forecasting
