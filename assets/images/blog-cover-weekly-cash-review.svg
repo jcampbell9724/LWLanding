@@ -1,0 +1,51 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900" width="1600" height="900" role="img" aria-labelledby="title desc">
+  <title id="title">Weekly cash review article cover</title>
+  <desc id="desc">An editorial cover showing expected cash, planned billing, payment behavior, promises, and collector activity in one review board.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#0b1b33"/>
+      <stop offset="1" stop-color="#07111f"/>
+    </linearGradient>
+    <linearGradient id="accent" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#8fe1c4"/>
+      <stop offset="1" stop-color="#8fb2ff"/>
+    </linearGradient>
+  </defs>
+  <rect width="1600" height="900" rx="34" fill="url(#bg)"/>
+  <text x="88" y="110" fill="#8fe1c4" font-family="Space Grotesk, Segoe UI, sans-serif" font-size="24" font-weight="700" letter-spacing="4">LEDGEWAVE INSIGHTS</text>
+  <text x="88" y="206" fill="#ffffff" font-family="Space Grotesk, Segoe UI, sans-serif" font-size="76" font-weight="700">Run a better</text>
+  <text x="88" y="280" fill="#ffffff" font-family="Space Grotesk, Segoe UI, sans-serif" font-size="76" font-weight="700">weekly cash</text>
+  <text x="88" y="354" fill="#ffffff" font-family="Space Grotesk, Segoe UI, sans-serif" font-size="76" font-weight="700">review</text>
+  <text x="88" y="432" fill="#d7e4ff" font-family="Manrope, Segoe UI, sans-serif" font-size="28">Connect expected cash to the workflow activity behind it.</text>
+
+  <g transform="translate(830 106)">
+    <rect width="680" height="686" rx="38" fill="#ffffff" opacity="0.08" stroke="#334d73"/>
+    <g transform="translate(56 58)">
+      <rect width="568" height="128" rx="28" fill="#ffffff"/>
+      <text x="32" y="50" fill="#1748ca" font-family="Space Grotesk, Segoe UI, sans-serif" font-size="20" font-weight="700">EXPECTED CASH</text>
+      <text x="32" y="102" fill="#0a1420" font-family="Manrope, Segoe UI, sans-serif" font-size="50" font-weight="800">$2.8M</text>
+      <path d="M346 92c34-46 64-18 96-58 24-30 48-36 82-20" fill="none" stroke="#8fe1c4" stroke-width="10" stroke-linecap="round"/>
+    </g>
+    <g transform="translate(56 224)" font-family="Manrope, Segoe UI, sans-serif">
+      <rect width="260" height="156" rx="28" fill="#e9f1ff"/>
+      <text x="28" y="42" fill="#1748ca" font-family="Space Grotesk, Segoe UI, sans-serif" font-size="18" font-weight="700">PLANNED BILLING</text>
+      <rect x="28" y="68" width="186" height="14" rx="7" fill="#8fb2ff"/>
+      <rect x="28" y="100" width="142" height="14" rx="7" fill="#8fb2ff" opacity="0.6"/>
+      <rect x="28" y="132" width="210" height="14" rx="7" fill="#8fb2ff" opacity="0.35"/>
+    </g>
+    <g transform="translate(364 224)" font-family="Manrope, Segoe UI, sans-serif">
+      <rect width="260" height="156" rx="28" fill="#102d62"/>
+      <text x="28" y="42" fill="#8fe1c4" font-family="Space Grotesk, Segoe UI, sans-serif" font-size="18" font-weight="700">PROMISES</text>
+      <circle cx="66" cy="96" r="34" fill="url(#accent)"/>
+      <text x="120" y="88" fill="#ffffff" font-size="24" font-weight="800">14 due</text>
+      <text x="120" y="120" fill="#d7e4ff" font-size="20">this week</text>
+    </g>
+    <g transform="translate(56 426)" font-family="Manrope, Segoe UI, sans-serif">
+      <rect width="568" height="184" rx="28" fill="#ffffff" opacity="0.1" stroke="#355783"/>
+      <text x="32" y="48" fill="#8fe1c4" font-family="Space Grotesk, Segoe UI, sans-serif" font-size="18" font-weight="700">REVIEW DRIVERS</text>
+      <rect x="32" y="78" width="504" height="14" rx="7" fill="#ffffff" opacity="0.72"/>
+      <rect x="32" y="116" width="406" height="14" rx="7" fill="#ffffff" opacity="0.48"/>
+      <rect x="32" y="154" width="460" height="14" rx="7" fill="#ffffff" opacity="0.28"/>
+    </g>
+  </g>
+</svg>

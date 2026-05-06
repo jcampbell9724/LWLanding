@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900" width="1600" height="900" role="img" aria-labelledby="title desc">
   <title id="title">Import validation and intake review</title>
-  <desc id="desc">A product-style illustration showing source files, field mapping, flagged rows, and validation approval.</desc>
+  <desc id="desc">A product-style illustration showing source data, field mapping, flagged rows, and validation approval.</desc>
   <defs>
     <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
       <stop offset="0%" stop-color="#0a1525"/>
@@ -22,10 +22,10 @@
     <rect width="364" height="448" rx="30" fill="rgba(255,255,255,0.08)" stroke="rgba(233,241,255,0.12)"/>
     <text x="34" y="48" fill="#d7e4ff" font-family="Space Grotesk, Segoe UI, sans-serif" font-size="20" font-weight="700">SOURCE FILES</text>
     <rect x="34" y="82" width="296" height="82" rx="22" fill="rgba(255,255,255,0.12)"/>
-    <text x="58" y="114" fill="#ffffff" font-family="Manrope, Segoe UI, sans-serif" font-size="18" font-weight="700">receivables_export.csv</text>
+    <text x="58" y="114" fill="#ffffff" font-family="Manrope, Segoe UI, sans-serif" font-size="18" font-weight="700">receivables_source</text>
     <text x="58" y="142" fill="rgba(233,241,255,0.72)" font-family="Manrope, Segoe UI, sans-serif" font-size="16">invoice_id   due_date   total_due</text>
     <rect x="34" y="186" width="296" height="82" rx="22" fill="rgba(255,255,255,0.08)"/>
-    <text x="58" y="218" fill="#ffffff" font-family="Manrope, Segoe UI, sans-serif" font-size="18" font-weight="700">planned_billing.csv</text>
+    <text x="58" y="218" fill="#ffffff" font-family="Manrope, Segoe UI, sans-serif" font-size="18" font-weight="700">planned_billing_source</text>
     <text x="58" y="246" fill="rgba(233,241,255,0.72)" font-family="Manrope, Segoe UI, sans-serif" font-size="16">contract   billing_date   amount</text>
     <rect x="34" y="302" width="296" height="18" rx="9" fill="rgba(255,255,255,0.18)"/>
     <rect x="34" y="338" width="258" height="18" rx="9" fill="rgba(255,255,255,0.18)"/>

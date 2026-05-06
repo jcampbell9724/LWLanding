@@ -1,0 +1,43 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900" width="1600" height="900" role="img" aria-labelledby="title desc">
+  <title id="title">Promise dates article cover</title>
+  <desc id="desc">An editorial cover showing promise dates, invoice cards, follow-up notes, and forecast timing connected inside one receivables workflow.</desc>
+  <rect width="1600" height="900" rx="34" fill="#0a1525"/>
+  <text x="88" y="110" fill="#8fe1c4" font-family="Space Grotesk, Segoe UI, sans-serif" font-size="24" font-weight="700" letter-spacing="4">LEDGEWAVE INSIGHTS</text>
+  <text x="88" y="206" fill="#ffffff" font-family="Space Grotesk, Segoe UI, sans-serif" font-size="76" font-weight="700">Promise dates</text>
+  <text x="88" y="280" fill="#ffffff" font-family="Space Grotesk, Segoe UI, sans-serif" font-size="76" font-weight="700">belong inside</text>
+  <text x="88" y="354" fill="#ffffff" font-family="Space Grotesk, Segoe UI, sans-serif" font-size="76" font-weight="700">the workflow</text>
+  <text x="88" y="432" fill="#d7e4ff" font-family="Manrope, Segoe UI, sans-serif" font-size="28">Customer commitments are stronger when invoice context stays attached.</text>
+
+  <g transform="translate(850 118)">
+    <rect width="650" height="650" rx="38" fill="#ffffff" opacity="0.08" stroke="#355783"/>
+    <path d="M106 108v428c0 62 50 112 112 112h324" fill="none" stroke="#8fb2ff" stroke-width="10" stroke-linecap="round"/>
+    <path d="M104 300h472" fill="none" stroke="#314a6c" stroke-width="4"/>
+    <path d="M104 438h472" fill="none" stroke="#314a6c" stroke-width="4"/>
+    <g transform="translate(66 70)">
+      <rect width="174" height="92" rx="24" fill="#ffffff"/>
+      <text x="26" y="38" fill="#1748ca" font-family="Space Grotesk, Segoe UI, sans-serif" font-size="18" font-weight="700">PROMISE</text>
+      <text x="26" y="70" fill="#0a1420" font-family="Manrope, Segoe UI, sans-serif" font-size="24" font-weight="800">May 14</text>
+    </g>
+    <g transform="translate(346 168)">
+      <rect width="214" height="106" rx="24" fill="#e9f1ff"/>
+      <text x="28" y="42" fill="#1748ca" font-family="Space Grotesk, Segoe UI, sans-serif" font-size="18" font-weight="700">INVOICE</text>
+      <text x="28" y="76" fill="#0a1420" font-family="Manrope, Segoe UI, sans-serif" font-size="28" font-weight="800">$84.2K</text>
+    </g>
+    <g transform="translate(118 330)">
+      <rect width="244" height="112" rx="24" fill="#8fe1c4"/>
+      <text x="28" y="42" fill="#064e3b" font-family="Space Grotesk, Segoe UI, sans-serif" font-size="18" font-weight="700">FOLLOW-UP</text>
+      <text x="28" y="78" fill="#0a1420" font-family="Manrope, Segoe UI, sans-serif" font-size="26" font-weight="800">next touch</text>
+    </g>
+    <g transform="translate(318 500)">
+      <rect width="242" height="94" rx="24" fill="#ffffff"/>
+      <text x="28" y="38" fill="#1748ca" font-family="Space Grotesk, Segoe UI, sans-serif" font-size="18" font-weight="700">FORECAST</text>
+      <text x="28" y="70" fill="#0a1420" font-family="Manrope, Segoe UI, sans-serif" font-size="24" font-weight="800">cash timing</text>
+    </g>
+    <g fill="#ffffff">
+      <circle cx="106" cy="300" r="13"/>
+      <circle cx="362" cy="300" r="13"/>
+      <circle cx="242" cy="438" r="13"/>
+      <circle cx="438" cy="536" r="13"/>
+    </g>
+  </g>
+</svg>

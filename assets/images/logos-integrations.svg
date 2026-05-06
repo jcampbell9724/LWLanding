@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 2000 400" width="2000" height="400" role="img" aria-labelledby="title desc">
-  <title id="title">Current onboarding paths</title>
-  <desc id="desc">A horizontal onboarding graphic showing file-based imports, scoped API paths, validation, and the Ledgewave command layer.</desc>
+  <title id="title">Connected finance systems</title>
+  <desc id="desc">A horizontal integrations graphic showing major ERP, accounting, CRM, billing, payment, API, and secure file sources connected to the Ledgewave command layer.</desc>
   <defs>
     <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
       <stop offset="0%" stop-color="#f6f9ff"/>
@@ -15,56 +15,69 @@
   <circle cx="1570" cy="42" r="180" fill="#dce8ff" opacity="0.8"/>
   <circle cx="197" cy="356" r="140" fill="#cfe0ff" opacity="0.7"/>
   <text x="84" y="96" fill="#1748ca" font-family="Space Grotesk, Segoe UI, sans-serif" font-size="28" font-weight="700" letter-spacing="4">LEDGEWAVE</text>
-  <text x="84" y="150" fill="#0a1420" font-family="Space Grotesk, Segoe UI, sans-serif" font-size="54" font-weight="700">Current onboarding paths</text>
-  <text x="84" y="190" fill="#465364" font-family="Manrope, Segoe UI, sans-serif" font-size="24">Start with receivables and planned billing files. Add scoped ingest only where it improves the workflow.</text>
+  <text x="84" y="150" fill="#0a1420" font-family="Space Grotesk, Segoe UI, sans-serif" font-size="54" font-weight="700">Connected source systems</text>
+  <text x="84" y="190" fill="#465364" font-family="Manrope, Segoe UI, sans-serif" font-size="24">ERP, accounting, CRM, billing, payment, commerce, API, and secure file paths.</text>
 
-  <g transform="translate(74 238)">
-    <rect width="220" height="84" rx="24" fill="#ffffff" stroke="rgba(23,36,54,0.12)"/>
-    <text x="28" y="34" fill="#1748ca" font-family="Space Grotesk, Segoe UI, sans-serif" font-size="18" font-weight="700">CSV</text>
-    <text x="28" y="62" fill="#0a1420" font-family="Manrope, Segoe UI, sans-serif" font-size="24" font-weight="700">Receivables</text>
-  </g>
-  <g transform="translate(322 238)">
-    <rect width="220" height="84" rx="24" fill="#ffffff" stroke="rgba(23,36,54,0.12)"/>
-    <text x="28" y="34" fill="#1748ca" font-family="Space Grotesk, Segoe UI, sans-serif" font-size="18" font-weight="700">CSV</text>
-    <text x="28" y="62" fill="#0a1420" font-family="Manrope, Segoe UI, sans-serif" font-size="24" font-weight="700">Planned billing</text>
-  </g>
-  <g transform="translate(570 238)">
-    <rect width="220" height="84" rx="24" fill="#ffffff" stroke="rgba(23,36,54,0.12)"/>
-    <text x="28" y="34" fill="#1748ca" font-family="Space Grotesk, Segoe UI, sans-serif" font-size="18" font-weight="700">SCOPED API</text>
-    <text x="28" y="62" fill="#0a1420" font-family="Manrope, Segoe UI, sans-serif" font-size="24" font-weight="700">Customer data</text>
-  </g>
-  <g transform="translate(818 238)">
-    <rect width="220" height="84" rx="24" fill="#ffffff" stroke="rgba(23,36,54,0.12)"/>
-    <text x="28" y="34" fill="#1748ca" font-family="Space Grotesk, Segoe UI, sans-serif" font-size="18" font-weight="700">SCOPED API</text>
-    <text x="28" y="62" fill="#0a1420" font-family="Manrope, Segoe UI, sans-serif" font-size="24" font-weight="700">Payment notes</text>
+  <g font-family="Manrope, Segoe UI, sans-serif" font-size="20" font-weight="700">
+    <g transform="translate(74 232)">
+      <rect width="190" height="54" rx="18" fill="#ffffff" stroke="#d8e0ec"/>
+      <text x="24" y="35" fill="#0a1420">NetSuite</text>
+    </g>
+    <g transform="translate(284 232)">
+      <rect width="190" height="54" rx="18" fill="#ffffff" stroke="#d8e0ec"/>
+      <text x="24" y="35" fill="#0a1420">QuickBooks</text>
+    </g>
+    <g transform="translate(494 232)">
+      <rect width="190" height="54" rx="18" fill="#ffffff" stroke="#d8e0ec"/>
+      <text x="24" y="35" fill="#0a1420">Xero</text>
+    </g>
+    <g transform="translate(704 232)">
+      <rect width="190" height="54" rx="18" fill="#ffffff" stroke="#d8e0ec"/>
+      <text x="24" y="35" fill="#0a1420">Sage Intacct</text>
+    </g>
+    <g transform="translate(914 232)">
+      <rect width="190" height="54" rx="18" fill="#ffffff" stroke="#d8e0ec"/>
+      <text x="24" y="35" fill="#0a1420">Dynamics 365</text>
+    </g>
+    <g transform="translate(1124 232)">
+      <rect width="190" height="54" rx="18" fill="#ffffff" stroke="#d8e0ec"/>
+      <text x="24" y="35" fill="#0a1420">Salesforce</text>
+    </g>
+    <g transform="translate(74 306)">
+      <rect width="190" height="54" rx="18" fill="#ffffff" stroke="#d8e0ec"/>
+      <text x="24" y="35" fill="#0a1420">SAP</text>
+    </g>
+    <g transform="translate(284 306)">
+      <rect width="190" height="54" rx="18" fill="#ffffff" stroke="#d8e0ec"/>
+      <text x="24" y="35" fill="#0a1420">Oracle</text>
+    </g>
+    <g transform="translate(494 306)">
+      <rect width="190" height="54" rx="18" fill="#ffffff" stroke="#d8e0ec"/>
+      <text x="24" y="35" fill="#0a1420">HubSpot</text>
+    </g>
+    <g transform="translate(704 306)">
+      <rect width="190" height="54" rx="18" fill="#ffffff" stroke="#d8e0ec"/>
+      <text x="24" y="35" fill="#0a1420">Stripe</text>
+    </g>
+    <g transform="translate(914 306)">
+      <rect width="190" height="54" rx="18" fill="#ffffff" stroke="#d8e0ec"/>
+      <text x="24" y="35" fill="#0a1420">Chargebee</text>
+    </g>
+    <g transform="translate(1124 306)">
+      <rect width="190" height="54" rx="18" fill="#ffffff" stroke="#d8e0ec"/>
+      <text x="24" y="35" fill="#0a1420">Bill.com</text>
+    </g>
   </g>
 
   <g stroke="#8ba9ea" stroke-width="8" stroke-linecap="round">
-    <line x1="298" y1="280" x2="322" y2="280"/>
-    <line x1="546" y1="280" x2="570" y2="280"/>
-    <line x1="794" y1="280" x2="818" y2="280"/>
-    <line x1="1042" y1="280" x2="1114" y2="280"/>
+    <line x1="1336" y1="280" x2="1408" y2="280"/>
   </g>
 
-  <g transform="translate(1114 208)">
-    <rect width="250" height="144" rx="30" fill="#ffffff" stroke="rgba(23,36,54,0.12)"/>
-    <text x="34" y="44" fill="#1748ca" font-family="Space Grotesk, Segoe UI, sans-serif" font-size="18" font-weight="700">VALIDATION</text>
-    <rect x="34" y="62" width="182" height="14" rx="7" fill="#dce8ff"/>
-    <rect x="34" y="92" width="164" height="14" rx="7" fill="#dce8ff"/>
-    <rect x="34" y="122" width="120" height="14" rx="7" fill="#8fe1c4"/>
-    <circle cx="210" cy="124" r="18" fill="#0e9f6e"/>
-    <path d="M202 124l5 5 12-13" fill="none" stroke="#fff" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
-  </g>
-
-  <g stroke="#8ba9ea" stroke-width="8" stroke-linecap="round">
-    <line x1="1364" y1="280" x2="1436" y2="280"/>
-  </g>
-
-  <g transform="translate(1436 158)">
-    <rect width="480" height="194" rx="34" fill="url(#panel)"/>
+  <g transform="translate(1408 158)">
+    <rect width="508" height="202" rx="34" fill="url(#panel)"/>
     <text x="42" y="58" fill="#d7e4ff" font-family="Space Grotesk, Segoe UI, sans-serif" font-size="22" font-weight="700" letter-spacing="3">LEDGEWAVE</text>
     <text x="42" y="100" fill="#ffffff" font-family="Space Grotesk, Segoe UI, sans-serif" font-size="38" font-weight="700">Receivables command</text>
-    <text x="42" y="140" fill="rgba(233,241,255,0.82)" font-family="Manrope, Segoe UI, sans-serif" font-size="22">Priority, context, drafts, reports, forecast.</text>
+    <text x="42" y="140" fill="#e9f1ff" opacity="0.82" font-family="Manrope, Segoe UI, sans-serif" font-size="22">Priority, context, follow-up, reports, forecast.</text>
     <rect x="42" y="162" width="122" height="10" rx="5" fill="#8fe1c4"/>
     <rect x="180" y="162" width="122" height="10" rx="5" fill="#9fc2ff"/>
     <rect x="318" y="162" width="122" height="10" rx="5" fill="#ffffff" opacity="0.58"/>

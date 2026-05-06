@@ -530,7 +530,7 @@ const deriveFallbackSubtitle = (figure, assetPath = "") => {
     figure.classList.contains("image-asset--logo") ||
     normalizedAssetPath.includes("logos-")
   ) {
-    return "Receivables CSVs, planned billing files, and customer-specific ingest paths reviewed through managed onboarding.";
+    return "ERP, accounting, CRM, billing, payment, API, and secure file paths reviewed through managed onboarding.";
   }
 
   if (normalizedAssetPath.includes("blog-cover") || sitePrefix === "../") {
