@@ -1,18 +1,86 @@
 const currentPage = document.body.dataset.page || "index";
 const GOOGLE_SHEETS_ENDPOINT =
     window.LEDGEWAVE_FORM_ENDPOINT || "https://script.google.com/macros/s/AKfycbzoNHNpZUjf8F6gyuYp10z3_Q_7h3wpaeJ5pAQPSY2OUGIJKzwR6g46rnxxRFHlFBaP/exec";
+const APP_LOGIN_URL = "https://app.ledgewave.com";
 
 const PRIMARY_NAV = [
-  { href: "platform.html", key: "platform", label: "Platform" },
+  {
+    type: "dropdown",
+    key: "products",
+    label: "Products",
+    items: [
+      {
+        href: "ar-management.html",
+        key: "ar-management",
+        label: "AR Management",
+        icon: "assets/images/icons/accounts.png",
+        description: "Prioritize invoices, accounts, owners, and next actions.",
+      },
+      {
+        href: "cash-forecasting.html",
+        key: "cash-forecasting",
+        label: "Cash Forecasting",
+        icon: "assets/images/icons/calendar.png",
+        description: "Review expected cash from receivables and planned billing.",
+      },
+      {
+        href: "analytics.html",
+        key: "analytics",
+        label: "Analytics",
+        icon: "assets/images/icons/analytics.png",
+        description: "Explain aging, exposure, payment behavior, and team progress.",
+      },
+      {
+        href: "dunning.html",
+        key: "dunning",
+        label: "Dunning",
+        icon: "assets/images/icons/tasks.png",
+        description: "Coordinate follow-up, reminders, promises, and account history.",
+      },
+    ],
+  },
   { href: "solutions.html", key: "solutions", label: "Solutions" },
-  { href: "integrations.html", key: "integrations", label: "Integrations" },
-  { href: "operations.html", key: "operations", label: "Operations" },
-  { href: "pricing.html", key: "pricing", label: "Pricing" },
+  {
+    type: "dropdown",
+    key: "integrations",
+    label: "Integrations",
+    items: [
+      {
+        href: "email-integrations.html",
+        key: "email-integrations",
+        label: "Email",
+        icon: "assets/images/icons/contacts.png",
+        description: "Keep outreach and follow-up history close to the account.",
+      },
+      {
+        href: "erp-integrations.html",
+        key: "erp-integrations",
+        label: "ERP",
+        icon: "assets/images/icons/uploads.png",
+        description: "Bring receivables, billing, and payment data into workflow.",
+      },
+      {
+        href: "self-service-integrations.html",
+        key: "self-service-integrations",
+        label: "Self-service",
+        icon: "assets/images/icons/dashboard.png",
+        description: "Support customer-facing access, intake, and payment paths.",
+      },
+    ],
+  },
   { href: "resources.html", key: "resources", label: "Resources" },
 ];
 
 const NAV_PAGE_ALIASES = {
+  "ar-management": "products",
+  "cash-forecasting": "products",
+  analytics: "products",
+  dunning: "products",
   blog: "resources",
+  "email-integrations": "integrations",
+  "erp-integrations": "integrations",
+  "self-service-integrations": "integrations",
+  platform: "products",
 };
 
 // Keep this in sync with docs/IMAGE_PLACEHOLDER_MAP.md.
@@ -128,11 +196,54 @@ const renderIntoHost = ({ hostSelector, fallbackSelector, markup }) => {
   return null;
 };
 
+const renderNavLink = ({ href, key, label }) => {
+  const state = key === activeNavKey ? ' class="is-active" aria-current="page"' : "";
+  return `<a href="${buildHref(href)}" data-nav="${key}"${state}>${label}</a>`;
+};
+
+const renderNavDropdown = ({ key, label, items }) => {
+  const isGroupActive = key === activeNavKey;
+  const triggerState = isGroupActive ? " is-active" : "";
+
+  const dropdownLinks = items
+    .map((item) => {
+      const state = item.key === currentPage ? ' class="is-active" aria-current="page"' : "";
+      return `
+        <a href="${buildHref(item.href)}" data-nav="${item.key}"${state}>
+          <span class="nav-dropdown-icon" aria-hidden="true">
+            <img src="${buildHref(item.icon)}" alt="" width="22" height="22">
+          </span>
+          <span class="nav-dropdown-copy">
+            <span class="nav-dropdown-title">${item.label}</span>
+            <span class="nav-dropdown-description">${item.description}</span>
+          </span>
+        </a>
+      `.trim();
+    })
+    .join("");
+
+  return `
+    <div class="nav-dropdown" data-nav-group="${key}" data-open="false">
+      <button
+        class="nav-dropdown-trigger${triggerState}"
+        type="button"
+        aria-expanded="false"
+        aria-controls="nav-menu-${key}"
+      >
+        <span>${label}</span>
+        <span class="nav-caret" aria-hidden="true"></span>
+      </button>
+      <div class="nav-dropdown-menu" id="nav-menu-${key}">
+        ${dropdownLinks}
+      </div>
+    </div>
+  `.trim();
+};
+
 const renderNavLinks = () =>
-  PRIMARY_NAV.map(({ href, key, label }) => {
-    const state = key === activeNavKey ? ' class="is-active" aria-current="page"' : "";
-    return `<a href="${buildHref(href)}" data-nav="${key}"${state}>${label}</a>`;
-  }).join("");
+  PRIMARY_NAV.map((item) =>
+    item.type === "dropdown" ? renderNavDropdown(item) : renderNavLink(item)
+  ).join("");
 
 const ensureMainContentTarget = () => {
   const main = document.querySelector(".page-main");
@@ -143,6 +254,7 @@ const ensureMainContentTarget = () => {
 
 const renderSharedChrome = () => {
   const demoState = currentPage === "demo" ? ' aria-current="page"' : "";
+  const showBrandPromise = currentPage !== "index";
 
   renderIntoHost({
     hostSelector: "[data-site-header]",
@@ -159,7 +271,6 @@ const renderSharedChrome = () => {
               width="220"
               height="45"
             >
-            <span class="brand-chip">Clarity. Empathy. Results.</span>
           </a>
 
           <button
@@ -177,7 +288,10 @@ const renderSharedChrome = () => {
             ${renderNavLinks()}
           </nav>
 
-          <a class="btn btn-primary nav-cta" href="${buildHref("demo.html")}"${demoState}>Request a Demo</a>
+          <div class="nav-actions">
+            <a class="btn btn-primary nav-cta" href="${buildHref("demo.html")}"${demoState}>Request a Demo</a>
+            <a class="nav-login" href="${APP_LOGIN_URL}">Login</a>
+          </div>
         </div>
       </header>
     `.trim(),
@@ -199,7 +313,7 @@ const renderSharedChrome = () => {
                 height="104"
               >
               <span class="footer-brand-copy">
-                <strong>Clarity. Empathy. Results.</strong>
+                ${showBrandPromise ? "<strong>Clarity. Empathy. Results.</strong>" : ""}
                 <span>Collections software that keeps cash flowing.</span>
               </span>
               <p class="footer-note">
@@ -209,11 +323,19 @@ const renderSharedChrome = () => {
 
             <div class="footer-links">
               <strong>Product</strong>
-              <a href="${buildHref("platform.html")}">Platform</a>
-              <a href="${buildHref("solutions.html")}">Solutions</a>
-              <a href="${buildHref("integrations.html")}">Integrations</a>
-              <a href="${buildHref("operations.html")}">Operations</a>
-              <a href="${buildHref("pricing.html")}">Pricing</a>
+              <a href="${buildHref("ar-management.html")}">AR Management</a>
+              <a href="${buildHref("cash-forecasting.html")}">Cash Forecasting</a>
+              <a href="${buildHref("analytics.html")}">Analytics</a>
+              <a href="${buildHref("dunning.html")}">Dunning</a>
+              <a href="${buildHref("platform.html")}">Platform Overview</a>
+            </div>
+
+            <div class="footer-links">
+              <strong>Integrations</strong>
+              <a href="${buildHref("email-integrations.html")}">Email</a>
+              <a href="${buildHref("erp-integrations.html")}">ERP</a>
+              <a href="${buildHref("self-service-integrations.html")}">Self-service</a>
+              <a href="${buildHref("integrations.html")}">Integration Overview</a>
             </div>
 
             <div class="footer-links">
@@ -228,9 +350,11 @@ const renderSharedChrome = () => {
             <div class="footer-links">
               <strong>Company</strong>
               <a href="${buildHref("index.html")}">Home</a>
+              <a href="${buildHref("solutions.html")}">Solutions</a>
               <a href="${buildHref("about.html")}">About</a>
               <a href="${buildHref("contact.html")}">Contact</a>
               <a href="${buildHref("security.html")}">Security</a>
+              <a href="${APP_LOGIN_URL}">Login</a>
             </div>
 
             <div class="footer-links">
@@ -336,14 +460,47 @@ const initializeNavigation = () => {
   const header = document.querySelector(".site-header");
   const navToggle = document.querySelector(".nav-toggle");
   const navLinks = document.querySelectorAll(".site-nav a");
+  const dropdowns = document.querySelectorAll(".nav-dropdown");
+  const dropdownTriggers = document.querySelectorAll(".nav-dropdown-trigger");
+  const dropdownCloseTimers = new Map();
 
   if (!header || !navToggle) {
     return;
   }
 
+  const clearDropdownCloseTimer = (dropdown) => {
+    const timer = dropdownCloseTimers.get(dropdown);
+
+    if (timer) {
+      window.clearTimeout(timer);
+      dropdownCloseTimers.delete(dropdown);
+    }
+  };
+
+  const setDropdownOpen = (dropdown, isOpen) => {
+    dropdown.dataset.open = String(isOpen);
+    dropdown.querySelector(".nav-dropdown-trigger")?.setAttribute("aria-expanded", String(isOpen));
+
+    if (!isOpen) {
+      dropdown.dataset.pinned = "false";
+    }
+  };
+
+  const closeDropdowns = (exceptDropdown = null) => {
+    dropdowns.forEach((dropdown) => {
+      if (dropdown === exceptDropdown) {
+        return;
+      }
+
+      clearDropdownCloseTimer(dropdown);
+      setDropdownOpen(dropdown, false);
+    });
+  };
+
   const closeMenu = () => {
     header.dataset.open = "false";
     navToggle.setAttribute("aria-expanded", "false");
+    closeDropdowns();
   };
 
   const syncHeaderScroll = () => {
@@ -359,21 +516,83 @@ const initializeNavigation = () => {
     navToggle.setAttribute("aria-expanded", String(!isOpen));
   });
 
+  dropdowns.forEach((dropdown) => {
+    const trigger = dropdown.querySelector(".nav-dropdown-trigger");
+
+    dropdown.addEventListener("pointerenter", () => {
+      if (!window.matchMedia("(hover: hover)").matches) {
+        return;
+      }
+
+      clearDropdownCloseTimer(dropdown);
+      closeDropdowns(dropdown);
+      setDropdownOpen(dropdown, true);
+    });
+
+    dropdown.addEventListener("pointerleave", () => {
+      if (!window.matchMedia("(hover: hover)").matches) {
+        return;
+      }
+
+      if (dropdown.dataset.pinned === "true") {
+        return;
+      }
+
+      clearDropdownCloseTimer(dropdown);
+      dropdownCloseTimers.set(
+        dropdown,
+        window.setTimeout(() => {
+          setDropdownOpen(dropdown, false);
+          dropdownCloseTimers.delete(dropdown);
+        }, 360)
+      );
+    });
+
+    trigger?.addEventListener("focus", () => {
+      clearDropdownCloseTimer(dropdown);
+      closeDropdowns(dropdown);
+      setDropdownOpen(dropdown, true);
+    });
+  });
+
+  dropdownTriggers.forEach((trigger) => {
+    trigger.addEventListener("click", () => {
+      const dropdown = trigger.closest(".nav-dropdown");
+
+      if (!dropdown) {
+        return;
+      }
+
+      closeDropdowns(dropdown);
+      clearDropdownCloseTimer(dropdown);
+
+      if (dropdown.dataset.pinned === "true") {
+        setDropdownOpen(dropdown, false);
+        return;
+      }
+
+      dropdown.dataset.pinned = "true";
+      setDropdownOpen(dropdown, true);
+    });
+  });
+
   navLinks.forEach((link) => {
     link.addEventListener("click", closeMenu);
   });
 
   document.addEventListener("click", (event) => {
-    if (header.dataset.open !== "true" || header.contains(event.target)) {
+    if (header.contains(event.target)) {
       return;
     }
 
     closeMenu();
+    closeDropdowns();
   });
 
   document.addEventListener("keydown", (event) => {
     if (event.key === "Escape") {
       closeMenu();
+      closeDropdowns();
     }
   });
 

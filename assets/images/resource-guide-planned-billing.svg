@@ -1,13 +1,7 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 1200" width="1600" height="1200" role="img" aria-labelledby="title desc">
   <title id="title">Planned Billing guide cover</title>
   <desc id="desc">A branded guide cover focused on planned billing and its impact on collections forecasting.</desc>
-  <defs>
-    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0%" stop-color="#f6faff"/>
-      <stop offset="100%" stop-color="#e3f4f1"/>
-    </linearGradient>
-  </defs>
-  <rect width="1600" height="1200" rx="42" fill="url(#bg)"/>
+  <rect width="1600" height="1200" rx="42" fill="#f6faff"/>
   <circle cx="1280" cy="162" r="210" fill="#dce8ff"/>
   <text x="96" y="124" fill="#1748ca" font-family="Space Grotesk, Segoe UI, sans-serif" font-size="28" font-weight="700" letter-spacing="4">LEDGEWAVE GUIDE</text>
   <text x="96" y="254" fill="#0a1420" font-family="Space Grotesk, Segoe UI, sans-serif" font-size="90" font-weight="700">Planned Billing</text>

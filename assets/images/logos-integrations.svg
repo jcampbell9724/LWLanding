@@ -1,17 +1,7 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 2000 400" width="2000" height="400" role="img" aria-labelledby="title desc">
   <title id="title">Connected finance systems</title>
   <desc id="desc">A horizontal integrations graphic showing major ERP, accounting, CRM, billing, payment, API, and secure file sources connected to the Ledgewave command layer.</desc>
-  <defs>
-    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0%" stop-color="#f6f9ff"/>
-      <stop offset="100%" stop-color="#e4eefc"/>
-    </linearGradient>
-    <linearGradient id="panel" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0%" stop-color="#0c1930"/>
-      <stop offset="100%" stop-color="#153d98"/>
-    </linearGradient>
-  </defs>
-  <rect width="2000" height="400" rx="40" fill="url(#bg)"/>
+  <rect width="2000" height="400" rx="40" fill="#f6f9ff"/>
   <circle cx="1570" cy="42" r="180" fill="#dce8ff" opacity="0.8"/>
   <circle cx="197" cy="356" r="140" fill="#cfe0ff" opacity="0.7"/>
   <text x="84" y="96" fill="#1748ca" font-family="Space Grotesk, Segoe UI, sans-serif" font-size="28" font-weight="700" letter-spacing="4">LEDGEWAVE</text>
@@ -74,7 +64,7 @@
   </g>
 
   <g transform="translate(1408 158)">
-    <rect width="508" height="202" rx="34" fill="url(#panel)"/>
+    <rect width="508" height="202" rx="34" fill="#0c1930"/>
     <text x="42" y="58" fill="#d7e4ff" font-family="Space Grotesk, Segoe UI, sans-serif" font-size="22" font-weight="700" letter-spacing="3">LEDGEWAVE</text>
     <text x="42" y="100" fill="#ffffff" font-family="Space Grotesk, Segoe UI, sans-serif" font-size="38" font-weight="700">Receivables command</text>
     <text x="42" y="140" fill="#e9f1ff" opacity="0.82" font-family="Manrope, Segoe UI, sans-serif" font-size="22">Priority, context, follow-up, reports, forecast.</text>
