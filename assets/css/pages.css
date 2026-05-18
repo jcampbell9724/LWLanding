@@ -1893,21 +1893,47 @@ body[data-page="payment"] .payment-page .btn-primary:is(:hover, :focus-visible) 
 }
 
 .payment-billing-toggle {
+  position: relative;
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 6px;
+  isolation: isolate;
+  overflow: hidden;
   padding: 6px;
   border: 1px solid var(--payment-line);
   border-radius: 16px;
   background: var(--payment-surface-muted);
 }
 
+.payment-billing-toggle::before {
+  content: "";
+  position: absolute;
+  z-index: 0;
+  top: 6px;
+  left: 6px;
+  width: calc((100% - 18px) / 2);
+  height: calc(100% - 12px);
+  border-radius: 12px;
+  background: var(--payment-dark);
+  box-shadow: 0 10px 22px rgba(7, 17, 31, 0.18);
+  transform: translateX(0);
+  transition: transform 220ms ease;
+}
+
+.payment-billing-toggle[data-selected-billing="annual"]::before {
+  transform: translateX(calc(100% + 6px));
+}
+
 .payment-billing-option {
+  position: relative;
+  z-index: 1;
   min-height: 46px;
   border: 0;
   border-radius: 12px;
   background: transparent;
+  color: var(--payment-muted) !important;
   font-weight: 800;
+  transition: color 160ms ease;
 }
 
 .payment-billing-option span {
@@ -1918,13 +1944,13 @@ body[data-page="payment"] .payment-page .btn-primary:is(:hover, :focus-visible) 
   font-weight: 700;
 }
 
-.payment-billing-option.is-active {
-  background: var(--payment-dark);
+body[data-page="payment"] .payment-billing-toggle .payment-billing-option.is-active {
+  background: transparent;
   color: #fff !important;
 }
 
-.payment-billing-option.is-active span {
-  color: rgba(255, 255, 255, 0.78) !important;
+body[data-page="payment"] .payment-billing-toggle .payment-billing-option.is-active span {
+  color: #dbeafe !important;
 }
 
 .payment-plan-list {
@@ -2130,9 +2156,26 @@ body[data-page="payment"] .payment-page .btn-primary:is(:hover, :focus-visible) 
     grid-template-columns: minmax(0, 1fr);
   }
 
+  .payment-billing-toggle::before {
+    width: calc(100% - 12px);
+    height: calc((100% - 18px) / 2);
+    transform: translateY(0);
+  }
+
+  .payment-billing-toggle[data-selected-billing="annual"]::before {
+    transform: translateY(calc(100% + 6px));
+  }
+
   .payment-plan-card b,
   .payment-summary-list dd {
     text-align: left;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .payment-billing-toggle::before,
+  .payment-billing-option {
+    transition-duration: 0.01ms;
   }
 }
 

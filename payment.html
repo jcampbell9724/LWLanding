@@ -111,7 +111,7 @@
 
         <div class="payment-layout">
           <section class="payment-plan-panel" aria-label="Plan selection">
-            <div class="payment-billing-toggle" role="group" aria-label="Billing cadence">
+            <div class="payment-billing-toggle" role="group" aria-label="Billing cadence" data-selected-billing="monthly">
               <button class="payment-billing-option is-active" type="button" data-payment-billing="monthly" aria-pressed="true">Monthly</button>
               <button class="payment-billing-option" type="button" data-payment-billing="annual" aria-pressed="false">Annual <span>Save 10%</span></button>
             </div>
@@ -258,6 +258,7 @@
       let selectedBilling = params.get("billing") === "annual" ? "annual" : "monthly";
 
       const billingButtons = Array.from(document.querySelectorAll("[data-payment-billing]"));
+      const billingToggle = document.querySelector(".payment-billing-toggle");
       const planButtons = Array.from(document.querySelectorAll("[data-payment-plan]"));
       const priceNodes = Array.from(document.querySelectorAll("[data-payment-price]"));
       const summaryNodes = {
@@ -283,6 +284,8 @@
       };
 
       const render = () => {
+        billingToggle?.setAttribute("data-selected-billing", selectedBilling);
+
         billingButtons.forEach((button) => {
           const isActive = button.dataset.paymentBilling === selectedBilling;
           button.classList.toggle("is-active", isActive);
