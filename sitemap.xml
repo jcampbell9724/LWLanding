@@ -30,9 +30,15 @@
   </url>
   <url>
     <loc>https://ledgewave.com/demo.html</loc>
-    <lastmod>2026-05-05</lastmod>
+    <lastmod>2026-05-15</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://ledgewave.com/start-free.html</loc>
+    <lastmod>2026-05-15</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
   </url>
   <url>
     <loc>https://ledgewave.com/ar-management.html</loc>
@@ -54,9 +60,9 @@
   </url>
   <url>
     <loc>https://ledgewave.com/dunning.html</loc>
-    <lastmod>2026-05-13</lastmod>
+    <lastmod>2026-05-15</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
+    <priority>0.8</priority>
   </url>
   <url>
     <loc>https://ledgewave.com/integrations.html</loc>
@@ -66,15 +72,75 @@
   </url>
   <url>
     <loc>https://ledgewave.com/email-integrations.html</loc>
-    <lastmod>2026-05-13</lastmod>
+    <lastmod>2026-05-15</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://ledgewave.com/erp-integrations.html</loc>
-    <lastmod>2026-05-13</lastmod>
+    <lastmod>2026-05-15</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://ledgewave.com/api-webhooks.html</loc>
+    <lastmod>2026-05-15</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://ledgewave.com/integrations/netsuite</loc>
+    <lastmod>2026-05-17</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.75</priority>
+  </url>
+  <url>
+    <loc>https://ledgewave.com/integrations/sap</loc>
+    <lastmod>2026-05-17</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.75</priority>
+  </url>
+  <url>
+    <loc>https://ledgewave.com/integrations/oracle</loc>
+    <lastmod>2026-05-17</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.75</priority>
+  </url>
+  <url>
+    <loc>https://ledgewave.com/integrations/dynamics</loc>
+    <lastmod>2026-05-17</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.75</priority>
+  </url>
+  <url>
+    <loc>https://ledgewave.com/integrations/intacct</loc>
+    <lastmod>2026-05-17</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.75</priority>
+  </url>
+  <url>
+    <loc>https://ledgewave.com/integrations/quickbooks</loc>
+    <lastmod>2026-05-17</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.75</priority>
+  </url>
+  <url>
+    <loc>https://ledgewave.com/integrations/xero</loc>
+    <lastmod>2026-05-17</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.75</priority>
+  </url>
+  <url>
+    <loc>https://ledgewave.com/integrations/communications</loc>
+    <lastmod>2026-05-17</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.75</priority>
+  </url>
+  <url>
+    <loc>https://ledgewave.com/integrations/technical</loc>
+    <lastmod>2026-05-17</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.75</priority>
   </url>
   <url>
     <loc>https://ledgewave.com/self-service-integrations.html</loc>
@@ -96,9 +162,15 @@
   </url>
   <url>
     <loc>https://ledgewave.com/pricing.html</loc>
-    <lastmod>2026-05-05</lastmod>
+    <lastmod>2026-05-15</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://ledgewave.com/enterprise.html</loc>
+    <lastmod>2026-05-15</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
   </url>
   <url>
     <loc>https://ledgewave.com/privacy.html</loc>
@@ -120,9 +192,29 @@
   </url>
   <url>
     <loc>https://ledgewave.com/solutions.html</loc>
-    <lastmod>2026-05-05</lastmod>
+    <lastmod>2026-05-15</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://ledgewave.com/for-ar-teams.html</loc>
+    <lastmod>2026-05-16</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://ledgewave.com/assets/images/product-collector-queue-framed.png</image:loc>
+      <image:title>Ledgewave collector workflow for AR teams</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://ledgewave.com/for-multi-entity-operations.html</loc>
+    <lastmod>2026-05-16</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://ledgewave.com/assets/images/product-command-center-framed.png</image:loc>
+      <image:title>Ledgewave multi-entity receivables command center</image:title>
+    </image:image>
   </url>
   <url>
     <loc>https://ledgewave.com/terms-of-service.html</loc>

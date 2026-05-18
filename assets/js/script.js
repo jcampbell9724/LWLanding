@@ -33,42 +33,132 @@ const PRIMARY_NAV = [
       {
         href: "dunning.html",
         key: "dunning",
-        label: "Dunning",
+        label: "Dunning Automation",
         icon: "assets/images/icons/tasks.png",
         description: "Coordinate follow-up, reminders, promises, and account history.",
       },
     ],
   },
-  { href: "solutions.html", key: "solutions", label: "Solutions" },
+  {
+    type: "dropdown",
+    key: "solutions",
+    label: "Solutions",
+    items: [
+      {
+        href: "for-ar-teams.html",
+        key: "for-ar-teams",
+        label: "For AR Teams",
+        icon: "assets/images/icons/accounts.png",
+        description: "Daily queues, account ownership, follow-up, and team consistency.",
+      },
+      {
+        href: "solutions.html#for-finance-leaders",
+        key: "for-finance-leaders",
+        label: "For Finance Leaders",
+        icon: "assets/images/icons/reports.png",
+        description: "Cash visibility, forecast confidence, and leadership reporting.",
+      },
+      {
+        href: "for-multi-entity-operations.html",
+        key: "for-multi-entity-ops",
+        label: "For Multi-Entity Ops",
+        icon: "assets/images/icons/dashboard.png",
+        description: "Normalize receivables work across entities, ERPs, and shared services.",
+      },
+    ],
+  },
+  { href: "pricing.html", key: "pricing", label: "Pricing" },
   {
     type: "dropdown",
     key: "integrations",
     label: "Integrations",
     items: [
       {
-        href: "email-integrations.html",
-        key: "email-integrations",
-        label: "Email",
-        icon: "assets/images/icons/contacts.png",
-        description: "Keep outreach and follow-up history close to the account.",
+        type: "heading",
+        label: "ERP Pages",
       },
       {
-        href: "erp-integrations.html",
-        key: "erp-integrations",
-        label: "ERP",
+        href: "integrations/netsuite/",
+        key: "integration-netsuite",
+        label: "NetSuite",
         icon: "assets/images/icons/uploads.png",
-        description: "Bring receivables, billing, and payment data into workflow.",
+        description: "Collections workflows and cash visibility for NetSuite teams.",
       },
       {
-        href: "self-service-integrations.html",
-        key: "self-service-integrations",
-        label: "Self-service",
+        href: "integrations/sap/",
+        key: "integration-sap",
+        label: "SAP",
         icon: "assets/images/icons/dashboard.png",
-        description: "Support customer-facing access, intake, and payment paths.",
+        description: "Operational receivables visibility for SAP environments.",
+      },
+      {
+        href: "integrations/oracle/",
+        key: "integration-oracle",
+        label: "Oracle",
+        icon: "assets/images/icons/reports.png",
+        description: "Receivables workflow visibility for Oracle finance operations.",
+      },
+      {
+        href: "integrations/dynamics/",
+        key: "integration-dynamics",
+        label: "Microsoft Dynamics",
+        icon: "assets/images/icons/calendar.png",
+        description: "Collections execution and forecast visibility for Dynamics teams.",
+      },
+      {
+        href: "integrations/intacct/",
+        key: "integration-intacct",
+        label: "Sage Intacct",
+        icon: "assets/images/icons/analytics.png",
+        description: "Operational receivables workflows for Intacct teams.",
+      },
+      {
+        href: "integrations/quickbooks/",
+        key: "integration-quickbooks",
+        label: "QuickBooks",
+        icon: "assets/images/icons/accounts.png",
+        description: "Collections automation for growing finance teams.",
+      },
+      {
+        href: "integrations/xero/",
+        key: "integration-xero",
+        label: "Xero",
+        icon: "assets/images/icons/contacts.png",
+        description: "Receivables visibility for growing finance teams.",
+      },
+      {
+        type: "heading",
+        label: "Workflow",
+      },
+      {
+        href: "integrations/communications/",
+        key: "integration-communications",
+        label: "Communications",
+        icon: "assets/images/icons/contacts.png",
+        description: "Customer outreach, reminder workflows, and follow-up history.",
+      },
+      {
+        type: "heading",
+        label: "Data Paths",
+      },
+      {
+        href: "integrations/technical/",
+        key: "integration-technical",
+        label: "Technical",
+        icon: "assets/images/icons/dashboard.png",
+        description: "APIs, webhooks, exports, warehouses, and secure transfers.",
+      },
+      {
+        href: "integrations.html",
+        key: "integrations",
+        label: "All Integrations",
+        icon: "assets/images/icons/uploads.png",
+        description: "Review supported systems and integration planning paths.",
       },
     ],
   },
-  { href: "resources.html", key: "resources", label: "Resources" },
+  { href: "enterprise.html", key: "enterprise", label: "Enterprise" },
+  { href: "blog/index.html", key: "resources", label: "Resources" },
 ];
 
 const NAV_PAGE_ALIASES = {
@@ -76,9 +166,24 @@ const NAV_PAGE_ALIASES = {
   "cash-forecasting": "products",
   analytics: "products",
   dunning: "products",
+  payment: "pricing",
+  "for-ar-teams": "solutions",
+  "for-multi-entity-ops": "solutions",
   blog: "resources",
+  "api-webhooks": "integrations",
+  "enterprise-erp": "integrations",
+  "accounting-systems": "integrations",
   "email-integrations": "integrations",
   "erp-integrations": "integrations",
+  "integration-netsuite": "integrations",
+  "integration-sap": "integrations",
+  "integration-oracle": "integrations",
+  "integration-dynamics": "integrations",
+  "integration-intacct": "integrations",
+  "integration-quickbooks": "integrations",
+  "integration-xero": "integrations",
+  "integration-communications": "integrations",
+  "integration-technical": "integrations",
   "self-service-integrations": "integrations",
   platform: "products",
 };
@@ -207,6 +312,10 @@ const renderNavDropdown = ({ key, label, items }) => {
 
   const dropdownLinks = items
     .map((item) => {
+      if (item.type === "heading") {
+        return `<span class="nav-dropdown-heading">${item.label}</span>`;
+      }
+
       const state = item.key === currentPage ? ' class="is-active" aria-current="page"' : "";
       return `
         <a href="${buildHref(item.href)}" data-nav="${item.key}"${state}>
@@ -254,6 +363,7 @@ const ensureMainContentTarget = () => {
 
 const renderSharedChrome = () => {
   const demoState = currentPage === "demo" ? ' aria-current="page"' : "";
+  const startState = currentPage === "payment" ? ' aria-current="page"' : "";
   const showBrandPromise = currentPage !== "index";
 
   renderIntoHost({
@@ -289,7 +399,8 @@ const renderSharedChrome = () => {
           </nav>
 
           <div class="nav-actions">
-            <a class="btn btn-primary nav-cta" href="${buildHref("demo.html")}"${demoState}>Request a Demo</a>
+            <a class="btn btn-primary nav-cta" href="${buildHref("payment.html")}"${startState}>Start Now</a>
+            <a class="btn btn-secondary nav-cta" href="${buildHref("demo.html")}"${demoState}>Book a Demo</a>
             <a class="nav-login" href="${APP_LOGIN_URL}">Login</a>
           </div>
         </div>
@@ -314,11 +425,15 @@ const renderSharedChrome = () => {
               >
               <span class="footer-brand-copy">
                 ${showBrandPromise ? "<strong>Clarity. Empathy. Results.</strong>" : ""}
-                <span>Collections software that keeps cash flowing.</span>
+                <span>Receivables workflow that keeps cash moving.</span>
               </span>
               <p class="footer-note">
-                We help businesses strengthen relationships and financial outcomes through smarter, more human collections.
+                Ledgewave helps finance teams run AR follow-up, dunning, cash visibility, and rollout-ready receivables operations from the data path they have today.
               </p>
+              <div class="footer-actions">
+                <a class="btn btn-primary" href="${buildHref("payment.html")}">Start Now</a>
+                <a class="btn btn-secondary" href="${buildHref("demo.html")}">Book a Demo</a>
+              </div>
             </div>
 
             <div class="footer-links">
@@ -326,31 +441,37 @@ const renderSharedChrome = () => {
               <a href="${buildHref("ar-management.html")}">AR Management</a>
               <a href="${buildHref("cash-forecasting.html")}">Cash Forecasting</a>
               <a href="${buildHref("analytics.html")}">Analytics</a>
-              <a href="${buildHref("dunning.html")}">Dunning</a>
+              <a href="${buildHref("dunning.html")}">Dunning Automation</a>
               <a href="${buildHref("platform.html")}">Platform Overview</a>
             </div>
 
             <div class="footer-links">
               <strong>Integrations</strong>
-              <a href="${buildHref("email-integrations.html")}">Email</a>
-              <a href="${buildHref("erp-integrations.html")}">ERP</a>
-              <a href="${buildHref("self-service-integrations.html")}">Self-service</a>
+              <a href="${buildHref("integrations/netsuite/")}">NetSuite</a>
+              <a href="${buildHref("integrations/sap/")}">SAP</a>
+              <a href="${buildHref("integrations/oracle/")}">Oracle</a>
+              <a href="${buildHref("integrations/dynamics/")}">Dynamics</a>
+              <a href="${buildHref("integrations/quickbooks/")}">QuickBooks</a>
+              <a href="${buildHref("integrations/technical/")}">Technical</a>
               <a href="${buildHref("integrations.html")}">Integration Overview</a>
             </div>
 
             <div class="footer-links">
               <strong>Learn</strong>
-              <a href="${buildHref("resources.html")}">Resources</a>
-              <a href="${buildHref("customers.html")}">Customers</a>
               <a href="${buildHref("blog/index.html")}">Blog</a>
+              <a href="${buildHref("resources.html")}">Resources Library</a>
+              <a href="${buildHref("customers.html")}">Customers</a>
               <a href="${buildHref("why-ledgewave.html")}">Why Ledgewave</a>
-              <a href="${buildHref("demo.html")}">Request a Demo</a>
+              <a href="${buildHref("demo.html")}">Talk to Sales</a>
             </div>
 
             <div class="footer-links">
               <strong>Company</strong>
               <a href="${buildHref("index.html")}">Home</a>
               <a href="${buildHref("solutions.html")}">Solutions</a>
+              <a href="${buildHref("pricing.html")}">Pricing</a>
+              <a href="${buildHref("enterprise.html")}">Enterprise</a>
+              <a href="${buildHref("payment.html")}">Start Now</a>
               <a href="${buildHref("about.html")}">About</a>
               <a href="${buildHref("contact.html")}">Contact</a>
               <a href="${buildHref("security.html")}">Security</a>

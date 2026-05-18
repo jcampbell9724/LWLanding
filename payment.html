@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex, follow">
+  <meta
+    name="description"
+    content="Secure Stripe checkout for Ledgewave self-serve receivables workflow plans."
+  >
+  <title>Pay for Ledgewave | Secure Stripe Checkout</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+    rel="stylesheet"
+  >
+  <link rel="icon" href="assets/images/brand/app-icon.png" type="image/png">
+  <link rel="stylesheet" href="assets/css/styles.css">
+  <link rel="canonical" href="https://ledgewave.com/payment.html">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="en_US">
+  <meta property="og:site_name" content="Ledgewave">
+  <meta property="og:title" content="Pay for Ledgewave | Secure Stripe Checkout">
+  <meta property="og:description" content="Choose a Ledgewave self-serve plan and continue to Stripe-hosted checkout.">
+  <meta property="og:url" content="https://ledgewave.com/payment.html">
+  <meta property="og:image" content="https://ledgewave.com/assets/images/ledgewave-social-card.svg">
+  <meta property="og:image:alt" content="Ledgewave receivables workflow and forecast visibility for modern finance teams.">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Pay for Ledgewave | Secure Stripe Checkout">
+  <meta name="twitter:description" content="Choose a Ledgewave self-serve plan and continue to Stripe-hosted checkout.">
+  <meta name="twitter:image" content="https://ledgewave.com/assets/images/ledgewave-social-card.svg">
+  <meta name="twitter:image:alt" content="Ledgewave receivables workflow and forecast visibility for modern finance teams.">
+
+  <script id="structured-data" type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": "https://ledgewave.com/#organization",
+      "name": "Ledgewave",
+      "url": "https://ledgewave.com/",
+      "logo": "https://ledgewave.com/assets/images/brand/logo-mark.png",
+      "description": "Ledgewave is receivables workflow and cash forecasting software for finance teams."
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://ledgewave.com/#website",
+      "url": "https://ledgewave.com/",
+      "name": "Ledgewave",
+      "publisher": {
+        "@id": "https://ledgewave.com/#organization"
+      },
+      "inLanguage": "en-US"
+    },
+    {
+      "@type": "WebPage",
+      "@id": "https://ledgewave.com/payment.html#webpage",
+      "url": "https://ledgewave.com/payment.html",
+      "name": "Pay for Ledgewave",
+      "description": "Secure Stripe checkout for Ledgewave self-serve receivables workflow plans.",
+      "isPartOf": {
+        "@id": "https://ledgewave.com/#website"
+      },
+      "about": {
+        "@id": "https://ledgewave.com/#organization"
+      },
+      "inLanguage": "en-US",
+      "primaryImageOfPage": "https://ledgewave.com/assets/images/ledgewave-social-card.svg"
+    }
+  ]
+}
+  </script>
+</head>
+<body data-page="payment">
+  <div class="site-shell">
+    <div data-site-header></div>
+
+    <main class="page-main payment-page">
+      <section class="payment-hero reveal is-visible" aria-labelledby="payment-title">
+        <div class="payment-hero-copy">
+          <h1 id="payment-title">Secure checkout for Ledgewave.</h1>
+          <p>
+            Choose a self-serve plan, confirm the billing contact, and continue to Stripe-hosted checkout.
+            Card details are collected by Stripe, not stored on Ledgewave.
+          </p>
+          <div class="payment-hero-actions">
+            <a class="btn btn-primary" href="#checkout">Continue</a>
+            <a class="btn btn-secondary" href="pricing.html">Compare Plans</a>
+          </div>
+        </div>
+
+        <aside class="payment-trust-panel" aria-label="Checkout protections">
+          <h2>Stripe-hosted payment flow</h2>
+          <ul class="payment-check-list">
+            <li>Dynamic payment methods are managed in Stripe</li>
+            <li>Receipts and payment status come from Stripe checkout</li>
+            <li>Client reference IDs support reconciliation</li>
+          </ul>
+        </aside>
+      </section>
+
+      <section class="payment-checkout-section reveal" id="checkout" aria-labelledby="checkout-title">
+        <div class="payment-section-heading">
+          <h2 id="checkout-title">Select plan and billing details</h2>
+          <p>Self-serve plans can be paid online. Enterprise deployments are handled through sales.</p>
+        </div>
+
+        <div class="payment-layout">
+          <section class="payment-plan-panel" aria-label="Plan selection">
+            <div class="payment-billing-toggle" role="group" aria-label="Billing cadence">
+              <button class="payment-billing-option is-active" type="button" data-payment-billing="monthly" aria-pressed="true">Monthly</button>
+              <button class="payment-billing-option" type="button" data-payment-billing="annual" aria-pressed="false">Annual <span>Save 10%</span></button>
+            </div>
+
+            <div class="payment-plan-list">
+              <button class="payment-plan-card is-active" type="button" data-payment-plan="core" aria-pressed="true">
+                <span>
+                  <strong>Core</strong>
+                  <small>Up to 1,000 invoices/month</small>
+                </span>
+                <b data-payment-price="core">$499/mo</b>
+              </button>
+
+              <button class="payment-plan-card" type="button" data-payment-plan="scale" aria-pressed="false">
+                <span>
+                  <strong>Scale</strong>
+                  <small>Up to 5,000 invoices/month</small>
+                </span>
+                <b data-payment-price="scale">$999/mo</b>
+              </button>
+
+              <button class="payment-plan-card" type="button" data-payment-plan="advanced" aria-pressed="false">
+                <span>
+                  <strong>Advanced</strong>
+                  <small>Up to 15,000 invoices/month</small>
+                </span>
+                <b data-payment-price="advanced">$2,499/mo</b>
+              </button>
+            </div>
+
+            <article class="payment-enterprise-card">
+              <h3>Need enterprise procurement?</h3>
+              <p>Use sales-led checkout for SSO, security review, custom implementation, or multi-entity deployment.</p>
+              <a class="btn btn-secondary" href="demo.html">Talk to Sales</a>
+            </article>
+          </section>
+
+          <form class="payment-summary-card" data-payment-form>
+            <div class="payment-summary-header">
+              <h3>Order summary</h3>
+              <p>Processed securely through Stripe.</p>
+            </div>
+
+            <dl class="payment-summary-list">
+              <div>
+                <dt>Plan</dt>
+                <dd data-payment-summary="plan">Core</dd>
+              </div>
+              <div>
+                <dt>Billing</dt>
+                <dd data-payment-summary="billing">Monthly</dd>
+              </div>
+              <div>
+                <dt>Due today</dt>
+                <dd data-payment-summary="price">$499/mo</dd>
+              </div>
+            </dl>
+
+            <label>
+              Work email
+              <input type="email" name="email" autocomplete="email" placeholder="morgan@company.com" required>
+            </label>
+
+            <label>
+              Company
+              <input type="text" name="company" autocomplete="organization" placeholder="Apex Industrial" required>
+            </label>
+
+            <button class="btn btn-primary" type="submit">Continue to Stripe</button>
+            <p class="payment-feedback" data-payment-feedback aria-live="polite"></p>
+            <p class="payment-disclosure">
+              By continuing, you agree to the <a href="terms-of-service.html">Terms of Service</a> and acknowledge the <a href="privacy.html">Privacy Policy</a>.
+              Do not enter card details on this page. Stripe checkout collects payment information.
+            </p>
+          </form>
+        </div>
+      </section>
+
+      <section class="payment-support-section reveal" aria-labelledby="payment-support-title">
+        <div class="payment-support-grid">
+          <article>
+            <h2 id="payment-support-title">Before you pay</h2>
+            <p>Confirm the invoice volume tier that matches your current monthly receivables workflow. Plan changes can be handled as operating needs change.</p>
+          </article>
+          <article>
+            <h3>Need an invoice first?</h3>
+            <p>For purchase orders, vendor setup, security review, or annual procurement, use the sales path instead of self-serve checkout.</p>
+            <a class="btn btn-secondary" href="demo.html">Talk to Sales</a>
+          </article>
+          <article>
+            <h3>Still comparing plans?</h3>
+            <p>Return to pricing to review invoice-volume limits, workflow coverage, and implementation paths.</p>
+            <a class="btn btn-secondary" href="pricing.html">View Pricing</a>
+          </article>
+        </div>
+      </section>
+    </main>
+
+    <div data-site-footer></div>
+  </div>
+
+  <script src="assets/js/script.js"></script>
+  <script>
+    (() => {
+      const planDetails = {
+        core: {
+          label: "Core",
+          prices: {
+            monthly: "$499/mo",
+            annual: "$449/mo, billed annually",
+          },
+        },
+        scale: {
+          label: "Scale",
+          prices: {
+            monthly: "$999/mo",
+            annual: "$899/mo, billed annually",
+          },
+        },
+        advanced: {
+          label: "Advanced",
+          prices: {
+            monthly: "$2,499/mo",
+            annual: "$2,249/mo, billed annually",
+          },
+        },
+      };
+
+      // Paste live Stripe Payment Link URLs here, using keys like "core-monthly".
+      const stripePaymentLinks = {
+        ...{
+          "core-monthly": "",
+          "core-annual": "",
+          "scale-monthly": "",
+          "scale-annual": "",
+          "advanced-monthly": "",
+          "advanced-annual": "",
+        },
+        ...(window.LEDGEWAVE_STRIPE_PAYMENT_LINKS || {}),
+      };
+
+      const params = new URLSearchParams(window.location.search);
+      let selectedPlan = planDetails[params.get("plan")] ? params.get("plan") : "core";
+      let selectedBilling = params.get("billing") === "annual" ? "annual" : "monthly";
+
+      const billingButtons = Array.from(document.querySelectorAll("[data-payment-billing]"));
+      const planButtons = Array.from(document.querySelectorAll("[data-payment-plan]"));
+      const priceNodes = Array.from(document.querySelectorAll("[data-payment-price]"));
+      const summaryNodes = {
+        plan: document.querySelector('[data-payment-summary="plan"]'),
+        billing: document.querySelector('[data-payment-summary="billing"]'),
+        price: document.querySelector('[data-payment-summary="price"]'),
+      };
+      const form = document.querySelector("[data-payment-form]");
+      const feedback = document.querySelector("[data-payment-feedback]");
+
+      const buildClientReference = ({ plan, billing, company }) =>
+        `${plan}-${billing}-${company || "customer"}-${Date.now()}`
+          .toLowerCase()
+          .replace(/[^a-z0-9_-]+/g, "-")
+          .replace(/^-+|-+$/g, "")
+          .slice(0, 200);
+
+      const getPaymentLink = () => stripePaymentLinks[`${selectedPlan}-${selectedBilling}`] || "";
+
+      const updateUrl = () => {
+        const nextParams = new URLSearchParams({ plan: selectedPlan, billing: selectedBilling });
+        window.history.replaceState({}, "", `${window.location.pathname}?${nextParams.toString()}`);
+      };
+
+      const render = () => {
+        billingButtons.forEach((button) => {
+          const isActive = button.dataset.paymentBilling === selectedBilling;
+          button.classList.toggle("is-active", isActive);
+          button.setAttribute("aria-pressed", String(isActive));
+        });
+
+        planButtons.forEach((button) => {
+          const isActive = button.dataset.paymentPlan === selectedPlan;
+          button.classList.toggle("is-active", isActive);
+          button.setAttribute("aria-pressed", String(isActive));
+        });
+
+        priceNodes.forEach((node) => {
+          const plan = node.dataset.paymentPrice;
+          node.textContent = planDetails[plan].prices[selectedBilling];
+        });
+
+        summaryNodes.plan.textContent = planDetails[selectedPlan].label;
+        summaryNodes.billing.textContent = selectedBilling === "annual" ? "Annual" : "Monthly";
+        summaryNodes.price.textContent = planDetails[selectedPlan].prices[selectedBilling];
+
+        if (feedback) {
+          feedback.textContent = "";
+          feedback.classList.remove("is-error");
+        }
+
+        updateUrl();
+      };
+
+      billingButtons.forEach((button) => {
+        button.addEventListener("click", () => {
+          selectedBilling = button.dataset.paymentBilling;
+          render();
+        });
+      });
+
+      planButtons.forEach((button) => {
+        button.addEventListener("click", () => {
+          selectedPlan = button.dataset.paymentPlan;
+          render();
+        });
+      });
+
+      form?.addEventListener("submit", (event) => {
+        event.preventDefault();
+
+        const formData = new FormData(form);
+        const email = String(formData.get("email") || "").trim();
+        const company = String(formData.get("company") || "").trim();
+        const paymentLink = getPaymentLink();
+
+        if (!paymentLink || !/^https:\/\/buy\.stripe\.com\//.test(paymentLink)) {
+          if (feedback) {
+            feedback.textContent = "Online checkout is still being configured. Please use Talk to Sales and we will send a secure Stripe checkout link.";
+            feedback.classList.add("is-error");
+          }
+          return;
+        }
+
+        const checkoutUrl = new URL(paymentLink);
+        checkoutUrl.searchParams.set("prefilled_email", email);
+        checkoutUrl.searchParams.set(
+          "client_reference_id",
+          buildClientReference({ plan: selectedPlan, billing: selectedBilling, company })
+        );
+        checkoutUrl.searchParams.set("utm_source", "ledgewave");
+        checkoutUrl.searchParams.set("utm_medium", "website");
+        checkoutUrl.searchParams.set("utm_campaign", "self_serve_checkout");
+        window.location.assign(checkoutUrl.toString());
+      });
+
+      render();
+    })();
+  </script>
+</body>
+</html>
