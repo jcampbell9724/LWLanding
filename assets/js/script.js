@@ -1,7 +1,145 @@
 const currentPage = document.body.dataset.page || "index";
+const GOOGLE_ANALYTICS_TAG_ID = window.LEDGEWAVE_GA_TAG_ID || "G-Y6Y96XN2QR";
+const GOOGLE_ANALYTICS_SCRIPT_ID = "ledgewave-google-analytics";
 const GOOGLE_SHEETS_ENDPOINT =
     window.LEDGEWAVE_FORM_ENDPOINT || "https://script.google.com/macros/s/AKfycbzoNHNpZUjf8F6gyuYp10z3_Q_7h3wpaeJ5pAQPSY2OUGIJKzwR6g46rnxxRFHlFBaP/exec";
 const APP_LOGIN_URL = "https://app.ledgewave.com";
+
+const getPageAnalyticsContext = () => ({
+  page_title: document.title,
+  page_location: window.location.href,
+  page_path: `${window.location.pathname}${window.location.search}`,
+  page_name: currentPage || "unknown",
+});
+
+const trackAnalyticsEvent = (eventName, eventParams = {}) => {
+  if (typeof window.gtag !== "function") {
+    return;
+  }
+
+  window.gtag("event", eventName, {
+    ...getPageAnalyticsContext(),
+    ...eventParams,
+  });
+};
+
+const trackAnalyticsLandingPage = () => {
+  const pageEvents = {
+    demo: "demo_page_view",
+    payment: "start_now_page_view",
+    pricing: "pricing_page_view",
+    "start-free": "start_free_page_view",
+  };
+
+  const eventName = pageEvents[currentPage];
+
+  if (eventName) {
+    trackAnalyticsEvent(eventName);
+  }
+};
+
+const initializeGoogleAnalytics = () => {
+  if (!GOOGLE_ANALYTICS_TAG_ID || window.LEDGEWAVE_DISABLE_ANALYTICS === true) {
+    return;
+  }
+
+  window.dataLayer = window.dataLayer || [];
+  window.gtag =
+    window.gtag ||
+    function () {
+      window.dataLayer.push(arguments);
+    };
+
+  if (!document.getElementById(GOOGLE_ANALYTICS_SCRIPT_ID)) {
+    const script = document.createElement("script");
+    script.id = GOOGLE_ANALYTICS_SCRIPT_ID;
+    script.async = true;
+    script.src = `https://www.googletagmanager.com/gtag/js?id=${encodeURIComponent(
+      GOOGLE_ANALYTICS_TAG_ID
+    )}`;
+    document.head.append(script);
+  }
+
+  window.gtag("js", new Date());
+  window.gtag("config", GOOGLE_ANALYTICS_TAG_ID, getPageAnalyticsContext());
+  trackAnalyticsLandingPage();
+};
+
+const getAnalyticsLinkUrl = (link) => {
+  try {
+    return new URL(link.getAttribute("href") || "", window.location.href);
+  } catch (error) {
+    return null;
+  }
+};
+
+const normalizeAnalyticsPath = (url) => url.pathname.replace(/\/+$/, "").toLowerCase();
+
+const getCtaAnalyticsType = (link, url) => {
+  if (!url) {
+    return "";
+  }
+
+  const path = normalizeAnalyticsPath(url);
+
+  if (url.hostname === "app.ledgewave.com") {
+    return "login";
+  }
+
+  if (path.endsWith("/demo") || path.endsWith("/demo.html")) {
+    return "demo";
+  }
+
+  if (
+    path.endsWith("/payment") ||
+    path.endsWith("/payment.html") ||
+    path.endsWith("/start-free") ||
+    path.endsWith("/start-free.html")
+  ) {
+    return "start";
+  }
+
+  return link.dataset.analyticsCta || "";
+};
+
+const initializeAnalyticsEventTracking = () => {
+  document.addEventListener("click", (event) => {
+    const link = event.target.closest("a[href]");
+
+    if (!link || !link.matches(".btn, .nav-cta, .nav-login, [data-analytics-cta]")) {
+      return;
+    }
+
+    const url = getAnalyticsLinkUrl(link);
+    const ctaType = getCtaAnalyticsType(link, url);
+
+    if (!ctaType) {
+      return;
+    }
+
+    trackAnalyticsEvent(ctaType === "login" ? "login_click" : `${ctaType}_cta_click`, {
+      cta_type: ctaType,
+      cta_text: link.textContent.replace(/\s+/g, " ").trim(),
+      link_url: url ? url.toString() : link.getAttribute("href") || "",
+      transport_type: "beacon",
+    });
+  });
+
+  document.addEventListener(
+    "submit",
+    (event) => {
+      if (!event.target.matches("[data-payment-form]")) {
+        return;
+      }
+
+      trackAnalyticsEvent("checkout_form_submit", {
+        form_type: "payment_start",
+        transport_type: "beacon",
+      });
+    },
+    true
+  );
+};
 
 const PRIMARY_NAV = [
   {
@@ -1284,6 +1422,17 @@ const initializeCaptureForms = () => {
           submitButton.textContent = "Sent";
         }
 
+        trackAnalyticsEvent("generate_lead", {
+          form_type: formType,
+          form_id: form.dataset.captureKey || form.id || "",
+          lead_source: "website_form",
+        });
+
+        trackAnalyticsEvent(`${formType}_submit`, {
+          form_type: formType,
+          form_id: form.dataset.captureKey || form.id || "",
+        });
+
         form.reset();
       } catch (error) {
         if (feedback) {
@@ -1344,9 +1493,11 @@ const initializeRevealTransitions = () => {
   });
 };
 
+initializeGoogleAnalytics();
 ensureMainContentTarget();
 renderSharedChrome();
 injectBreadcrumbStructuredData();
+initializeAnalyticsEventTracking();
 initializeNavigation();
 initializeImageAssets();
 initializeCaptureForms();

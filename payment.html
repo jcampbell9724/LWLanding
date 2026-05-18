@@ -221,21 +221,21 @@
           label: "Core",
           prices: {
             monthly: "$499/mo",
-            annual: "$449/mo, billed annually",
+            annual: "$5,388/year",
           },
         },
         scale: {
           label: "Scale",
           prices: {
             monthly: "$999/mo",
-            annual: "$899/mo, billed annually",
+            annual: "$10,788/year",
           },
         },
         advanced: {
           label: "Advanced",
           prices: {
             monthly: "$2,499/mo",
-            annual: "$2,249/mo, billed annually",
+            annual: "$26,988/year",
           },
         },
       };
@@ -243,12 +243,12 @@
       // Paste live Stripe Payment Link URLs here, using keys like "core-monthly".
       const stripePaymentLinks = {
         ...{
-          "core-monthly": "",
-          "core-annual": "",
-          "scale-monthly": "",
-          "scale-annual": "",
-          "advanced-monthly": "",
-          "advanced-annual": "",
+          "core-monthly": "https://buy.stripe.com/test_eVq6oIb6xePY827gLu8k800",
+          "core-annual": "https://buy.stripe.com/test_9B6fZifmN9vE6Y366Q8k801",
+          "scale-monthly": "https://buy.stripe.com/test_eVq8wQ4I9cHQ6Y33YI8k802",
+          "scale-annual": "https://buy.stripe.com/test_28EfZi0rTdLUbej66Q8k803",
+          "advanced-monthly": "https://buy.stripe.com/test_28EcN65Md0Z81DJ2UE8k804",
+          "advanced-annual": "https://buy.stripe.com/test_5kQaEY0rTfU2dmrbra8k805",
         },
         ...(window.LEDGEWAVE_STRIPE_PAYMENT_LINKS || {}),
       };
