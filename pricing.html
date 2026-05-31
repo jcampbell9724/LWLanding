@@ -108,7 +108,7 @@
       "name": "Is there a contract?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Self-serve plans are month-to-month. Annual billing includes a 10% discount."
+        "text": "Monthly self-serve subscriptions renew monthly. Annual self-serve subscriptions are billed for a one-year term and renew annually. Enterprise terms are handled through an order form."
       }
     },
     {
@@ -140,7 +140,7 @@
       "name": "Do you offer annual pricing discounts?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Yes. Annual billing includes a 10% discount."
+        "text": "Yes. Annual self-serve subscriptions are billed in advance for a one-year term and include a 10% discount."
       }
     },
     {
@@ -148,7 +148,7 @@
       "name": "Can we cancel anytime?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Self-serve plans can be canceled at the end of any billing cycle."
+        "text": "Monthly self-serve subscriptions may be canceled effective at the end of the current monthly billing period. Annual subscriptions may be canceled before renewal and remain active through the paid annual term; annual payments are non-refundable."
       }
     }
   ]
@@ -190,8 +190,8 @@
           <article class="pricing-card">
             <div class="pricing-card-header">
               <h3>Core</h3>
-              <div class="pricing-amount" data-price-monthly="$499" data-price-annual="$449">
-                <span class="price-value">$499</span><span class="price-period">/month</span>
+              <div class="pricing-amount" data-price-monthly="$49.90" data-price-annual="$538.80">
+                <span class="price-value">$49.90</span><span class="price-period">/month</span>
               </div>
               <p class="pricing-card-fit">For finance teams managing up to 1,000 invoices/month.</p>
             </div>
@@ -204,15 +204,15 @@
               <li>Email support</li>
             </ul>
             <a class="btn btn-primary pricing-card-cta" href="payment.html?plan=core&billing=monthly" data-plan-cta="core">Start Now</a>
-            <p class="pricing-card-subtext">14-day free trial. No credit card required.</p>
+            <p class="pricing-card-subtext">Monthly billing available. Annual subscriptions are prepaid.</p>
           </article>
 
           <article class="pricing-card pricing-card-featured" aria-label="Scale plan, recommended">
             <div class="popular-badge">Most Popular</div>
             <div class="pricing-card-header">
               <h3>Scale</h3>
-              <div class="pricing-amount" data-price-monthly="$999" data-price-annual="$899">
-                <span class="price-value">$999</span><span class="price-period">/month</span>
+              <div class="pricing-amount" data-price-monthly="$99.90" data-price-annual="$1,078.80">
+                <span class="price-value">$99.90</span><span class="price-period">/month</span>
               </div>
               <p class="pricing-card-fit">For growing finance teams managing 1,000-5,000 invoices/month.</p>
             </div>
@@ -231,8 +231,8 @@
           <article class="pricing-card">
             <div class="pricing-card-header">
               <h3>Advanced</h3>
-              <div class="pricing-amount" data-price-monthly="$2,499" data-price-annual="$2,249">
-                <span class="price-value">$2,499</span><span class="price-period">/month</span>
+              <div class="pricing-amount" data-price-monthly="$249.90" data-price-annual="$2,698.80">
+                <span class="price-value">$249.90</span><span class="price-period">/month</span>
               </div>
               <p class="pricing-card-fit">For operational finance teams managing complex receivables workflows.</p>
             </div>
@@ -498,7 +498,7 @@
           </details>
           <details>
             <summary>Is there a contract?</summary>
-            <p>Self-serve plans are month-to-month. Annual billing includes a 10% discount.</p>
+            <p>Monthly self-serve subscriptions renew monthly. Annual self-serve subscriptions are billed for a one-year term and renew annually. Enterprise terms are handled through an order form.</p>
           </details>
           <details>
             <summary>What happens if we exceed our invoice volume?</summary>
@@ -514,11 +514,11 @@
           </details>
           <details>
             <summary>Do you offer annual pricing discounts?</summary>
-            <p>Yes. Annual billing includes a 10% discount.</p>
+            <p>Yes. Annual self-serve subscriptions are billed in advance for a one-year term and include a 10% discount.</p>
           </details>
           <details>
             <summary>Can we cancel anytime?</summary>
-            <p>Self-serve plans can be canceled at the end of any billing cycle.</p>
+            <p>Monthly self-serve subscriptions may be canceled effective at the end of the current monthly billing period. Annual subscriptions may be canceled before renewal and remain active through the paid annual term; annual payments are non-refundable.</p>
           </details>
         </div>
       </section>
@@ -561,8 +561,12 @@
         pricedPlans.forEach((plan) => {
           const value = billing === "annual" ? plan.dataset.priceAnnual : plan.dataset.priceMonthly;
           const priceNode = plan.querySelector(".price-value");
+          const periodNode = plan.querySelector(".price-period");
           if (priceNode && value) {
             priceNode.textContent = value;
+          }
+          if (periodNode) {
+            periodNode.textContent = billing === "annual" ? "/year" : "/month";
           }
         });
 

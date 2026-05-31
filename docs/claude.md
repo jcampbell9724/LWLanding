@@ -9,7 +9,7 @@ You're pre-launch, solo, and kick off in 7 days. This playbook covers the full p
 
 Read sections 0–3 this week. Execute section 4 (7-day prep) starting now. Sections 5–12 are your reference library once outreach goes live. Section 13 is the week-by-week plan for days 1–90.
 
-The 2024–2026 data says unambiguously that (a) cold email still works for B2B SaaS but deliverability is now the game, (b) tight ICP beats volume every time, (c) paid pilots outperform free trials for pre-launch sales, and (d) first 10 customers come from direct, personal outreach for almost every SaaS founder story on record. This playbook is built around those four facts.
+The 2024–2026 data says unambiguously that (a) cold email still works for B2B SaaS but deliverability is now the game, (b) tight ICP beats volume every time, (c) paid pilots outperform unpaid evaluations for pre-launch sales, and (d) first 10 customers come from direct, personal outreach for almost every SaaS founder story on record. This playbook is built around those four facts.
 
 ---
 
@@ -19,7 +19,7 @@ Most "SaaS sales playbooks" online are written for funded companies with a produ
 
 **Default 1 — Sell outcomes, not software.** You don't have a product to demo yet. You have a problem you understand and a plan to solve it. That's actually an advantage. You're selling "I will help you collect 15% more of your overdue invoices in 30 days" — not "here's my dashboard." Every conversation is a pilot-services conversation wrapped in a software shell.
 
-**Default 2 — Paid pilots, not free trials.** Free trials for pre-launch companies attract tire-kickers and generate false signal. $49–$99 paid pilots with hands-on onboarding filter for real intent, teach you the product to build, and convert 60–90% to ongoing customers when structured correctly (per multiple B2B pilot studies). SaaStr and Headway founders consistently advise against PLG / free trials for new B2B products.
+**Default 2 — Paid pilots, not unpaid evaluations.** Unpaid evaluations for pre-launch companies attract tire-kickers and generate false signal. $49–$99 paid pilots with hands-on onboarding filter for real intent, teach you the product to build, and convert 60–90% to ongoing customers when structured correctly (per multiple B2B pilot studies). SaaStr and Headway founders consistently advise against PLG / unpaid evaluation motions for new B2B products.
 
 **Default 3 — One vertical, one workflow, one promise.** The incumbents (HighRadius, Tesorio, Gaviti) sell horizontal AR automation to everyone. You cannot beat that. You can beat a construction subcontractor's spreadsheet at chasing invoices with retainage + lien waiver tracking. Pick one. The whole sales workflow — ICP, copy, discovery questions, demo, pricing, onboarding — derives from this choice.
 
@@ -800,7 +800,7 @@ Onboarding is too thin. White-glove onboarding for the first 10 customers is the
 
 **Anti-pattern 3: Spending $$ on tools you don't need.** Clay, Salesforce, DocuSign, Gong, Outreach — all are $100–$500/mo tools that do nothing for you at 0 customers. The <$200 stack in section 2 is sufficient through your first 30 customers.
 
-**Anti-pattern 4: Free trials instead of paid pilots.** Free trials attract tire-kickers, produce false demand signal, and don't force engagement. A $99 paid pilot filters 10x harder and converts 10x better.
+**Anti-pattern 4: Unpaid evaluations instead of paid pilots.** Unpaid evaluations attract tire-kickers, produce false demand signal, and don't force engagement. A $99 paid pilot filters 10x harder and converts 10x better.
 
 **Anti-pattern 5: Being too patient.** "Let me check back in Q4" is usually the founder losing a deal to politeness. If the pain is real and the prospect is qualified, the call should end with a specific, calendared next step within 14 days — or a clear "no" so you can move on.
 

@@ -1,23 +1,25 @@
 :root {
-  --bg: #e7edf4;
-  --bg-strong: #ffffff;
-  --surface: #eef3f8;
-  --surface-alt: #dbe5ef;
-  --ink: #182335;
+  color-scheme: light;
+  --bg: #d4deea;
+  --bg-strong: #f6f8fb;
+  --surface: #dce5ef;
+  --surface-alt: #c7d4e3;
+  --ink: #172235;
   --ink-strong: #07111f;
-  --muted: #4b5870;
-  --muted-strong: #2f3b4f;
-  --line: rgba(55, 65, 81, 0.3);
-  --line-strong: rgba(55, 65, 81, 0.44);
+  --muted: #536176;
+  --muted-strong: #344155;
+  --line: rgba(36, 48, 68, 0.24);
+  --line-strong: rgba(36, 48, 68, 0.38);
   --accent: #1f5fd6;
-  --accent-strong: #174ab3;
+  --accent-hover: #174ab3;
+  --accent-strong: #123f9c;
   --accent-soft: rgba(31, 95, 214, 0.16);
-  --accent-wave: #7db9ff;
-  --accent-mint: #14b8a6;
+  --accent-wave: #75adf0;
+  --accent-mint: #0f9f8f;
   --hero: #07111f;
   --hero-strong: #040b14;
-  --hero-line: rgba(241, 244, 248, 0.2);
-  --hero-copy: rgba(241, 244, 248, 0.86);
+  --hero-line: rgba(241, 246, 255, 0.16);
+  --hero-copy: rgba(241, 246, 255, 0.84);
   --radius-lg: 30px;
   --radius-md: 20px;
   --radius-sm: 16px;
@@ -25,9 +27,9 @@
   --content-width-wide: 1380px;
   --page-gutter: clamp(16px, 2vw, 26px);
   --section-space: clamp(52px, 7vw, 100px);
-  --shadow-soft: 0 1px 2px rgba(11, 19, 43, 0.06);
-  --shadow-strong: 0 2px 6px rgba(11, 19, 43, 0.1);
-  --focus-ring: rgba(37, 99, 235, 0.38);
+  --shadow-soft: 0 1px 2px rgba(11, 19, 43, 0.08);
+  --shadow-strong: 0 8px 24px rgba(11, 19, 43, 0.12);
+  --focus-ring: rgba(31, 95, 214, 0.38);
 }
 
 *,
@@ -45,7 +47,10 @@ body {
   margin: 0;
   min-width: 320px;
   overflow-x: clip;
-  background: var(--bg);
+  background:
+    radial-gradient(circle at 18% -8%, rgba(31, 95, 214, 0.14), transparent 31rem),
+    radial-gradient(circle at 88% 0%, rgba(15, 159, 143, 0.1), transparent 28rem),
+    var(--bg);
   color: var(--ink);
   font-family: "Inter", "Segoe UI", sans-serif;
   line-height: 1.6;
@@ -69,7 +74,7 @@ img {
 }
 
 ::selection {
-  background: rgba(37, 99, 235, 0.18);
+  background: rgba(31, 95, 214, 0.18);
   color: var(--ink-strong);
 }
 

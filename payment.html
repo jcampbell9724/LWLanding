@@ -122,7 +122,7 @@
                   <strong>Core</strong>
                   <small>Up to 1,000 invoices/month</small>
                 </span>
-                <b data-payment-price="core">$499/mo</b>
+                <b data-payment-price="core">$49.90/mo</b>
               </button>
 
               <button class="payment-plan-card" type="button" data-payment-plan="scale" aria-pressed="false">
@@ -130,7 +130,7 @@
                   <strong>Scale</strong>
                   <small>Up to 5,000 invoices/month</small>
                 </span>
-                <b data-payment-price="scale">$999/mo</b>
+                <b data-payment-price="scale">$99.90/mo</b>
               </button>
 
               <button class="payment-plan-card" type="button" data-payment-plan="advanced" aria-pressed="false">
@@ -138,7 +138,7 @@
                   <strong>Advanced</strong>
                   <small>Up to 15,000 invoices/month</small>
                 </span>
-                <b data-payment-price="advanced">$2,499/mo</b>
+                <b data-payment-price="advanced">$249.90/mo</b>
               </button>
             </div>
 
@@ -166,9 +166,13 @@
               </div>
               <div>
                 <dt>Due today</dt>
-                <dd data-payment-summary="price">$499/mo</dd>
+                <dd data-payment-summary="price">$49.90</dd>
               </div>
             </dl>
+
+            <p class="payment-disclosure" data-payment-renewal>
+              You will be charged $49.90 today and $49.90 each month thereafter until canceled. Your subscription renews monthly. Cancellations take effect at the end of the current monthly billing period.
+            </p>
 
             <label>
               Work email
@@ -183,7 +187,7 @@
             <button class="btn btn-primary" type="submit">Continue to Stripe</button>
             <p class="payment-feedback" data-payment-feedback aria-live="polite"></p>
             <p class="payment-disclosure">
-              By continuing, you agree to the <a href="terms-of-service.html">Terms of Service</a> and acknowledge the <a href="privacy.html">Privacy Policy</a>.
+              By continuing, you authorize a recurring subscription charge under the selected billing cadence, agree to the <a href="terms-of-service.html">Terms of Service</a>, and acknowledge the <a href="privacy.html">Privacy Policy</a>.
               Do not enter card details on this page. Stripe checkout collects payment information.
             </p>
           </form>
@@ -220,35 +224,48 @@
         core: {
           label: "Core",
           prices: {
-            monthly: "$499/mo",
-            annual: "$5,388/year",
+            monthly: "$49.90/mo",
+            annual: "$538.80/year",
+          },
+          charges: {
+            monthly: "$49.90",
+            annual: "$538.80",
           },
         },
         scale: {
           label: "Scale",
           prices: {
-            monthly: "$999/mo",
-            annual: "$10,788/year",
+            monthly: "$99.90/mo",
+            annual: "$1,078.80/year",
+          },
+          charges: {
+            monthly: "$99.90",
+            annual: "$1,078.80",
           },
         },
         advanced: {
           label: "Advanced",
           prices: {
-            monthly: "$2,499/mo",
-            annual: "$26,988/year",
+            monthly: "$249.90/mo",
+            annual: "$2,698.80/year",
+          },
+          charges: {
+            monthly: "$249.90",
+            annual: "$2,698.80",
           },
         },
       };
 
       // Paste live Stripe Payment Link URLs here, using keys like "core-monthly".
+      // Each link must point to a Stripe Price that matches the displayed amount.
       const stripePaymentLinks = {
         ...{
-          "core-monthly": "https://buy.stripe.com/test_eVq6oIb6xePY827gLu8k800",
-          "core-annual": "https://buy.stripe.com/test_9B6fZifmN9vE6Y366Q8k801",
-          "scale-monthly": "https://buy.stripe.com/test_eVq8wQ4I9cHQ6Y33YI8k802",
-          "scale-annual": "https://buy.stripe.com/test_28EfZi0rTdLUbej66Q8k803",
-          "advanced-monthly": "https://buy.stripe.com/test_28EcN65Md0Z81DJ2UE8k804",
-          "advanced-annual": "https://buy.stripe.com/test_5kQaEY0rTfU2dmrbra8k805",
+          "core-monthly": "https://buy.stripe.com/test_8x228sa2t5fo3LR9j28k806",
+          "core-annual": "https://buy.stripe.com/test_cNi6oI4I94bk5TZbra8k807",
+          "scale-monthly": "https://buy.stripe.com/test_28E9AU1vXbDMeqv0Mw8k808",
+          "scale-annual": "https://buy.stripe.com/test_28E7sM3E58rA3LRcve8k809",
+          "advanced-monthly": "https://buy.stripe.com/test_5kQaEYb6xePYdmr8eY8k80a",
+          "advanced-annual": "https://buy.stripe.com/test_fZufZi3E56jsfuz3YI8k80b",
         },
         ...(window.LEDGEWAVE_STRIPE_PAYMENT_LINKS || {}),
       };
@@ -268,6 +285,7 @@
       };
       const form = document.querySelector("[data-payment-form]");
       const feedback = document.querySelector("[data-payment-feedback]");
+      const renewalNode = document.querySelector("[data-payment-renewal]");
 
       const buildClientReference = ({ plan, billing, company }) =>
         `${plan}-${billing}-${company || "customer"}-${Date.now()}`
@@ -305,7 +323,15 @@
 
         summaryNodes.plan.textContent = planDetails[selectedPlan].label;
         summaryNodes.billing.textContent = selectedBilling === "annual" ? "Annual" : "Monthly";
-        summaryNodes.price.textContent = planDetails[selectedPlan].prices[selectedBilling];
+        const chargeAmount = planDetails[selectedPlan].charges[selectedBilling];
+        summaryNodes.price.textContent = chargeAmount;
+
+        if (renewalNode) {
+          renewalNode.textContent =
+            selectedBilling === "annual"
+              ? `You will be charged ${chargeAmount} today for one year of service. Your subscription renews annually unless canceled before renewal. Annual payments are non-refundable.`
+              : `You will be charged ${chargeAmount} today and ${chargeAmount} each month thereafter until canceled. Your subscription renews monthly. Cancellations take effect at the end of the current monthly billing period.`;
+        }
 
         if (feedback) {
           feedback.textContent = "";

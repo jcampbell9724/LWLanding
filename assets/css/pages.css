@@ -98,15 +98,15 @@
 .page-hero .section-pill,
 .hero.hero-premium .resource-type,
 .page-hero .resource-type {
-  border-color: rgba(36, 95, 255, 0.14);
-  background: rgba(255, 255, 255, 0.64);
+  border-color: rgba(31, 95, 214, 0.18);
+  background: rgba(246, 248, 251, 0.72);
   color: var(--accent-strong);
 }
 
 .hero.hero-premium .pill,
 .page-hero .pill {
-  border-color: rgba(23, 36, 54, 0.08);
-  background: rgba(255, 255, 255, 0.74);
+  border-color: var(--line);
+  background: var(--surface);
   color: var(--muted-strong);
 }
 
@@ -130,7 +130,7 @@
   padding: 20px;
   border: 1px solid var(--line);
   border-radius: calc(var(--radius-md) - 2px);
-  background: rgba(255, 255, 255, 0.74);
+  background: rgba(246, 248, 251, 0.78);
   box-shadow: none;
 }
 
@@ -202,8 +202,8 @@
 .page-hero-card .resource-type,
 .hero-panel .section-pill,
 .hero-panel .resource-type {
-  border-color: rgba(37, 99, 235, 0.12);
-  background: rgba(255, 255, 255, 0.82);
+  border-color: rgba(31, 95, 214, 0.16);
+  background: rgba(246, 248, 251, 0.82);
   color: var(--accent-strong);
 }
 
@@ -986,8 +986,8 @@ body:is([data-page="demo"], [data-page="contact"], [data-page="start-free"]) .re
 }
 
 body:is([data-page="demo"], [data-page="contact"], [data-page="start-free"]) .request-layout > form {
-  border: 1px solid rgba(23, 36, 54, 0.1);
-  background: rgba(255, 255, 255, 0.78);
+  border: 1px solid var(--line);
+  background: rgba(246, 248, 251, 0.84);
 }
 
 body:is([data-page="demo"], [data-page="contact"], [data-page="start-free"]) .request-layout > .request-sidebar {
@@ -1314,7 +1314,10 @@ body[data-page="index"] .home-hero {
   min-height: clamp(500px, 76svh, 640px);
   padding-top: clamp(34px, 4.5vw, 56px);
   padding-bottom: clamp(30px, 4vw, 46px);
-  background: #f5f8fc !important;
+  background:
+    radial-gradient(circle at 72% 22%, rgba(31, 95, 214, 0.16), transparent 28rem),
+    radial-gradient(circle at 8% 12%, rgba(15, 159, 143, 0.1), transparent 24rem),
+    var(--surface) !important;
 }
 
 body[data-page="index"] .home-hero-copy {
@@ -1383,9 +1386,9 @@ body[data-page="index"] .home-hero-copy p {
 
 .home-hero-visual .image-asset-frame {
   min-height: clamp(260px, 25vw, 380px);
-  border-color: rgba(24, 35, 53, 0.18);
+  border-color: var(--line-strong);
   border-radius: 10px;
-  background: #eef3f8;
+  background: var(--surface-alt);
 }
 
 .home-visual-caption {
@@ -1444,7 +1447,7 @@ body[data-page="index"] .home-hero-copy p {
 body[data-page="index"] .home-system-section .image-asset--logo .image-asset-frame {
   min-height: clamp(108px, 12vw, 146px);
   border-radius: 10px;
-  background: #fff;
+  background: var(--bg-strong);
 }
 
 .home-path-grid,
@@ -1460,7 +1463,10 @@ body[data-page="index"] .home-system-section .image-asset--logo .image-asset-fra
   grid-template-columns: repeat(2, minmax(0, 1fr));
 }
 
-.home-step-grid,
+.home-step-grid {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
 .home-metric-grid {
   grid-template-columns: repeat(3, minmax(0, 1fr));
 }
@@ -1676,6 +1682,21 @@ body[data-page="index"] .page-main > .demo-section.home-final-cta .btn-secondary
 }
 
 @media (max-width: 560px) {
+  body[data-page="index"] .home-hero-copy {
+    width: 100%;
+    max-width: calc(100vw - (var(--page-gutter) * 2));
+  }
+
+  body[data-page="index"] .home-hero-copy h1 {
+    max-width: 10.25ch;
+    font-size: clamp(2.7rem, 11vw, 3.2rem);
+    text-wrap: initial;
+  }
+
+  body[data-page="index"] .home-hero-copy p {
+    max-width: 31ch;
+  }
+
   .home-hero-facts {
     grid-template-columns: minmax(0, 1fr);
   }
@@ -1702,16 +1723,16 @@ body[data-page="index"] .page-main > .demo-section.home-final-cta .btn-secondary
 }
 
 body[data-page="pricing"] {
-  --pricing-bg: #f4f7fb;
-  --pricing-surface: #ffffff;
-  --pricing-surface-muted: #eef3f8;
-  --pricing-surface-blue: #f3f7ff;
-  --pricing-ink: #0c1728;
-  --pricing-muted: #48566c;
-  --pricing-line: rgba(34, 48, 70, 0.16);
-  --pricing-line-strong: rgba(34, 48, 70, 0.28);
+  --pricing-bg: #d4deea;
+  --pricing-surface: #f6f8fb;
+  --pricing-surface-muted: #dce5ef;
+  --pricing-surface-blue: #e6eefb;
+  --pricing-ink: #07111f;
+  --pricing-muted: #43516a;
+  --pricing-line: rgba(36, 48, 68, 0.24);
+  --pricing-line-strong: rgba(36, 48, 68, 0.38);
   --pricing-accent: #1f5fd6;
-  --pricing-accent-strong: #174ab3;
+  --pricing-accent-strong: #123f9c;
   --pricing-teal: #0f766e;
   --pricing-dark: #07111f;
 }
@@ -1721,15 +1742,15 @@ body[data-page="pricing"] .pricing-page {
 }
 
 body[data-page="payment"] {
-  --payment-bg: #f4f7fb;
-  --payment-surface: #ffffff;
-  --payment-surface-muted: #eef3f8;
-  --payment-ink: #0c1728;
-  --payment-muted: #48566c;
-  --payment-line: rgba(34, 48, 70, 0.16);
-  --payment-line-strong: rgba(34, 48, 70, 0.28);
+  --payment-bg: #d4deea;
+  --payment-surface: #f6f8fb;
+  --payment-surface-muted: #dce5ef;
+  --payment-ink: #07111f;
+  --payment-muted: #43516a;
+  --payment-line: rgba(36, 48, 68, 0.24);
+  --payment-line-strong: rgba(36, 48, 68, 0.38);
   --payment-accent: #1f5fd6;
-  --payment-accent-strong: #174ab3;
+  --payment-accent-strong: #123f9c;
   --payment-teal: #0f766e;
   --payment-dark: #07111f;
 }
@@ -1974,7 +1995,7 @@ body[data-page="payment"] .payment-billing-toggle .payment-billing-option.is-act
 
 .payment-plan-card.is-active {
   border-color: var(--payment-accent);
-  background: #f3f7ff;
+  background: #e6eefb;
 }
 
 .payment-plan-card span {
@@ -2204,7 +2225,7 @@ body[data-page="pricing"] .pricing-hero {
   padding-top: clamp(52px, 6vw, 82px);
   padding-bottom: clamp(38px, 5vw, 62px);
   background:
-    linear-gradient(180deg, rgba(255, 255, 255, 0.72), rgba(244, 247, 251, 0.88)),
+    radial-gradient(circle at 50% 0%, rgba(31, 95, 214, 0.16), transparent 30rem),
     var(--pricing-surface-muted) !important;
 }
 
@@ -2287,7 +2308,7 @@ body[data-page="pricing"] .pricing-hero {
 
 .pricing-hero-note {
   margin-top: -4px;
-  color: #667389 !important;
+  color: var(--pricing-muted) !important;
   font-size: 0.88rem !important;
 }
 
@@ -2330,7 +2351,8 @@ body[data-page="pricing"] .pricing-plans-section {
 .pricing-card-enterprise {
   border-color: var(--pricing-line-strong);
   background:
-    linear-gradient(180deg, #ffffff, #f9fbfe);
+    linear-gradient(180deg, #f6f8fb, #e9eef5),
+    var(--pricing-surface);
 }
 
 .popular-badge {
@@ -2414,7 +2436,7 @@ body[data-page="pricing"] .pricing-plans-section {
 .pricing-feature-list li {
   position: relative;
   padding-left: 18px;
-  color: #253149 !important;
+  color: var(--pricing-muted) !important;
   font-size: 0.9rem;
   line-height: 1.42;
 }
@@ -2539,7 +2561,7 @@ body[data-page="pricing"] .pricing-faq-section {
   position: sticky;
   top: 0;
   z-index: 2;
-  background: #fbfdff;
+  background: var(--pricing-surface);
   color: var(--pricing-ink) !important;
   font-size: 0.78rem;
   font-weight: 800;
@@ -2552,7 +2574,7 @@ body[data-page="pricing"] .pricing-faq-section {
   z-index: 3;
   width: 250px;
   min-width: 250px;
-  background: #fbfdff;
+  background: var(--pricing-surface);
   color: var(--pricing-ink) !important;
   font-weight: 760;
 }
@@ -2571,15 +2593,15 @@ body[data-page="pricing"] .pricing-faq-section {
 }
 
 .comparison-table td {
-  color: #344058 !important;
+  color: var(--pricing-muted) !important;
   font-weight: 560;
 }
 
 .comparison-category-row th {
   position: static;
   padding: 12px 16px;
-  background: #e8eef7;
-  color: #253149 !important;
+  background: var(--pricing-surface-muted);
+  color: var(--pricing-ink) !important;
   font-size: 0.72rem;
   font-weight: 820;
   text-transform: uppercase;
@@ -2615,7 +2637,7 @@ body[data-page="pricing"] .pricing-faq-section {
   padding: 22px;
   border: 1px solid var(--pricing-line);
   border-radius: 8px;
-  background: #fbfdff;
+  background: var(--pricing-surface);
 }
 
 .onboarding-card h3 {
@@ -2664,7 +2686,7 @@ body[data-page="pricing"] .pricing-faq-section {
   padding: 10px 12px;
   border: 1px solid var(--pricing-line-strong);
   border-radius: 7px;
-  background: #fbfdff;
+  background: var(--pricing-surface-muted);
   color: var(--pricing-ink);
   font-size: 1rem;
   font-weight: 650;
@@ -2721,7 +2743,7 @@ body[data-page="pricing"] .pricing-faq-section {
   min-width: 0;
   border: 1px solid var(--pricing-line);
   border-radius: 8px;
-  background: #fbfdff;
+  background: var(--pricing-surface);
 }
 
 .faq-list summary {
