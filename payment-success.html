@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex, follow">
+  <meta
+    name="description"
+    content="Thank you for starting with Ledgewave. Review next steps after completing Stripe checkout."
+  >
+  <title>Payment Received | Ledgewave</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+    rel="stylesheet"
+  >
+  <link rel="icon" href="assets/images/brand/app-icon.png" type="image/png">
+  <link rel="stylesheet" href="assets/css/styles.css">
+  <link rel="canonical" href="https://ledgewave.com/payment-success.html">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="en_US">
+  <meta property="og:site_name" content="Ledgewave">
+  <meta property="og:title" content="Payment Received | Ledgewave">
+  <meta property="og:description" content="Thank you for starting with Ledgewave. Review next steps after completing Stripe checkout.">
+  <meta property="og:url" content="https://ledgewave.com/payment-success.html">
+  <meta property="og:image" content="https://ledgewave.com/assets/images/ledgewave-social-card.svg">
+  <meta property="og:image:alt" content="Ledgewave receivables workflow and forecast visibility for modern finance teams.">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Payment Received | Ledgewave">
+  <meta name="twitter:description" content="Thank you for starting with Ledgewave. Review next steps after completing Stripe checkout.">
+  <meta name="twitter:image" content="https://ledgewave.com/assets/images/ledgewave-social-card.svg">
+  <meta name="twitter:image:alt" content="Ledgewave receivables workflow and forecast visibility for modern finance teams.">
+
+  <script id="structured-data" type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": "https://ledgewave.com/#organization",
+      "name": "Ledgewave",
+      "url": "https://ledgewave.com/",
+      "logo": "https://ledgewave.com/assets/images/brand/logo-mark.png",
+      "description": "Ledgewave is receivables workflow and cash forecasting software for finance teams."
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://ledgewave.com/#website",
+      "url": "https://ledgewave.com/",
+      "name": "Ledgewave",
+      "publisher": {
+        "@id": "https://ledgewave.com/#organization"
+      },
+      "inLanguage": "en-US"
+    },
+    {
+      "@type": "WebPage",
+      "@id": "https://ledgewave.com/payment-success.html#webpage",
+      "url": "https://ledgewave.com/payment-success.html",
+      "name": "Payment Received",
+      "description": "Thank you for starting with Ledgewave. Review next steps after completing Stripe checkout.",
+      "isPartOf": {
+        "@id": "https://ledgewave.com/#website"
+      },
+      "about": {
+        "@id": "https://ledgewave.com/#organization"
+      },
+      "inLanguage": "en-US"
+    }
+  ]
+}
+  </script>
+</head>
+<body data-page="payment-success">
+  <div class="site-shell">
+    <div data-site-header></div>
+
+    <main class="page-main payment-success-page" id="main-content">
+      <section class="payment-success-hero reveal is-visible" aria-labelledby="payment-success-title">
+        <div class="payment-success-copy">
+          <span class="section-pill">Payment Received</span>
+          <h1 id="payment-success-title">Thanks for starting with Ledgewave.</h1>
+          <p>
+            Stripe has accepted your checkout. Your receipt and subscription confirmation will come from Stripe,
+            and Ledgewave will use the billing contact to prepare your workspace access.
+          </p>
+          <div class="payment-success-actions">
+            <a class="btn btn-primary" href="https://app.ledgewave.com">Open Ledgewave</a>
+            <a class="btn btn-secondary" href="demo.html">Schedule onboarding</a>
+          </div>
+        </div>
+
+        <aside class="payment-success-card" aria-label="What happens next">
+          <h2>What happens next</h2>
+          <ol class="payment-success-steps">
+            <li>
+              <strong>Receipt</strong>
+              <span>Stripe sends payment and subscription details to the checkout email.</span>
+            </li>
+            <li>
+              <strong>Workspace setup</strong>
+              <span>Ledgewave confirms the company and prepares the starting workspace.</span>
+            </li>
+            <li>
+              <strong>First data path</strong>
+              <span>You can start with CSV import or a managed integration path, depending on the plan.</span>
+            </li>
+          </ol>
+        </aside>
+      </section>
+
+      <section class="payment-success-detail-section reveal" aria-labelledby="payment-success-detail-title">
+        <div class="payment-success-detail-grid">
+          <article>
+            <h2 id="payment-success-detail-title">Your selected plan</h2>
+            <p data-success-plan-copy>
+              We received your checkout. If you selected the wrong plan or billing cadence, contact us before your workspace is finalized.
+            </p>
+          </article>
+          <article>
+            <h3>Need help right away?</h3>
+            <p>Use the onboarding link if you need vendor setup, an implementation review, or help choosing the first receivables data source.</p>
+            <a class="btn btn-secondary" href="demo.html">Talk to Sales</a>
+          </article>
+        </div>
+      </section>
+    </main>
+
+    <div data-site-footer></div>
+  </div>
+
+  <script src="assets/js/script.js"></script>
+  <script>
+    (() => {
+      const params = new URLSearchParams(window.location.search);
+      const planLabels = {
+        core: "Core",
+        scale: "Scale",
+        advanced: "Advanced",
+      };
+      const billingLabels = {
+        monthly: "monthly billing",
+        annual: "annual billing",
+      };
+      const plan = planLabels[(params.get("plan") || "").toLowerCase()];
+      const billing = billingLabels[(params.get("billing") || "").toLowerCase()];
+      const planCopy = document.querySelector("[data-success-plan-copy]");
+
+      if (planCopy && plan && billing) {
+        planCopy.textContent = `We received checkout for the ${plan} plan with ${billing}. If anything looks off, contact us before your workspace is finalized.`;
+      }
+    })();
+  </script>
+</body>
+</html>

@@ -120,7 +120,7 @@
               <button class="payment-plan-card is-active" type="button" data-payment-plan="core" aria-pressed="true">
                 <span>
                   <strong>Core</strong>
-                  <small>Up to 1,000 invoices/month</small>
+                  <small>Up to 50 invoices/month</small>
                 </span>
                 <b data-payment-price="core">$49.90/mo</b>
               </button>
@@ -128,7 +128,7 @@
               <button class="payment-plan-card" type="button" data-payment-plan="scale" aria-pressed="false">
                 <span>
                   <strong>Scale</strong>
-                  <small>Up to 5,000 invoices/month</small>
+                  <small>Up to 250 invoices/month</small>
                 </span>
                 <b data-payment-price="scale">$99.90/mo</b>
               </button>
@@ -136,7 +136,7 @@
               <button class="payment-plan-card" type="button" data-payment-plan="advanced" aria-pressed="false">
                 <span>
                   <strong>Advanced</strong>
-                  <small>Up to 15,000 invoices/month</small>
+                  <small>Up to 750 invoices/month</small>
                 </span>
                 <b data-payment-price="advanced">$249.90/mo</b>
               </button>
@@ -256,16 +256,15 @@
         },
       };
 
-      // Paste live Stripe Payment Link URLs here, using keys like "core-monthly".
-      // Each link must point to a Stripe Price that matches the displayed amount.
+      // Live Stripe Payment Links for the displayed Ledgewave plans.
       const stripePaymentLinks = {
         ...{
-          "core-monthly": "https://buy.stripe.com/test_8x228sa2t5fo3LR9j28k806",
-          "core-annual": "https://buy.stripe.com/test_cNi6oI4I94bk5TZbra8k807",
-          "scale-monthly": "https://buy.stripe.com/test_28E9AU1vXbDMeqv0Mw8k808",
-          "scale-annual": "https://buy.stripe.com/test_28E7sM3E58rA3LRcve8k809",
-          "advanced-monthly": "https://buy.stripe.com/test_5kQaEYb6xePYdmr8eY8k80a",
-          "advanced-annual": "https://buy.stripe.com/test_fZufZi3E56jsfuz3YI8k80b",
+          "core-monthly": "https://buy.stripe.com/8x26oHfAm601cc36Yzds40c",
+          "core-annual": "https://buy.stripe.com/28EfZh73Q8892BtciTds40d",
+          "scale-monthly": "https://buy.stripe.com/aFafZh87UfAB8ZRaaLds40e",
+          "scale-annual": "https://buy.stripe.com/fZu5kDag21JL1xpciTds40f",
+          "advanced-monthly": "https://buy.stripe.com/dRmfZh4VI7457VN3Mnds40g",
+          "advanced-annual": "https://buy.stripe.com/cNicN5gEq0FH5NFer1ds40h",
         },
         ...(window.LEDGEWAVE_STRIPE_PAYMENT_LINKS || {}),
       };

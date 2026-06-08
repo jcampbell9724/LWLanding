@@ -193,9 +193,9 @@
               <div class="pricing-amount" data-price-monthly="$49.90" data-price-annual="$538.80">
                 <span class="price-value">$49.90</span><span class="price-period">/month</span>
               </div>
-              <p class="pricing-card-fit">For finance teams managing up to 1,000 invoices/month.</p>
+              <p class="pricing-card-fit">For finance teams managing up to 50 invoices/month.</p>
             </div>
-            <div class="pricing-metric">Up to 1,000 invoices/month</div>
+            <div class="pricing-metric">Up to 50 invoices/month</div>
             <ul class="pricing-feature-list">
               <li>Collections workflow management</li>
               <li>Customer notes and activity tracking</li>
@@ -214,9 +214,9 @@
               <div class="pricing-amount" data-price-monthly="$99.90" data-price-annual="$1,078.80">
                 <span class="price-value">$99.90</span><span class="price-period">/month</span>
               </div>
-              <p class="pricing-card-fit">For growing finance teams managing 1,000-5,000 invoices/month.</p>
+              <p class="pricing-card-fit">For growing finance teams managing 50-250 invoices/month.</p>
             </div>
-            <div class="pricing-metric">Up to 5,000 invoices/month</div>
+            <div class="pricing-metric">Up to 250 invoices/month</div>
             <ul class="pricing-feature-list">
               <li>Advanced collections workflows</li>
               <li>Automated follow-up sequences</li>
@@ -236,7 +236,7 @@
               </div>
               <p class="pricing-card-fit">For operational finance teams managing complex receivables workflows.</p>
             </div>
-            <div class="pricing-metric">Up to 15,000 invoices/month</div>
+            <div class="pricing-metric">Up to 750 invoices/month</div>
             <ul class="pricing-feature-list">
               <li>Multi-team workflow management</li>
               <li>Advanced reporting and analytics</li>
@@ -445,7 +445,7 @@
           <form class="roi-inputs" aria-label="Operational impact calculator">
             <label>
               <span>Monthly invoice volume</span>
-              <input type="number" inputmode="numeric" min="100" max="50000" step="100" value="2500" data-roi-input="invoiceVolume">
+              <input type="number" inputmode="numeric" min="10" max="5000" step="10" value="250" data-roi-input="invoiceVolume">
             </label>
             <label>
               <span>Number of collectors</span>
@@ -602,15 +602,15 @@
       };
 
       const getRecommendedPlan = (invoiceVolume) => {
-        if (invoiceVolume <= 1000) {
+        if (invoiceVolume <= 50) {
           return "Core";
         }
 
-        if (invoiceVolume <= 5000) {
+        if (invoiceVolume <= 250) {
           return "Scale";
         }
 
-        if (invoiceVolume <= 15000) {
+        if (invoiceVolume <= 750) {
           return "Advanced";
         }
 
@@ -623,7 +623,7 @@
       };
 
       const updateCalculator = () => {
-        const invoiceVolume = readInput(inputs.invoiceVolume, 2500);
+        const invoiceVolume = readInput(inputs.invoiceVolume, 250);
         const collectors = readInput(inputs.collectors, 6);
         const dso = readInput(inputs.dso, 48);
         const monthlyHoursAutomated = Math.round(Math.min(420, invoiceVolume * 0.022 + collectors * 6 + dso * 0.35));

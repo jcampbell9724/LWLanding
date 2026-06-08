@@ -27,6 +27,7 @@ const trackAnalyticsLandingPage = () => {
   const pageEvents = {
     demo: "demo_page_view",
     payment: "start_now_page_view",
+    "payment-success": "checkout_success_page_view",
     pricing: "pricing_page_view",
     "start-free": "start_free_page_view",
   };
